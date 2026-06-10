@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Padaroca</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <header class="main-header">
+
+            <div class="logo-area">
+
+                <h1>Padaroca</h1>
+
+                <p>Pães, doces & cafés</p>
+
+            </div>
+
+            <div class="search-box">
+
+                <input type="text" placeholder="Buscar produto...">
+
+            </div>
+
+            <div class="header-actions">
+
+                <button class="header-button">
+                    👤 Usuário
+                </button>
+
+                <button class="header-button active">
+                    🛒 Carrinho
+                </button>
+
+                <button class="menu-button">
+                    ☰
+                </button>
+
+            </div>
+
+        </header>
+
+        <aside class="sidebar">
+
+            <h3>Menu</h3>
+
+            <nav>
+
+                <a href="#cafes">
+
+                    ☕
+
+                    <span>Cafés</span>
+
+                </a>
+
+                <a href="#paes">
+
+                    🥖
+
+                    <span>Pães</span>
+
+                </a>
+
+                <a href="#tapiocas">
+
+                    🫓
+
+                    <span>Tapiocas</span>
+
+                </a>
+
+                <a href="#cuscuz">
+
+                    🌽
+
+                    <span>Cuscuz</span>
+
+                </a>
+                <a href="#crepiocas">
+
+                    🥞
+
+                    <span>Crepiocas</span>
+
+                </a>
+                <a href="#doces-e-salgados">
+
+                    🍰
+
+                    <span>Doces & Salgados</span>
+
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <div class="page-container">
+
+            <main>
+
+                <!-- Área do cardápio -->
+
+                <section class="menu">
+
+                    <h2>Cardápio</h2>
+                    <!-- CAFÉS (esta faltando preço de um produto) -->
+                    <div class="category" id="cafes">
+
+                        <h3>Cafés</h3>
+
+                        <div class="products-grid">
+
+                            <!-- Produto 1 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/cafe-preto.jpg');"></div>
+
+                                <h4>Café Preto</h4>
+
+                                <p>Café tradicional passado na hora, forte e
+                                    quentinho.</p>
+
+                                <div class="card-footer">
+                                    <p class="price">R$ 4,00</p>
+
+                                    <button class="add-button">
+                                        +
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <!-- Produto 2-->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/cafe-com-leite.jpg');"></div>
+
+                                <h4>Café com Leite</h4>
+
+                                <p>Combinação equilibrada de café fresco com
+                                    leite
+                                    cremoso.</p>
+                                <p class="price">R$ 5,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <!-- Produto 3 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/capuccino.jpg');"></div>
+
+                                <h4>Capuccino</h4>
+
+                                <p>Bebida cremosa com café, leite vaporizado e
+                                    toque
+                                    de canela.</p>
+                                <p class="price">R$ 10,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <!-- Produto 4 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/chocolate-quente.jpg');"></div>
+
+                                <h4>Chocolate Quente</h4>
+
+                                <p>Chocolate quente cremoso e aconchegante,
+                                    perfeito
+                                    para qualquer hora.</p>
+                                <p class="price">R$ 5,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <!-- Produto 5 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/chocolate-gelado.jpg');"></div>
+
+                                <h4>Chocolate Gelado</h4>
+
+                                <p>Bebida gelada de chocolate, refrescante e
+                                    deliciosa.</p>
+                                <p class="price">R$ 5,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <!-- Produto 6 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/cha-de-camomila.jpg');"></div>
+
+                                <h4>Chá de Camomila</h4>
+
+                                <p>Infusão suave e relaxante com aroma delicado
+                                    de
+                                    camomila.</p>
+                                <p class="price">R$ 6,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <!-- Produto 7 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/cafe-expresso.jpg');"></div>
+
+                                <h4>Café Expresso</h4>
+
+                                <p>Café encorpado preparado sob pressão com
+                                    sabor
+                                    intenso.</p>
+                                <p class="price">R$ 6,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <!-- Produto 8 -->
+
+                            <div class="product-card">
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/cafe-expresso-com-leite.jpg');"></div>
+
+                                <h4>Café Expresso com leite</h4>
+
+                                <p>Expresso forte combinado com leite quente e
+                                    textura cremosa.</p>
+                                <p class="price">R$ 7,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- PÃES -->
+                    <div class="category" id="paes">
+
+                        <h3>Pães</h3>
+
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <!-- Produto 1 -->
+
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/pao-com-manteiga.jpg');"></div>
+
+                                <h4>Pão com Manteiga</h4>
+
+                                <p>Pão francês crocante com manteiga
+                                    derretendo.</p>
+                                <p class="price">R$ 4,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 2 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/pao-com-queijo.jpg');"></div>
+                                <h4>Pão com Queijo</h4>
+
+                                <p>Pão quentinho recheado com queijo
+                                    derretido.</p>
+                                <p class="price">R$ 7,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 3 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/pao-com-queijo-e-presunto.jpg');"></div>
+                                <h4>Pão com Queijo e Presunto</h4>
+
+                                <p>Queijo derretido e presunto suculento no pão
+                                    fresquinho.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 4 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image"
+                                    style="background-image: url('img/pao-com-ovo.jpg');"></div>
+                                <h4>Pão com Ovo</h4>
+
+                                <p>Pão francês com ovo fresquinho feito na
+                                    chapa.</p>
+                                <p class="price">R$ 7,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 5 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image pao-com-ovo-e-queijo"></div>
+                                <h4>Pão com Ovo e Queijo</h4>
+
+                                <p>Pão francês feito na hora com ovo e queijo
+                                    derretendo.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 6 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image pao-com-ovo-queijo-e-presunto"></div>
+                                <h4>Pão com Ovo, Queijo e Presunto</h4>
+
+                                <p>Pão francês quentinho com ovo, queijo
+                                    derretido e
+                                    presunto.</p>
+                                <p class="price">R$ 12,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 7 -->
+                            <div class="product-card">
+                                <div class="product-image pao-com-frango"></div>
+                                <h4>Pão com Frango</h4>
+
+                                <p>Frango temperado no pão francês
+                                    quentinho.</p>
+                                <p class="price">R$ 12,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 8 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image pao-com-frango-e-queijo"></div>
+                                <h4>Pão com Frango e Queijo</h4>
+
+                                <p>Frango temperado no pão francês quentinho com
+                                    queijo derretido.</p>
+                                <p class="price">R$ 15,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 9 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image pao-com-frango-queijo-e-presunto"></div>
+                                <h4>Pão com Frango, Queijo e Presunto</h4>
+
+                                <p>Combinação de frango temperado, queijo
+                                    derretido
+                                    e presunto no pão quentinho.</p>
+                                <p class="price">R$ 17,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 10 -->
+                            <div class="product-card">
+                                <div class="product-image pao-com-carne"></div>
+                                <h4>Pão com Carne</h4>
+
+                                <p>Pão francês quentinho recheado com carne bem
+                                    temperada.</p>
+                                <p class="price">R$ 14,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 11 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image pao-com-carne-e-queijo"></div>
+                                <h4>Pão com Carne e Queijo</h4>
+
+                                <p>Pão francês quentinho com carne temperada e
+                                    queijo derretido.</p>
+                                <p class="price">R$ 17,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 12-->
+                            <div class="product-card">
+                                <div
+                                    class="product-image pao-com-carne-queijo-e-presunto"></div>
+                                <h4>Pão com Carne, Queijo e Presunto</h4>
+
+                                <p>Pão francês recheado com carne, queijo e
+                                    presunto
+                                    na chapa.</p>
+                                <p class="price">R$ 19,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- TAPIOCAS -->
+
+                    <div class="category" id="tapiocas">
+
+                        <h3>Tapiocas</h3>
+
+                        <div class="products-grid">
+
+                            <!-- Produto 1 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-manteiga"></div>
+                                <h4>Tapioca com Manteiga</h4>
+
+                                <p>Tapioca quentinha com manteiga
+                                    derretendo.</p>
+                                <p class="price">R$ 5,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 2 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-queijo"></div>
+                                <h4>Tapioca com Queijo</h4>
+
+                                <p>Tapioca leve recheada com queijo
+                                    derretido.</p>
+                                <p class="price">R$ 8,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 3 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-queijo-e-presunto"></div>
+                                <h4>Tapioca com Queijo e Presunto</h4>
+
+                                <p>Tapioca feita na hora com queijo quentinho e
+                                    presunto.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 4 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-ovo"></div>
+                                <h4>Tapioca com Ovo</h4>
+
+                                <p>Ovo feito na hora na tapioca leve e
+                                    quentinha.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 5 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-ovo-e-queijo"></div>
+                                <h4>Tapioca com Ovo e Queijo</h4>
+
+                                <p>Tapioca feita na hora com ovo e queijo
+                                    quentinho.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 6 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-ovo-queijo-e-presunto"></div>
+                                <h4>Tapioca com Ovo, Queijo e Presunto</h4>
+
+                                <p>Tapioca quentinha recheada com ovo, queijo
+                                    derretido e presunto.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 7 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango"></div>
+                                <h4>Tapioca com Frango</h4>
+
+                                <p>Tapioca recheada com frango bem
+                                    temperado.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 8 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango-cremoso"></div>
+                                <h4>Tapioca com Frango Cremoso</h4>
+
+                                <p>Tapioca quentinha recheada com frango cremoso
+                                    e
+                                    bem temperado.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 9 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango-e-queijo"></div>
+                                <h4>Tapioca com Frango e Queijo</h4>
+
+                                <p>Tapioca recheada com frango temperado e
+                                    queijo
+                                    derretido.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 10 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango-cremoso-e-queijo"></div>
+                                <h4>Tapioca com Frango Cremoso e Queijo</h4>
+
+                                <p>Tapioca temperada com frango cremoso e queijo
+                                    derretido.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 11 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango-queijo-e-presunto"></div>
+                                <h4>Tapioca com Frango, Queijo e Presunto</h4>
+
+                                <p>Frango suculento, queijo derretendo e
+                                    presunto na
+                                    tapioca feita na hora.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 12 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango-cremoso-queijo-e-presunto"></div>
+                                <h4>Tapioca com Frango Cremoso, Queijo e
+                                    Presunto</h4>
+
+                                <p>Tapioca quentinha recheada com frango
+                                    cremoso,
+                                    queijo derretido e presunto.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 13 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-carne"></div>
+                                <h4>Tapioca com Carne</h4>
+
+                                <p>Tapioca leve recheada com carne temperada no
+                                    ponto certo.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 14 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-carne-e-queijo"></div>
+                                <h4>Tapioca com Carne e Queijo</h4>
+
+                                <p>Tapioca feita na hora com carne temperada e
+                                    queijo na medida certa.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 15 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-carne-cremosa"></div>
+                                <h4>Tapioca com Carne Cremosa</h4>
+
+                                <p>Tapioca quentinha recheada com carne cremosa
+                                    e
+                                    bem temperada.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 16 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-carne-cremosa-e-queijo"></div>
+                                <h4>Tapioca com Carne Cremosa e Queijo</h4>
+
+                                <p>Tapioca caprichada recheada com carne cremosa
+                                    e
+                                    queijo derretido.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 17 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-ovo"></div>
+                                <h4>Tapioca com Ovo</h4>
+
+                                <p>Tapioca feita na hora com ovo temperado e
+                                    saboroso.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 18 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-ovo-e-queijo"></div>
+                                <h4>Tapioca com Ovo e Queijo</h4>
+
+                                <p>Tapioca quentinha recheada com ovo fresquinho
+                                    e
+                                    um incrível queijo derretido.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 19 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-frango-cremoso-queijo-e-presunto"></div>
+                                <h4>Tapioca com Frango Cremoso, Queijo e
+                                    Presunto</h4>
+
+                                <p>Tapioca artesanal recheada com frango
+                                    cremoso,
+                                    queijo derretido e presunto.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 20 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-leite-de-coco"></div>
+                                <h4>Tapioca com Leite de Coco</h4>
+
+                                <p>Tapioca leve recheada com leite de coco e uma
+                                    textura cremosa.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 21 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image tapioca-com-leite-de-coco-e-leite-condensado"></div>
+                                <h4>Tapioca com Leite de Coco e Leite
+                                    Condensado</h4>
+
+                                <p>Tapioca leve recheada com leite de coco e
+                                    leite
+                                    condensado, uma combinação deliciosa.</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- CUSCUZ -->
+
+                    <div class="category" id="cuscuz">
+
+                        <h3>Cuscuz</h3>
+
+                        <div class="products-grid">
+
+                            <!-- Produto 1 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-manteiga"></div>
+                                <h4>Cuscuz com Manteiga</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 6,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+                            <!-- Produto 2 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-queijo"></div>
+                                <h4>Cuscuz com Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 9,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 3 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-queijo-e-presunto"></div>
+                                <h4>Cuscuz com Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 12,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 4 -->
+                            <div class="product-card">
+                                <div class="product-image cuscuz-com-ovo"></div>
+                                <h4>Cuscuz com Ovo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 9,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 5 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-ovo-e-queijo"></div>
+                                <h4>Cuscuz com Ovo e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 12,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 6 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-ovo-queijo-e-presunto"></div>
+                                <h4>Cuscuz com Ovo, Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 15,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 7 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-frango"></div>
+                                <h4>Cuscuz com Frango</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 15,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 8 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-frango-e-queijo"></div>
+                                <h4>Cuscuz com Frango e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 18,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 9 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-frango-queijo-e-presunto"></div>
+                                <h4>Cuscuz com Frango, Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 20,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 10 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-carne"></div>
+                                <h4>Cuscuz com Carne</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 17,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 11 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-carne-e-queijo"></div>
+                                <h4>Cuscuz com Carne e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 20,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 12 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-carne-queijo-e-presunto"></div>
+                                <h4>Cuscuz com Carne, Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 22,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                            <!-- Produto 13 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image cuscuz-com-leite-de-coco"></div>
+                                <h4>Cuscuz com Leite de Coco</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 14,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- CREPIOCA -->
+
+                    <div class="category" id="crepiocas">
+
+                        <h3>Crepioca</h3>
+
+                        <div class="products-grid">
+
+                            <!-- Produto 1 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-queijo"></div>
+                                <h4>Crepioca com Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 8,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 2 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-queijo-e-presunto"></div>
+                                <h4>Crepioca com Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 12,00</p>
+
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 3 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-frango"></div>
+                                <h4>Crepioca com Frango</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 14,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 4 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-frango-cremoso"></div>
+                                <h4>Crepioca com Frango Cremoso</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 16,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 5 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-frango-e-queijo"></div>
+                                <h4>Crepioca com Frango e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 17,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 6 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-frango-cremoso-e-queijo"></div>
+                                <h4>Crepioca com Frango Cremoso e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 19,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 7 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-frango-queijo-e-presunto"></div>
+                                <h4>Crepioca com Frango, Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 20,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 8 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-frango-cremoso-queijo-e-presunto"></div>
+                                <h4>Crepioca com Frango Cremoso, Queijo e
+                                    Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 22,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 9 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-carne"></div>
+                                <h4>Crepioca com Carne</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 16,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 10 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-carne-cremosa"></div>
+                                <h4>Crepioca com Carne Cremosa</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 9,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 11 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-carne-e-queijo"></div>
+                                <h4>Crepioca com Carne e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 19,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 12 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-carne-cremosa-e-queijo"></div>
+                                <h4>Crepioca com Carne Cremosa e Queijo</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 21,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 13 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-carne-queijo-e-presunto"></div>
+                                <h4>Crepioca com Carne, Queijo e Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 22,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 14 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image crepioca-com-carne-cremosa-queijo-e-presunto"></div>
+                                <h4>Crepioca com Carne Cremosa, Queijo e
+                                    Presunto</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 24,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DOCES E SALGADOS -->
+
+                    <div class="category" id="doces-e-salgados">
+
+                        <h3>Doces e Salgados</h3>
+
+                        <div class="products-grid">
+
+                            <!-- Produto 1 -->
+                            <div class="product-card">
+                                <div class="product-image tortas"></div>
+                                <h4>Tortas</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 15,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 2 -->
+                            <div class="product-card">
+                                <div class="product-image empadao"></div>
+                                <h4>Empadão</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 15,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 3 -->
+                            <div class="product-card">
+                                <div class="product-image pudim-de-leite"></div>
+                                <h4>Pudim de Leite</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 10,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 4 -->
+                            <div class="product-card">
+                                <div class="product-image esfirra"></div>
+                                <h4>Esfirra</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 8,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+
+                            <!-- Produto 5 -->
+                            <div class="product-card">
+                                <div
+                                    class="product-image esfirra-de-camarao"></div>
+                                <h4>Esfirra de Camarão</h4>
+
+                                <p>descrição do produto</p>
+                                <p class="price">R$ 16,00</p>
+                                <button class="add-button">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </main>
+        </div>
+
+    </body>
+
+</html>
