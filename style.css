@@ -2,6 +2,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/* ZERA OS PRE AJUSTES DO NAVEGADOR */
 * {
     margin: 0;
     padding: 0;
@@ -42,7 +43,6 @@ body {
     color: #333;
     min-height: 100vh;
 }
-
 
 
 /* HEADER */
@@ -168,6 +168,26 @@ header {
     background: rgba(139,69,19,0.18);
 
     transform: translateY(-2px);
+}
+
+/* NOME CARDAPIO */
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.menu-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #5C3317;
+}
+
+.menu-decoration {
+    color: #d4b08a;
+    font-size: 1.5rem;
 }
 
 
@@ -302,7 +322,7 @@ main {
 
     gap: 16px;
 
-    margin-top: 15px;
+    margin-top: 0;
 
     margin-bottom: 40px;
 
@@ -344,7 +364,7 @@ main {
 /* TÍTULO CARDÁPIO */
 
 .menu h2 {
-    text-align: center;
+    text-align: left;
 
     font-size: 2.5rem;
 
@@ -355,9 +375,10 @@ main {
     position: relative;
 
     z-index: 5;
+
 }
 
-.menu h2::after {
+/* .menu h2::after {
     content: "";
 
     width: 80px;
@@ -371,7 +392,7 @@ main {
     margin: 12px auto 0;
 
     border-radius: 20px;
-}
+} */
 /* CATEGORIAS */
 
 .category {

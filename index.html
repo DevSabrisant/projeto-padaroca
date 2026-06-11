@@ -74,7 +74,10 @@
 
                 <section class="menu">
 
-                    <h2>Cardápio</h2>
+                    <div class="menu-header">
+                        <h2>Cardápio</h2>
+                        <span class="menu-decoration"></span>
+                    </div>
 
                     <!-- Filtros do cardápio -->
                     <div class="menu-filters">
@@ -88,7 +91,7 @@
                             data-filter="paes">Pães</button>
 
                         <button class="filter-button"
-                            data-filter="tapiocas">Tapiocas</button>
+                            data-filter="tapioca">Tapiocas</button>
 
                         <button class="filter-button"
                             data-filter="cuscuz">Cuscuz</button>
@@ -109,7 +112,7 @@
 
                             <!-- Produto 1 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -132,7 +135,7 @@
 
                             <!-- Produto 2-->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -154,7 +157,7 @@
 
                             <!-- Produto 3 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -177,7 +180,7 @@
 
                             <!-- Produto 4 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -199,7 +202,7 @@
 
                             <!-- Produto 5 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -219,7 +222,7 @@
 
                             <!-- Produto 6 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -241,7 +244,7 @@
 
                             <!-- Produto 7 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -262,7 +265,7 @@
 
                             <!-- Produto 8 -->
 
-                            <div class="product-card">
+                            <div class="product-card" data-category="cafes">
 
                                 <div
                                     class="product-image"
@@ -290,7 +293,7 @@
                         <h3>Pães</h3>
 
                         <div class="products-grid">
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <!-- Produto 1 -->
 
                                 <div
@@ -310,7 +313,7 @@
                             </div>
 
                             <!-- Produto 2 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-queijo.jpg');"></div>
@@ -327,7 +330,7 @@
                             </div>
 
                             <!-- Produto 3 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-queijo-e-presunto.jpg');"></div>
@@ -344,7 +347,7 @@
                             </div>
 
                             <!-- Produto 4 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-ovo.jpg');"></div>
@@ -361,7 +364,7 @@
                             </div>
 
                             <!-- Produto 5 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-ovo-e-queijo.jpg');"></div>
@@ -378,7 +381,7 @@
                             </div>
 
                             <!-- Produto 6 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-ovo-queijo-e-presunto.jpg');"></div>
@@ -396,7 +399,7 @@
                             </div>
 
                             <!-- Produto 7 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-frango.jpg');"></div>
@@ -413,7 +416,7 @@
                             </div>
 
                             <!-- Produto 8 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-frango-e-queijo.jpg');"></div>
@@ -430,7 +433,7 @@
                             </div>
 
                             <!-- Produto 9 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-frango-queijo-e-presunto.jpg');"></div>
@@ -448,7 +451,7 @@
                             </div>
 
                             <!-- Produto 10 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-carne.jpg');"></div>
@@ -465,7 +468,7 @@
                             </div>
 
                             <!-- Produto 11 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-carne-e-queijo.jpg');"></div>
@@ -482,7 +485,7 @@
                             </div>
 
                             <!-- Produto 12-->
-                            <div class="product-card">
+                            <div class="product-card" data-category="paes">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/pao-com-carne-queijo-e-presunto.jpg');"></div>
@@ -511,7 +514,7 @@
                         <div class="products-grid">
 
                             <!-- Produto 1 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/tapioca-com-manteiga.jpg');"></div>
@@ -528,7 +531,7 @@
                             </div>
 
                             <!-- Produto 2 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/tapioca-com-queijo.jpg');"></div>
@@ -545,7 +548,7 @@
                             </div>
 
                             <!-- Produto 3 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
                                     class="product-image"
                                     style="background-image: url('img/tapioca-com-queijo-e-presunto.jpg');"></div>
@@ -554,7 +557,7 @@
                                 <p>Tapioca feita na hora com queijo quentinho e
                                     presunto.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 11,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -562,15 +565,16 @@
                             </div>
 
                             <!-- Produto 4 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-ovo"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-ovo.jpg');"></div>
                                 <h4>Tapioca com Ovo</h4>
 
                                 <p>Ovo feito na hora na tapioca leve e
                                     quentinha.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 8,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -578,15 +582,16 @@
                             </div>
 
                             <!-- Produto 5 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-ovo-e-queijo"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-ovo-e-queijo.jpg');"></div>
                                 <h4>Tapioca com Ovo e Queijo</h4>
 
                                 <p>Tapioca feita na hora com ovo e queijo
                                     quentinho.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 11,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -594,15 +599,16 @@
                             </div>
 
                             <!-- Produto 6 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-ovo-queijo-e-presunto"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-ovo-queijo-e-presunto.jpg');"></div>
                                 <h4>Tapioca com Ovo, Queijo e Presunto</h4>
 
                                 <p>Tapioca quentinha recheada com ovo, queijo
                                     derretido e presunto.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 14,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -610,15 +616,16 @@
                             </div>
 
                             <!-- Produto 7 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-frango.jpg');"></div>
                                 <h4>Tapioca com Frango</h4>
 
                                 <p>Tapioca recheada com frango bem
                                     temperado.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 14,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -626,16 +633,17 @@
                             </div>
 
                             <!-- Produto 8 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango-cremoso"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-frango-cremoso.jpg');"></div>
                                 <h4>Tapioca com Frango Cremoso</h4>
 
                                 <p>Tapioca quentinha recheada com frango cremoso
                                     e
                                     bem temperado.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 16,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -643,16 +651,17 @@
                             </div>
 
                             <!-- Produto 9 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango-e-queijo"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-frango-e-queijo.jpg');"></div>
                                 <h4>Tapioca com Frango e Queijo</h4>
 
                                 <p>Tapioca recheada com frango temperado e
                                     queijo
                                     derretido.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 17,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -660,15 +669,16 @@
                             </div>
 
                             <!-- Produto 10 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango-cremoso-e-queijo"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-frango-cremoso-e-queijo.jpg');"></div>
                                 <h4>Tapioca com Frango Cremoso e Queijo</h4>
 
                                 <p>Tapioca temperada com frango cremoso e queijo
                                     derretido.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 19,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -676,16 +686,17 @@
                             </div>
 
                             <!-- Produto 11 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango-queijo-e-presunto"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-frango-queijo-e-presunto.jpg');"></div>
                                 <h4>Tapioca com Frango, Queijo e Presunto</h4>
 
                                 <p>Frango suculento, queijo derretendo e
                                     presunto na
                                     tapioca feita na hora.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 19,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -693,9 +704,10 @@
                             </div>
 
                             <!-- Produto 12 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango-cremoso-queijo-e-presunto"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-frango-cremoso-queijo-e-presunto.jpg');"></div>
                                 <h4>Tapioca com Frango Cremoso, Queijo e
                                     Presunto</h4>
 
@@ -703,7 +715,7 @@
                                     cremoso,
                                     queijo derretido e presunto.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 21,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -711,15 +723,16 @@
                             </div>
 
                             <!-- Produto 13 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-carne"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-carne.jpg');"></div>
                                 <h4>Tapioca com Carne</h4>
 
                                 <p>Tapioca leve recheada com carne temperada no
                                     ponto certo.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 16,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -727,15 +740,16 @@
                             </div>
 
                             <!-- Produto 14 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-carne-e-queijo"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-carne-e-queijo.jpg');"></div>
                                 <h4>Tapioca com Carne e Queijo</h4>
 
                                 <p>Tapioca feita na hora com carne temperada e
                                     queijo na medida certa.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 16,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -743,16 +757,17 @@
                             </div>
 
                             <!-- Produto 15 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-carne-cremosa"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-carne-cremosa.jpg');"></div>
                                 <h4>Tapioca com Carne Cremosa</h4>
 
                                 <p>Tapioca quentinha recheada com carne cremosa
                                     e
                                     bem temperada.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 18,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -760,16 +775,17 @@
                             </div>
 
                             <!-- Produto 16 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-carne-cremosa-e-queijo"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-carne-cremosa-e-queijo.jpg');"></div>
                                 <h4>Tapioca com Carne Cremosa e Queijo</h4>
 
                                 <p>Tapioca caprichada recheada com carne cremosa
                                     e
                                     queijo derretido.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 21,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -777,15 +793,16 @@
                             </div>
 
                             <!-- Produto 17 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-ovo"></div>
-                                <h4>Tapioca com Ovo</h4>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-carne-queijo-e-presunto.jpg');"></div>
+                                <h4>Tapioca com Carne, Queijo e Presunto</h4>
 
-                                <p>Tapioca feita na hora com ovo temperado e
-                                    saboroso.</p>
+                                <p>Tapioca feita na hora com carne temperada,
+                                    queijo e presunto.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 21,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -793,16 +810,17 @@
                             </div>
 
                             <!-- Produto 18 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-ovo-e-queijo"></div>
-                                <h4>Tapioca com Ovo e Queijo</h4>
+                                    class="product-image"
+                                    style="background-image: url('img/tapioca-com-carne-cremosa-e-queijo.jpg');"></div>
+                                <h4>Tapioca com Carne Cremosa, Queijo e
+                                    Presunto</h4>
 
-                                <p>Tapioca quentinha recheada com ovo fresquinho
-                                    e
-                                    um incrível queijo derretido.</p>
+                                <p>Tapioca feita na hora com carne cremosa,
+                                    queijo e presunto.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 23,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -810,33 +828,16 @@
                             </div>
 
                             <!-- Produto 19 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
-                                    class="product-image tapioca-com-frango-cremoso-queijo-e-presunto"></div>
-                                <h4>Tapioca com Frango Cremoso, Queijo e
-                                    Presunto</h4>
-
-                                <p>Tapioca artesanal recheada com frango
-                                    cremoso,
-                                    queijo derretido e presunto.</p>
-                                <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
-                                    <button class="add-button">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Produto 20 -->
-                            <div class="product-card">
-                                <div
-                                    class="product-image tapioca-com-leite-de-coco"></div>
+                                    class="product-image"
+                                    style="background-image: url('img/');"></div>
                                 <h4>Tapioca com Leite de Coco</h4>
 
-                                <p>Tapioca leve recheada com leite de coco e uma
-                                    textura cremosa.</p>
+                                <p>Tapioca leve com leite de coco, combinação
+                                    delicada e cheia de sabor.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 12,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -844,7 +845,7 @@
                             </div>
 
                             <!-- Produto 21 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="tapioca">
                                 <div
                                     class="product-image tapioca-com-leite-de-coco-e-leite-condensado"></div>
                                 <h4>Tapioca com Leite de Coco e Leite
@@ -854,7 +855,7 @@
                                     leite
                                     condensado, uma combinação deliciosa.</p>
                                 <div class="card-footer">
-                                    <p class="price">R$ 9,00</p>
+                                    <p class="price">R$ 14,00</p>
                                     <button class="add-button">
                                         +
                                     </button>
@@ -873,7 +874,7 @@
                         <div class="products-grid">
 
                             <!-- Produto 1 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-manteiga"></div>
                                 <h4>Cuscuz com Manteiga</h4>
@@ -887,7 +888,7 @@
                                 </div>
                             </div>
                             <!-- Produto 2 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-queijo"></div>
                                 <h4>Cuscuz com Queijo</h4>
@@ -903,7 +904,7 @@
 
                             </div>
                             <!-- Produto 3 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-queijo-e-presunto"></div>
                                 <h4>Cuscuz com Queijo e Presunto</h4>
@@ -918,7 +919,7 @@
 
                             </div>
                             <!-- Produto 4 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div class="product-image cuscuz-com-ovo"></div>
                                 <h4>Cuscuz com Ovo</h4>
 
@@ -931,7 +932,7 @@
                                 </div>
                             </div>
                             <!-- Produto 5 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-ovo-e-queijo"></div>
                                 <h4>Cuscuz com Ovo e Queijo</h4>
@@ -945,7 +946,7 @@
                                 </div>
                             </div>
                             <!-- Produto 6 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-ovo-queijo-e-presunto"></div>
                                 <h4>Cuscuz com Ovo, Queijo e Presunto</h4>
@@ -959,7 +960,7 @@
                                 </div>
                             </div>
                             <!-- Produto 7 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-frango"></div>
                                 <h4>Cuscuz com Frango</h4>
@@ -975,7 +976,7 @@
 
                             </div>
                             <!-- Produto 8 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-frango-e-queijo"></div>
                                 <h4>Cuscuz com Frango e Queijo</h4>
@@ -990,7 +991,7 @@
 
                             </div>
                             <!-- Produto 9 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-frango-queijo-e-presunto"></div>
                                 <h4>Cuscuz com Frango, Queijo e Presunto</h4>
@@ -1005,7 +1006,7 @@
 
                             </div>
                             <!-- Produto 10 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-carne"></div>
                                 <h4>Cuscuz com Carne</h4>
@@ -1021,7 +1022,7 @@
 
                             </div>
                             <!-- Produto 11 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-carne-e-queijo"></div>
                                 <h4>Cuscuz com Carne e Queijo</h4>
@@ -1037,7 +1038,7 @@
 
                             </div>
                             <!-- Produto 12 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-carne-queijo-e-presunto"></div>
                                 <h4>Cuscuz com Carne, Queijo e Presunto</h4>
@@ -1053,7 +1054,7 @@
 
                             </div>
                             <!-- Produto 13 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="cuscuz">
                                 <div
                                     class="product-image cuscuz-com-leite-de-coco"></div>
                                 <h4>Cuscuz com Leite de Coco</h4>
@@ -1081,7 +1082,7 @@
                         <div class="products-grid">
 
                             <!-- Produto 1 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-queijo"></div>
                                 <h4>Crepioca com Queijo</h4>
@@ -1097,7 +1098,7 @@
                             </div>
 
                             <!-- Produto 2 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-queijo-e-presunto"></div>
                                 <h4>Crepioca com Queijo e Presunto</h4>
@@ -1113,7 +1114,7 @@
                             </div>
 
                             <!-- Produto 3 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-frango"></div>
                                 <h4>Crepioca com Frango</h4>
@@ -1129,7 +1130,7 @@
                             </div>
 
                             <!-- Produto 4 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-frango-cremoso"></div>
                                 <h4>Crepioca com Frango Cremoso</h4>
@@ -1144,7 +1145,7 @@
                             </div>
 
                             <!-- Produto 5 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-frango-e-queijo"></div>
                                 <h4>Crepioca com Frango e Queijo</h4>
@@ -1159,7 +1160,7 @@
                             </div>
 
                             <!-- Produto 6 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-frango-cremoso-e-queijo"></div>
                                 <h4>Crepioca com Frango Cremoso e Queijo</h4>
@@ -1174,7 +1175,7 @@
                             </div>
 
                             <!-- Produto 7 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-frango-queijo-e-presunto"></div>
                                 <h4>Crepioca com Frango, Queijo e Presunto</h4>
@@ -1189,7 +1190,7 @@
                             </div>
 
                             <!-- Produto 8 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-frango-cremoso-queijo-e-presunto"></div>
                                 <h4>Crepioca com Frango Cremoso, Queijo e
@@ -1205,7 +1206,7 @@
                             </div>
 
                             <!-- Produto 9 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-carne"></div>
                                 <h4>Crepioca com Carne</h4>
@@ -1220,7 +1221,7 @@
                             </div>
 
                             <!-- Produto 10 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-carne-cremosa"></div>
                                 <h4>Crepioca com Carne Cremosa</h4>
@@ -1235,7 +1236,7 @@
                             </div>
 
                             <!-- Produto 11 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-carne-e-queijo"></div>
                                 <h4>Crepioca com Carne e Queijo</h4>
@@ -1250,7 +1251,7 @@
                             </div>
 
                             <!-- Produto 12 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-carne-cremosa-e-queijo"></div>
                                 <h4>Crepioca com Carne Cremosa e Queijo</h4>
@@ -1265,7 +1266,7 @@
                             </div>
 
                             <!-- Produto 13 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-carne-queijo-e-presunto"></div>
                                 <h4>Crepioca com Carne, Queijo e Presunto</h4>
@@ -1280,7 +1281,7 @@
                             </div>
 
                             <!-- Produto 14 -->
-                            <div class="product-card">
+                            <div class="product-card" data-category="crepioca">
                                 <div
                                     class="product-image crepioca-com-carne-cremosa-queijo-e-presunto"></div>
                                 <h4>Crepioca com Carne Cremosa, Queijo e
@@ -1306,7 +1307,8 @@
                         <div class="products-grid">
 
                             <!-- Produto 1 -->
-                            <div class="product-card">
+                            <div class="product-card"
+                                data-category="doces-e-salgados">
                                 <div class="product-image tortas"></div>
                                 <h4>Tortas</h4>
 
@@ -1320,7 +1322,8 @@
                             </div>
 
                             <!-- Produto 2 -->
-                            <div class="product-card">
+                            <div class="product-card"
+                                data-category="doces-e-salgados">
                                 <div class="product-image empadao"></div>
                                 <h4>Empadão</h4>
 
@@ -1334,7 +1337,8 @@
                             </div>
 
                             <!-- Produto 3 -->
-                            <div class="product-card">
+                            <div class="product-card"
+                                data-category="doces-e-salgados">
                                 <div class="product-image pudim-de-leite"></div>
                                 <h4>Pudim de Leite</h4>
 
@@ -1348,7 +1352,8 @@
                             </div>
 
                             <!-- Produto 4 -->
-                            <div class="product-card">
+                            <div class="product-card"
+                                data-category="doces-e-salgados">
                                 <div class="product-image esfirra"></div>
                                 <h4>Esfirra</h4>
 
@@ -1362,7 +1367,8 @@
                             </div>
 
                             <!-- Produto 5 -->
-                            <div class="product-card">
+                            <div class="product-card"
+                                data-category="doces-e-salgados">
                                 <div
                                     class="product-image esfirra-de-camarao"></div>
                                 <h4>Esfirra de Camarão</h4>
@@ -1383,6 +1389,8 @@
 
             </main>
         </div>
+
+        <script src="script.js"></script>
 
     </body>
 
