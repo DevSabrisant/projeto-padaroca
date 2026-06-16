@@ -273,6 +273,8 @@ header {
 }
 
 
+
+
 /* SUBTITULO NOVO */
 .subtitle {
     color: #9a531d;
@@ -360,6 +362,77 @@ main {
     background: rgba(255,255,255,0.95);
 }
 
+
+/* CARRINHO DE COMPRAS */
+
+.cart-count {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.cart-sidebar {
+
+    position: fixed;
+
+    top: 0;
+
+    right: -400px;
+
+    width: 360px;
+
+    height: 100vh;
+
+    background: #fff;
+
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+
+    padding: 24px;
+
+    transition: right 0.3s ease;
+
+    z-index: 1000;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.cart-sidebar.open {
+
+    right: 0;
+
+}
+
+.cart-item {
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+.cart-item-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.cart-item-info h4 {
+
+    font-size: 1rem;
+
+}
+
+.cart-item-info p {
+
+    font-weight: 600;
+
+}
 
 /* TÍTULO CARDÁPIO */
 
