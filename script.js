@@ -35,6 +35,9 @@ const cartItemsContainer = document.querySelector('.cart-items');
 // Total do carrinho
 const totalPrice = document.querySelector('.total-price');
 
+// Seleciona botão de finalizar pedido
+const checkoutButton = document.querySelector('.checkout-button');
+
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -71,6 +74,8 @@ function updateCart() {
 
     let total = 0;
 
+    let totalItems = 0;
+
     // Exibe mensagem se o carrinho estiver vazio
     if (cart.length === 0) {
 
@@ -94,26 +99,92 @@ function updateCart() {
 
         cartItem.classList.add('cart-item');
 
-        cartItem.innerHTML = `
-            <div class="cart-item-info">
-                <h4>${item.name}</h4>
-                <p>${item.price}</p>
-            </div>
-        `;
-
-        cartItemsContainer.appendChild(cartItem);
-
-        total += Number(
+        const price = Number(
             item.price
                 .replace('R$', '')
                 .replace(',', '.')
                 .trim()
         );
 
+        const subtotal = price * item.quantity;
+
+        cartItem.innerHTML = `
+    <div class="cart-item-info">
+
+        <h4>${item.name}</h4>
+
+        <div class="cart-item-controls">
+
+            <button class="decrease-btn" data-name="${item.name}">
+                -
+            </button>
+
+            <span>${item.quantity}</span>
+
+            <button class="increase-btn" data-name="${item.name}">
+                +
+            </button>
+
+        </div>
+
+        <div class="cart-item-price">
+
+            <small>${item.price} cada</small>
+
+            <p>
+                R$ ${subtotal.toFixed(2).replace('.', ',')}
+            </p>
+
+        </div>
+
+    </div>
+`;
+
+        cartItemsContainer.appendChild(cartItem);
+
+        // Seleciona os botões + e -
+        const increaseButton = cartItem.querySelector('.increase-btn');
+
+        const decreaseButton = cartItem.querySelector('.decrease-btn');
+
+        // Aumenta a quantidade
+        increaseButton.addEventListener('click', () => {
+
+            item.quantity++;
+
+            updateCart();
+
+        });
+
+        // Diminui a quantidade
+        decreaseButton.addEventListener('click', () => {
+
+            item.quantity--;
+
+            if (item.quantity === 0) {
+
+                const itemIndex = cart.findIndex(
+                    cartItem => cartItem.name === item.name
+                );
+
+                cart.splice(itemIndex, 1);
+
+            }
+
+            updateCart();
+
+        });
+
+        total += subtotal;
+
+        totalItems += item.quantity;
+
     });
 
+
     // Atualiza contador e total
-    cartCount.textContent = cart.length;
+
+    cartCount.textContent = totalItems;
 
     totalPrice.textContent = `R$ ${total
         .toFixed(2)
@@ -205,10 +276,21 @@ addButtons.forEach(button => {
             .querySelector('.price')
             .textContent;
 
-        cart.push({
-            name: productName,
-            price: productPrice
-        });
+        const existingItem = cart.find(
+            item => item.name === productName
+        );
+
+        if (existingItem) {
+
+            existingItem.quantity++;
+        } else {
+            cart.push({
+
+                name: productName,
+                price: productPrice,
+                quantity: 1
+            });
+        }
 
         updateCart();
 
