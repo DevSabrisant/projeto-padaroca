@@ -38,6 +38,12 @@ const totalPrice = document.querySelector('.total-price');
 // Seleciona botão de finalizar pedido
 const checkoutButton = document.querySelector('.checkout-button');
 
+// Seleciona o nome do cliente
+const customerNameInput = document.querySelector('.customer-name');
+
+// Seleciona observações do pedido
+const orderNoteInput = document.querySelector('.order-note');
+
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -188,6 +194,14 @@ function updateCart() {
 
 }
 
+function saveCart() {
+
+    localStorage.setItem(
+        'padaroca-cart',
+        JSON.stringify(cart)
+    );
+}
+
 
 // =====================
 // FILTROS
@@ -288,6 +302,7 @@ addButtons.forEach(button => {
             });
         }
 
+        saveCart();
         updateCart();
 
         console.table(cart);
@@ -314,9 +329,7 @@ closeCartButton.addEventListener('click', () => {
 });
 
 
-// =====================
-// FINALIZAR PEDIDO
-// =====================
+
 
 // =====================
 // FINALIZAR PEDIDO
@@ -332,7 +345,25 @@ checkoutButton.addEventListener('click', () => {
 
     }
 
-    let message = '🛒 *Pedido - Padaroca*\n\n';
+    const customerName = customerNameInput.value.trim();
+
+    const orderNote = orderNoteInput.value.trim();
+
+    console.log(`Nome do cliente: "${customerName}"`);
+
+    if (!customerName) {
+
+        alert('Informe o nome do cliente.');
+
+        return;
+
+    }
+
+    let message = `🛒 *Pedido - Padaroca*
+
+👤 *Cliente:* ${customerName}
+
+`;
 
     cart.forEach(item => {
 
@@ -347,9 +378,17 @@ checkoutButton.addEventListener('click', () => {
 
         message += `${item.quantity}x ${item.name} - R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
 
-
-
     });
+
+    if (orderNote) {
+
+        if (orderNote) {
+
+            message += `\n📝 *Observação:* ${orderNote}\n`;
+
+        }
+
+    }
 
     message += `\n💰 *Total: ${totalPrice.textContent}*`;
 
@@ -362,9 +401,56 @@ checkoutButton.addEventListener('click', () => {
         '_blank'
     );
 
+    // Limpa o carrinho após o envio para o WhatsApp
+
+    cart.length = 0;
+
+    // Limpa os campos
+
+    customerNameInput.value = '';
+
+    orderNoteInput.value = '';
+
+    // Remove os dados salvos no navegador
+
+    localStorage.removeItem('padaroca-cart');
+
+    // Atualiza a interface
+    updateCart();
+
 });
 
 
+// =====================
+// INICIALIZAÇÃO
+// =====================
+
+const savedCart = localStorage.getItem('padaroca-cart');
+
+if (savedCart) {
+
+    cart.push(...JSON.parse(savedCart));
+
+}
+
+updateCart();
+
+
+// =====================
+// ABRIR E FECHAR CARRINHO
+// =====================
+
+cartButton.addEventListener('click', () => {
+
+    cartSidebar.classList.add('open');
+
+});
+
+closeCartButton.addEventListener('click', () => {
+
+    cartSidebar.classList.remove('open');
+
+});
 
 // =====================
 // INICIALIZAÇÃO
