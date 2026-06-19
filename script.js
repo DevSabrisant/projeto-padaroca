@@ -109,33 +109,29 @@ function updateCart() {
         const subtotal = price * item.quantity;
 
         cartItem.innerHTML = `
-    <div class="cart-item-info">
+    <div class="cart-item-header">
 
         <h4>${item.name}</h4>
 
+        <p class="cart-item-subtotal">
+            R$ ${subtotal.toFixed(2).replace('.', ',')}
+        </p>
+
+    </div>
+
+    <div class="cart-item-footer">
+
         <div class="cart-item-controls">
 
-            <button class="decrease-btn" data-name="${item.name}">
-                -
-            </button>
+            <button class="decrease-btn">-</button>
 
             <span>${item.quantity}</span>
 
-            <button class="increase-btn" data-name="${item.name}">
-                +
-            </button>
+            <button class="increase-btn">+</button>
 
         </div>
 
-        <div class="cart-item-price">
-
-            <small>${item.price} cada</small>
-
-            <p>
-                R$ ${subtotal.toFixed(2).replace('.', ',')}
-            </p>
-
-        </div>
+        <small>${item.price} cada</small>
 
     </div>
 `;
@@ -316,6 +312,58 @@ closeCartButton.addEventListener('click', () => {
     cartSidebar.classList.remove('open');
 
 });
+
+
+// =====================
+// FINALIZAR PEDIDO
+// =====================
+
+// =====================
+// FINALIZAR PEDIDO
+// =====================
+
+checkoutButton.addEventListener('click', () => {
+
+    if (cart.length === 0) {
+
+        alert('Seu carrinho está vazio!');
+
+        return;
+
+    }
+
+    let message = '🛒 *Pedido - Padaroca*\n\n';
+
+    cart.forEach(item => {
+
+        const price = Number(
+            item.price
+                .replace('R$', '')
+                .replace(',', '.')
+                .trim()
+        );
+
+        const subtotal = price * item.quantity;
+
+        message += `${item.quantity}x ${item.name} - R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+
+
+
+    });
+
+    message += `\n💰 *Total: ${totalPrice.textContent}*`;
+
+    const phone = '5591999999999';
+
+    const encodedMessage = encodeURIComponent(message);
+
+    window.open(
+        `https://wa.me/${phone}?text=${encodedMessage}`,
+        '_blank'
+    );
+
+});
+
 
 
 // =====================
