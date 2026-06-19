@@ -312,28 +312,30 @@ addButtons.forEach(button => {
 });
 
 
-// =====================
-// ABRIR E FECHAR CARRINHO
-// =====================
-
-cartButton.addEventListener('click', () => {
-
-    cartSidebar.classList.add('open');
-
-});
-
-closeCartButton.addEventListener('click', () => {
-
-    cartSidebar.classList.remove('open');
-
-});
-
-
 
 
 // =====================
 // FINALIZAR PEDIDO
 // =====================
+
+// Gerar o numero do pedido
+function getNextOrderNumber() {
+
+    const lastOrder = Number(
+        localStorage.getItem('padaroca-order-number') || 0
+    );
+
+    const nextOrder = lastOrder + 1;
+
+    localStorage.setItem(
+        'padaroca-order-number',
+        nextOrder
+    );
+
+    return String(nextOrder).padStart(3, '0');
+
+}
+
 
 checkoutButton.addEventListener('click', () => {
 
@@ -359,7 +361,20 @@ checkoutButton.addEventListener('click', () => {
 
     }
 
-    let message = `🛒 *Pedido - Padaroca*
+
+    const orderNumber = getNextOrderNumber();
+
+    const orderDate = new Date().toLocaleString(
+        'pt-BR',
+        {
+            dateStyle: 'short',
+            timeStyle: 'short'
+        }
+    );
+
+    let message = `🛒 *Pedido #${orderNumber}*
+
+📅 ${orderDate}
 
 👤 *Cliente:* ${customerName}
 
@@ -451,9 +466,3 @@ closeCartButton.addEventListener('click', () => {
     cartSidebar.classList.remove('open');
 
 });
-
-// =====================
-// INICIALIZAÇÃO
-// =====================
-
-updateCart();
