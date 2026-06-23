@@ -442,43 +442,94 @@ function showOrderDetails(orderNumber) {
 
     orderDetails.innerHTML = `
 
-        <h2>
-            Pedido #${order.number}
-        </h2>
+    <div class="order-details-header">
 
-        <p>
-            <strong>Cliente:</strong>
-            ${order.customer}
-        </p>
+        <h2>Pedido #${order.number}</h2>
 
-        <p>
-            <strong>Data:</strong>
-            ${order.date}
-        </p>
+    </div>
 
-        <h3>
-            Itens
-        </h3>
+    <div class="order-details-section">
 
-        <ul>
+        <span class="label">Cliente</span>
+
+        <p>${order.customer}</p>
+
+    </div>
+
+    <div class="order-details-section">
+
+        <span class="label">Data</span>
+
+        <p>${order.date}</p>
+
+    </div>
+
+    <div class="order-details-section">
+
+        <span class="label">Itens</span>
+
+        <ul class="order-items-list">
 
             ${itemsHtml}
 
         </ul>
 
-        <p>
-            <strong>Observação:</strong>
-            ${order.note || 'Nenhuma'}
-        </p>
+    </div>
 
-        <p>
-            <strong>Total:</strong>
-            ${order.total}
-        </p>
+    <div class="order-details-section">
 
-    `;
+        <span class="label">Observação</span>
+
+        <p>${order.note || 'Nenhuma'}</p>
+
+    </div>
+
+    <div class="order-total">
+
+        Total: ${order.total}
+
+    </div>
+
+    <button
+        class="delete-order-button"
+        data-order="${order.number}">
+
+        Excluir pedido
+
+    </button>
+
+`;
 
     orderModal.classList.add('open');
+
+    const deleteButton =
+        document.querySelector('.delete-order-button');
+
+    deleteButton.addEventListener('click', () => {
+
+        deleteOrder(order.number);
+
+    });
+
+}
+
+function deleteOrder(orderNumber) {
+
+    const confirmed = confirm(
+        `Deseja realmente excluir o pedido #${orderNumber}?`
+    );
+
+    if (!confirmed) return;
+
+    orders = orders.filter(
+        order => order.number !== orderNumber
+    );
+
+    saveOrders();
+
+    renderOrders();
+
+    orderModal.classList.remove('open');
 
 }
 
