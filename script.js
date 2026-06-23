@@ -52,7 +52,13 @@ const printButton = document.querySelector('.print-button');
 // DECLARAÇÃO DE VARIÁVEIS
 // =====================
 
+// Carrinho atual
 const cart = [];
+
+// Histórico de pedidos
+let orders = JSON.parse(
+    localStorage.getItem('padaroca-orders')
+) || [];
 
 
 // =====================
@@ -202,6 +208,13 @@ function saveCart() {
     localStorage.setItem(
         'padaroca-cart',
         JSON.stringify(cart)
+    );
+}
+
+function saveOrders() {
+    localStorage.setItem(
+        'padaroca-orders',
+        JSON.stringify(orders)
     );
 }
 
@@ -687,6 +700,22 @@ checkoutButton.addEventListener('click', () => {
         }
     );
 
+    const order = {
+
+        number: orderNumber,
+
+        date: orderDate,
+
+        customer: customerName,
+
+        note: orderNote,
+
+        total: totalPrice.textContent,
+
+        items: [...cart]
+
+    };
+
     let message = `🛒 *Pedido #${orderNumber}*
 
 📅 ${orderDate}
@@ -710,17 +739,18 @@ checkoutButton.addEventListener('click', () => {
 
     });
 
+
     if (orderNote) {
 
-        if (orderNote) {
-
-            message += `\n📝 *Observação:* ${orderNote}\n`;
-
-        }
+        message += `\n📝 *Observação:* ${orderNote}\n`;
 
     }
 
     message += `\n💰 *Total: ${totalPrice.textContent}*`;
+
+    orders.push(order);
+
+    saveOrders();
 
     const phone = '5591999999999';
 
