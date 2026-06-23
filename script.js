@@ -47,17 +47,33 @@ const orderNoteInput = document.querySelector('.order-note');
 // Cria o seletor para imprimir comanda do pedido
 const printButton = document.querySelector('.print-button');
 
+// Seleciona o botão que abre i histórico de pedidos
 const historyButton =
     document.querySelector('.history-button');
 
+// Seleciona a barra lateral do histórico
 const historySidebar =
     document.querySelector('.history-sidebar');
 
+// Seleciona o botão de fechar o histórico
 const closeHistoryButton =
     document.querySelector('.close-history');
 
+// Container onde os pedidos do histórico serão renderizados
 const historyItemsContainer =
     document.querySelector('.history-items');
+
+// Seleciona o modal de detalhes do pedido 
+const orderModal =
+    document.querySelector('.order-modal');
+
+// Container quer receberá dinamicamente os dados do pedido 
+const orderDetails =
+    document.querySelector('.order-details');
+
+// Seleciona o botão de fechar o modal de pedidos
+const closeOrderModal =
+    document.querySelector('.close-order-modal');
 
 
 // =====================
@@ -376,10 +392,94 @@ function renderOrders() {
 
         </p>
 
+        <button
+    class="view-order-button"
+    data-order="${order.number}">
+
+    Ver detalhes
+
+</button>
+
     </div>
 
 `;
         });
+    document
+        .querySelectorAll('.view-order-button')
+        .forEach(button => {
+
+            button.addEventListener('click', () => {
+
+                showOrderDetails(
+                    button.dataset.order
+                );
+
+            });
+
+        });
+}
+
+
+function showOrderDetails(orderNumber) {
+
+    const order = orders.find(
+        order => order.number === orderNumber
+    );
+
+    if (!order) return;
+
+    let itemsHtml = '';
+
+    order.items.forEach(item => {
+
+        itemsHtml += `
+            <li>
+                ${item.quantity}x ${item.name}
+            </li>
+        `;
+
+    });
+
+    orderDetails.innerHTML = `
+
+        <h2>
+            Pedido #${order.number}
+        </h2>
+
+        <p>
+            <strong>Cliente:</strong>
+            ${order.customer}
+        </p>
+
+        <p>
+            <strong>Data:</strong>
+            ${order.date}
+        </p>
+
+        <h3>
+            Itens
+        </h3>
+
+        <ul>
+
+            ${itemsHtml}
+
+        </ul>
+
+        <p>
+            <strong>Observação:</strong>
+            ${order.note || 'Nenhuma'}
+        </p>
+
+        <p>
+            <strong>Total:</strong>
+            ${order.total}
+        </p>
+
+    `;
+
+    orderModal.classList.add('open');
+
 }
 
 // =====================
@@ -495,6 +595,8 @@ addButtons.forEach(button => {
 // =====================
 historyButton.addEventListener('click', () => {
 
+    cartSidebar.classList.remove('open');
+
     historySidebar.classList.add('open');
 
 });
@@ -502,6 +604,22 @@ historyButton.addEventListener('click', () => {
 closeHistoryButton.addEventListener('click', () => {
 
     historySidebar.classList.remove('open');
+
+});
+
+closeOrderModal.addEventListener('click', () => {
+
+    orderModal.classList.remove('open');
+});
+
+// Fecha o modal de histórico de pedidos clicando fora do modal
+orderModal.addEventListener('click', (event) => {
+
+    if (event.target === orderModal) {
+
+        orderModal.classList.remove('open');
+
+    }
 
 });
 
@@ -833,11 +951,14 @@ updateCart();
 renderOrders();
 
 
+
 // =====================
 // ABRIR E FECHAR CARRINHO
 // =====================
 
 cartButton.addEventListener('click', () => {
+
+    historySidebar.classList.remove('open');
 
     cartSidebar.classList.add('open');
 
