@@ -47,6 +47,18 @@ const orderNoteInput = document.querySelector('.order-note');
 // Cria o seletor para imprimir comanda do pedido
 const printButton = document.querySelector('.print-button');
 
+const historyButton =
+    document.querySelector('.history-button');
+
+const historySidebar =
+    document.querySelector('.history-sidebar');
+
+const closeHistoryButton =
+    document.querySelector('.close-history');
+
+const historyItemsContainer =
+    document.querySelector('.history-items');
+
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -59,6 +71,95 @@ const cart = [];
 let orders = JSON.parse(
     localStorage.getItem('padaroca-orders')
 ) || [];
+
+// =====================
+// ICONES SVG
+// =====================
+
+const orderIcon = `
+    <svg
+        class="history-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+
+        <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
+
+        <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>
+
+    </svg>
+`;
+
+const userIcon = `
+    <svg
+        class="history-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+
+        <circle cx="12" cy="8" r="5"/>
+        <path d="M20 21a8 8 0 0 0-16 0"/>
+
+    </svg>
+`;
+
+const calendarIcon = `
+    <svg
+        class="history-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+
+        <path d="M8 2v4"/>
+        <path d="M16 2v4"/>
+        <rect width="18" height="18" x="3" y="4" rx="2"/>
+        <path d="M3 10h18"/>
+        <path d="M8 14h.01"/>
+        <path d="M12 14h.01"/>
+        <path d="M16 14h.01"/>
+        <path d="M8 18h.01"/>
+        <path d="M12 18h.01"/>
+        <path d="M16 18h.01"/>
+
+    </svg>
+`;
+
+const moneyIcon = `
+    <svg
+        class="history-icon money-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+
+        <line x1="12" x2="12" y1="2" y2="22"/>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+
+    </svg>
+`;
 
 
 // =====================
@@ -162,7 +263,7 @@ function updateCart() {
         increaseButton.addEventListener('click', () => {
 
             item.quantity++;
-
+            saveCart();
             updateCart();
 
         });
@@ -181,7 +282,7 @@ function updateCart() {
                 cart.splice(itemIndex, 1);
 
             }
-
+            saveCart();
             updateCart();
 
         });
@@ -218,6 +319,68 @@ function saveOrders() {
     );
 }
 
+function renderOrders() {
+
+    historyItemsContainer.innerHTML = '';
+
+    if (orders.length === 0) {
+
+        historyItemsContainer.innerHTML = `
+            <div class="empty-history">
+                Nenhum pedido encontrado.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    orders
+        .slice()
+        .reverse()
+        .forEach(order => {
+
+            historyItemsContainer.innerHTML += `
+
+    <div class="history-item">
+
+        <h4 class="history-info">
+
+            ${orderIcon}
+
+            Pedido #${order.number}
+
+        </h4>
+
+        <p class="history-info">
+
+            ${userIcon}
+
+            ${order.customer}
+
+        </p>
+
+        <p class="history-info">
+
+            ${calendarIcon}
+
+            ${order.date}
+
+        </p>
+
+        <p class="history-info">
+
+            ${moneyIcon}
+
+            ${order.total}
+
+        </p>
+
+    </div>
+
+`;
+        });
+}
 
 // =====================
 // FILTROS
@@ -321,9 +484,24 @@ addButtons.forEach(button => {
         saveCart();
         updateCart();
 
-        console.table(cart);
 
     });
+
+});
+
+
+// =====================
+// HISTORICO DE PEDIDOS
+// =====================
+historyButton.addEventListener('click', () => {
+
+    historySidebar.classList.add('open');
+
+});
+
+closeHistoryButton.addEventListener('click', () => {
+
+    historySidebar.classList.remove('open');
 
 });
 
@@ -352,149 +530,6 @@ function getNextOrderNumber() {
 
 }
 
-function printOrder() {
-
-    if (cart.length === 0) {
-
-        alert('Seu carrinho está vazio!');
-
-        return;
-
-    }
-
-    const customerName = customerNameInput.value.trim() || 'Não informado';
-
-    const orderNote = orderNoteInput.value.trim();
-
-    const orderNumber = getNextOrderNumber();
-
-    const orderDate = new Date().toLocaleString(
-        'pt-BR',
-        {
-            dateStyle: 'short',
-            timeStyle: 'short'
-        }
-    );
-
-    let items = '';
-
-    cart.forEach(item => {
-
-        const price = Number(
-            item.price
-                .replace('R$', '')
-                .replace(',', '.')
-                .trim()
-        );
-
-        const subtotal = price * item.quantity;
-
-        items += `
-            <tr>
-                <td>${item.quantity}x</td>
-                <td>${item.name}</td>
-                <td>R$ ${subtotal.toFixed(2).replace('.', ',')}</td>
-            </tr>
-        `;
-
-    });
-
-    const printWindow = window.open('', '_blank');
-
-    printWindow.document.write(`
-        <!DOCTYPE html>
-
-        <html lang="pt-BR">
-
-            <head>
-
-                <meta charset="UTF-8">
-
-                <title>Comanda Padaroca</title>
-
-                <style>
-
-                    body {
-                        font-family: Arial, sans-serif;
-                        padding: 24px;
-                        color: #333;
-                    }
-
-                    h1 {
-                        text-align: center;
-                        color: #8B4513;
-                        margin-bottom: 24px;
-                    }
-
-                    p {
-                        margin-bottom: 8px;
-                    }
-
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin: 20px 0;
-                    }
-
-                    td {
-                        padding: 10px 0;
-                        border-bottom: 1px dashed #ccc;
-                    }
-
-                    td:last-child {
-                        text-align: right;
-                    }
-
-                    .total {
-                        margin-top: 20px;
-                        font-size: 1.2rem;
-                        font-weight: 700;
-                        text-align: right;
-                    }
-
-                </style>
-
-            </head>
-
-            <body>
-
-                <h1>☕ Padaroca</h1>
-
-                <p><strong>Pedido:</strong> #${orderNumber}</p>
-
-                <p><strong>Data:</strong> ${orderDate}</p>
-
-                <p><strong>Cliente:</strong> ${customerName}</p>
-
-                <table>
-
-                    ${items}
-
-                </table>
-
-                ${orderNote
-            ? `<p><strong>Observação:</strong> ${orderNote}</p>`
-            : ''
-        }
-
-                <p class="total">
-
-                    Total: ${totalPrice.textContent}
-
-                </p>
-
-            </body>
-
-        </html>
-    `);
-
-    printWindow.document.close();
-
-    printWindow.focus();
-
-    printWindow.print();
-
-}
 
 // Função p/ imprimir comanda
 
@@ -679,7 +714,6 @@ checkoutButton.addEventListener('click', () => {
 
     const orderNote = orderNoteInput.value.trim();
 
-    console.log(`Nome do cliente: "${customerName}"`);
 
     if (!customerName) {
 
@@ -718,9 +752,9 @@ checkoutButton.addEventListener('click', () => {
 
     let message = `🛒 *Pedido #${orderNumber}*
 
-📅 ${orderDate}
+ ${orderDate}
 
-👤 *Cliente:* ${customerName}
+ *Cliente:* ${customerName}
 
 `;
 
@@ -746,11 +780,13 @@ checkoutButton.addEventListener('click', () => {
 
     }
 
-    message += `\n💰 *Total: ${totalPrice.textContent}*`;
+    message += `\n *Total: ${totalPrice.textContent}*`;
 
     orders.push(order);
 
     saveOrders();
+
+    renderOrders();
 
     const phone = '5591999999999';
 
@@ -794,6 +830,7 @@ if (savedCart) {
 }
 
 updateCart();
+renderOrders();
 
 
 // =====================
