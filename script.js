@@ -48,32 +48,28 @@ const orderNoteInput = document.querySelector('.order-note');
 const printButton = document.querySelector('.print-button');
 
 // Seleciona o botão que abre i histórico de pedidos
-const historyButton =
-    document.querySelector('.history-button');
+const historyButton = document.querySelector('.history-button');
 
 // Seleciona a barra lateral do histórico
-const historySidebar =
-    document.querySelector('.history-sidebar');
+const historySidebar = document.querySelector('.history-sidebar');
 
 // Seleciona o botão de fechar o histórico
-const closeHistoryButton =
-    document.querySelector('.close-history');
+const closeHistoryButton = document.querySelector('.close-history');
 
 // Container onde os pedidos do histórico serão renderizados
-const historyItemsContainer =
-    document.querySelector('.history-items');
+const historyItemsContainer = document.querySelector('.history-items');
 
 // Seleciona o modal de detalhes do pedido 
-const orderModal =
-    document.querySelector('.order-modal');
+const orderModal = document.querySelector('.order-modal');
 
 // Container quer receberá dinamicamente os dados do pedido 
-const orderDetails =
-    document.querySelector('.order-details');
+const orderDetails = document.querySelector('.order-details');
 
 // Seleciona o botão de fechar o modal de pedidos
-const closeOrderModal =
-    document.querySelector('.close-order-modal');
+const closeOrderModal = document.querySelector('.close-order-modal');
+
+// Seleciona o botão de temas da página
+const themeButton = document.querySelector('.theme-button');
 
 
 // =====================
@@ -533,6 +529,15 @@ function deleteOrder(orderNumber) {
 
 }
 
+function applyTheme(theme) {
+
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+
 // =====================
 // FILTROS
 // =====================
@@ -674,6 +679,31 @@ orderModal.addEventListener('click', (event) => {
 
 });
 
+// =====================
+// TEMA DA PÁGINA
+// =====================
+
+themeButton.addEventListener('click', () => {
+
+    const isDarkMode = document.body.classList.contains('dark-mode');
+
+    if (isDarkMode) {
+        applyTheme('light');
+
+        localStorage.setItem(
+            'padaroca-theme',
+            'light'
+        )
+    } else {
+        applyTheme('dark');
+
+        localStorage.setItem(
+            'padaroca-theme',
+            'dark'
+        )
+    }
+
+});
 
 
 
@@ -990,6 +1020,11 @@ checkoutButton.addEventListener('click', () => {
 // INICIALIZAÇÃO
 // =====================
 
+const savedTheme = localStorage.getItem('padaroca-theme');
+
+if (savedTheme) {
+    applyTheme(savedTheme);
+}
 const savedCart = localStorage.getItem('padaroca-cart');
 
 if (savedCart) {
