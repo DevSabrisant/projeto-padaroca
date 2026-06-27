@@ -3,8 +3,7 @@
 // =====================
 
 // Seleciona o botão de temas da página
-const themeButton =
-    document.querySelector('.theme-button');
+const themeButton = document.querySelector('.theme-button');
 
 // Função para aplicar tema
 function applyTheme(theme) {
@@ -19,7 +18,8 @@ function applyTheme(theme) {
 
     }
 
-}
+};
+
 
 // Inicializa o tema
 function initializeTheme() {

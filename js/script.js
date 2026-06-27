@@ -68,8 +68,6 @@ const orderDetails = document.querySelector('.order-details');
 // Seleciona o botão de fechar o modal de pedidos
 const closeOrderModal = document.querySelector('.close-order-modal');
 
-// Seleciona o botão de temas da página
-const themeButton = document.querySelector('.theme-button');
 
 
 // =====================
@@ -529,15 +527,6 @@ function deleteOrder(orderNumber) {
 
 }
 
-function applyTheme(theme) {
-
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-}
-
 // =====================
 // FILTROS
 // =====================
@@ -675,32 +664,6 @@ orderModal.addEventListener('click', (event) => {
 
         orderModal.classList.remove('open');
 
-    }
-
-});
-
-// =====================
-// TEMA DA PÁGINA
-// =====================
-
-themeButton.addEventListener('click', () => {
-
-    const isDarkMode = document.body.classList.contains('dark-mode');
-
-    if (isDarkMode) {
-        applyTheme('light');
-
-        localStorage.setItem(
-            'padaroca-theme',
-            'light'
-        )
-    } else {
-        applyTheme('dark');
-
-        localStorage.setItem(
-            'padaroca-theme',
-            'dark'
-        )
     }
 
 });
