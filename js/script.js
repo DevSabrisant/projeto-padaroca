@@ -320,14 +320,14 @@ function saveCart() {
 
     localStorage.setItem(
         'padaroca-cart',
-        JSON.stringify(cart)
+        cart
     );
 }
 
 function saveOrders() {
     localStorage.setItem(
         'padaroca-orders',
-        JSON.stringify(orders)
+        orders
     );
 }
 
@@ -1029,7 +1029,7 @@ const savedCart = localStorage.getItem('padaroca-cart');
 
 if (savedCart) {
 
-    cart.push(...JSON.parse(savedCart));
+    cart.push(...savedCart);
 
 }
 
