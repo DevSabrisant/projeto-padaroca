@@ -2,17 +2,38 @@
 // TEMA DA APLICAÇÃO
 // =====================
 
+<<<<<<< HEAD
 // Elementos
 const themeButton = document.querySelector(".theme-button");
+=======
+// Seleciona o botão de temas da página
+const themeButton = document.querySelector('.theme-button');
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 
 // Funções
 function applyTheme(theme) {
+<<<<<<< HEAD
   if (theme === "dark") {
     document.body.classList.add("dark-mode");
   } else {
     document.body.classList.remove("dark-mode");
   }
 }
+=======
+
+    if (theme === 'dark') {
+
+        document.body.classList.add('dark-mode');
+
+    } else {
+
+        document.body.classList.remove('dark-mode');
+
+    }
+
+};
+
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 
 function initializeTheme() {
   // Insere os ícones do botão

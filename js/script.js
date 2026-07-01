@@ -70,7 +70,13 @@ const orderModal = document.querySelector(".order-modal");
 const orderDetails = document.querySelector(".order-details");
 
 // Seleciona o botão de fechar o modal de pedidos
+<<<<<<< HEAD
 const closeOrderModalButton = document.querySelector(".close-order-modal");
+=======
+const closeOrderModal = document.querySelector('.close-order-modal');
+
+
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -200,11 +206,26 @@ function updateCart() {
 }
 
 function saveCart() {
+<<<<<<< HEAD
   saveStorage("padaroca-cart", JSON.stringify(cart));
 }
 
 function saveOrders() {
   saveStorage("padaroca-orders", JSON.stringify(orders));
+=======
+
+    localStorage.setItem(
+        'padaroca-cart',
+        cart
+    );
+}
+
+function saveOrders() {
+    localStorage.setItem(
+        'padaroca-orders',
+        orders
+    );
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 }
 
 function renderOrders() {
@@ -376,7 +397,14 @@ function deleteOrder(orderNumber) {
 
   renderOrders();
 
+<<<<<<< HEAD
   orderModal.classList.remove("open");
+=======
+    renderOrders();
+
+    orderModal.classList.remove('open');
+
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 }
 
 // =====================
@@ -475,9 +503,13 @@ orderModal.addEventListener("click", (event) => {
   }
 });
 
+<<<<<<< HEAD
 // =====================
 // TEMA DA PÁGINA
 // =====================
+=======
+
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 
 // =====================
 // FINALIZAR PEDIDO
@@ -764,7 +796,13 @@ closeOrderModalButton.innerHTML = closeIcon;
 const savedCart = loadStorage("padaroca-cart");
 
 if (savedCart) {
+<<<<<<< HEAD
   cart.push(...JSON.parse(savedCart));
+=======
+
+    cart.push(...savedCart);
+
+>>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 }
 
 updateCart();
