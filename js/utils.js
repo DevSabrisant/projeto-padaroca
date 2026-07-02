@@ -1,9 +1,11 @@
 // Converte o preço de string para número
 export function parsePrice(price) {
-  return Number(price.replace("R$", "").replace(".", "").trim());
+  return Number(
+    price.replace("R$", "").replace(".", "").replace(",", ".").trim(),
+  );
 }
 
-// Formata um numero para o formato de preço brasileiro
+// Formata um número para o formato de preço brasileiro
 export function formatPrice(value) {
   return `R$ ${value.toFixed(2).replace(".", ",")}`;
 }
