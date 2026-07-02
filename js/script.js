@@ -2,87 +2,103 @@
 // SELETORES
 // =====================
 
+// =====================
 // CARRINHO
-// Seleciona os botões de filtro
+// =====================
+
+// Botões de filtro
 const filterButtons = document.querySelectorAll(".filter-button");
 
-// Seleciona todos os cards de produtos
+// Cards de produtos
 const products = document.querySelectorAll(".product-card");
 
-// Seleciona todas as categorias do menu
+// Categorias do menu
 const categories = document.querySelectorAll(".category");
 
-// Seleciona o input da barra de pesquisa
+// Barra de pesquisa
 const searchInput = document.querySelector(".search-box input");
 
-// Seleciona todos os botões de adicionar produto
+// Botões de adicionar produto
 const addButtons = document.querySelectorAll(".add-button");
 
-// Seleciona o contador do carrinho
+// Contador do carrinho
 const cartCount = document.querySelector(".cart-count");
 
-// Seleciona a barra lateral do carrinho
+// Barra lateral do carrinho
 const cartSidebar = document.querySelector(".cart-sidebar");
 
-// Seleciona o botão de abrir o carrinho
+// Botão de abrir o carrinho
 const cartButton = document.querySelector(".cart-button");
 
-// Seleciona o botão de fechar o carrinho
+// Botão de fechar o carrinho
 const closeCartButton = document.querySelector(".close-cart");
 
-// Container dos itens do carrinho
+// Lista de itens do carrinho
 const cartItemsContainer = document.querySelector(".cart-items");
 
 // Total do carrinho
 const totalPrice = document.querySelector(".total-price");
 
-// Seleciona botão de finalizar pedido
+// Botão de finalizar pedido
 const checkoutButton = document.querySelector(".checkout-button");
 
+// =====================
 // PEDIDO
-// Seleciona o nome do cliente
+// =====================
+
+// Nome do cliente
 const customerNameInput = document.querySelector(".customer-name");
 
-// Seleciona observações do pedido
+// Observações do pedido
 const orderNoteInput = document.querySelector(".order-note");
 
-// Cria o seletor para imprimir comanda do pedido
+// Botão de imprimir comanda
 const printButton = document.querySelector(".print-button");
 
+// =====================
 // HISTÓRICO
-// Seleciona o botão que abre i histórico de pedidos
+// =====================
+
+// Botão de abrir o histórico
 const historyButton = document.querySelector(".history-button");
 
-// Seleciona a barra lateral do histórico
+// Barra lateral do histórico
 const historySidebar = document.querySelector(".history-sidebar");
 
-// Seleciona o botão de fechar o histórico
+// Botão de fechar o histórico
 const closeHistoryButton = document.querySelector(".close-history");
 
-// Container onde os pedidos do histórico serão renderizados
+// Lista de pedidos
 const historyItemsContainer = document.querySelector(".history-items");
 
+// =====================
 // MODAL
-// Seleciona o modal de detalhes do pedido
+// =====================
+
+// Modal de detalhes do pedido
 const orderModal = document.querySelector(".order-modal");
 
-// Container quer receberá dinamicamente os dados do pedido
+// Container dos detalhes
 const orderDetails = document.querySelector(".order-details");
 
-// Seleciona o botão de fechar o modal de pedidos
-<<<<<<< HEAD
+// Botão de fechar o modal
 const closeOrderModalButton = document.querySelector(".close-order-modal");
-=======
-const closeOrderModal = document.querySelector('.close-order-modal');
 
+// =====================
+// HEADER
+// =====================
 
->>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
+// Botão de usuários
+const usersButton = document.querySelector(".users-button");
+
+// Botão do menu
+const menuButton = document.querySelector(".menu-button");
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
 // =====================
 
-// Carrinho atual
+// Carrinho em memória
 const cart = [];
 
 // Histórico de pedidos
@@ -109,7 +125,6 @@ function updateCart() {
   cartItemsContainer.innerHTML = "";
 
   let total = 0;
-
   let totalItems = 0;
 
   // Exibe mensagem se o carrinho estiver vazio
@@ -205,27 +220,15 @@ function updateCart() {
   totalPrice.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
 }
 
+// ===========
+// PERSISTENCIA
+// ===========
 function saveCart() {
-<<<<<<< HEAD
   saveStorage("padaroca-cart", JSON.stringify(cart));
 }
 
 function saveOrders() {
   saveStorage("padaroca-orders", JSON.stringify(orders));
-=======
-
-    localStorage.setItem(
-        'padaroca-cart',
-        cart
-    );
-}
-
-function saveOrders() {
-    localStorage.setItem(
-        'padaroca-orders',
-        orders
-    );
->>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 }
 
 function renderOrders() {
@@ -233,66 +236,56 @@ function renderOrders() {
 
   if (orders.length === 0) {
     historyItemsContainer.innerHTML = `
-            <div class="empty-history">
-                Nenhum pedido encontrado.
-            </div>
-        `;
+      <div class="empty-history">
+        Nenhum pedido encontrado.
+      </div>
+    `;
 
     return;
   }
+
+  let historyHTML = "";
 
   orders
     .slice()
     .reverse()
     .forEach((order) => {
-      historyItemsContainer.innerHTML += `
+      historyHTML += `
+        <div class="history-item">
 
-    <div class="history-item">
-
-        <h4 class="history-info">
-
+          <h4 class="history-info">
             ${orderIcon}
-
             Pedido #${order.number}
+          </h4>
 
-        </h4>
-
-        <p class="history-info">
-
+          <p class="history-info">
             ${userIcon}
-
             ${order.customer}
+          </p>
 
-        </p>
-
-        <p class="history-info">
-
+          <p class="history-info">
             ${calendarIcon}
-
             ${order.date}
+          </p>
 
-        </p>
-
-        <p class="history-info">
-
+          <p class="history-info">
             ${moneyIcon}
-
             ${order.total}
+          </p>
 
-        </p>
+          <button
+            class="view-order-button"
+            data-order="${order.number}"
+          >
+            Ver detalhes
+          </button>
 
-        <button
-    class="view-order-button"
-    data-order="${order.number}">
-
-    Ver detalhes
-
-</button>
-
-    </div>
-
-`;
+        </div>
+      `;
     });
+
+  historyItemsContainer.innerHTML = historyHTML;
+
   document.querySelectorAll(".view-order-button").forEach((button) => {
     button.addEventListener("click", () => {
       showOrderDetails(button.dataset.order);
@@ -309,10 +302,10 @@ function showOrderDetails(orderNumber) {
 
   order.items.forEach((item) => {
     itemsHtml += `
-            <li>
-                ${item.quantity}x ${item.name}
-            </li>
-        `;
+      <li>
+        ${item.quantity}x ${item.name}
+      </li>
+    `;
   });
 
   orderDetails.innerHTML = `
@@ -397,14 +390,7 @@ function deleteOrder(orderNumber) {
 
   renderOrders();
 
-<<<<<<< HEAD
   orderModal.classList.remove("open");
-=======
-    renderOrders();
-
-    orderModal.classList.remove('open');
-
->>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 }
 
 // =====================
@@ -503,13 +489,9 @@ orderModal.addEventListener("click", (event) => {
   }
 });
 
-<<<<<<< HEAD
 // =====================
 // TEMA DA PÁGINA
 // =====================
-=======
-
->>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 
 // =====================
 // FINALIZAR PEDIDO
@@ -769,10 +751,6 @@ checkoutButton.addEventListener("click", () => {
 // ÍCONES
 // =====================
 
-// Header
-const usersButton = document.querySelector(".users-button");
-const menuButton = document.querySelector(".menu-button");
-
 // Insere os ícones
 usersButton.innerHTML = usersIcon;
 
@@ -796,13 +774,7 @@ closeOrderModalButton.innerHTML = closeIcon;
 const savedCart = loadStorage("padaroca-cart");
 
 if (savedCart) {
-<<<<<<< HEAD
   cart.push(...JSON.parse(savedCart));
-=======
-
-    cart.push(...savedCart);
-
->>>>>>> 4b99cdebec24caa98864b1c86efd6c2be12970f0
 }
 
 updateCart();
