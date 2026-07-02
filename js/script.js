@@ -14,6 +14,10 @@ import {
   moneyIcon,
 } from "./icons.js";
 import "./theme.js";
+import { parsePrice, formatPrice } from "./utils.js";
+import { initializeFilters } from "./filters.js";
+
+initializeFilters();
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -28,17 +32,6 @@ let orders = JSON.parse(loadStorage("padaroca-orders")) || [];
 // =====================
 // FUNÇÕES
 // =====================
-
-// Atualiza a visibilidade das categorias
-function updateCategories() {
-  elements.categories.forEach((category) => {
-    const visibleProducts = category.querySelectorAll(
-      '.product-card:not([style*="display: none"])',
-    );
-
-    category.style.display = visibleProducts.length > 0 ? "block" : "none";
-  });
-}
 
 // Atualiza os itens e o total do carrinho
 function updateCart() {
@@ -68,10 +61,9 @@ function updateCart() {
 
     cartItem.classList.add("cart-item");
 
-    const price = Number(item.price.replace("R$", "").replace(",", ".").trim());
+    const price = parsePrice(item.price);
 
     const subtotal = price * item.quantity;
-
     cartItem.innerHTML = `
     <div class="cart-item-header">
 
@@ -313,52 +305,6 @@ function deleteOrder(orderNumber) {
 
   elements.orderModal.classList.remove("open");
 }
-
-// =====================
-// FILTROS
-// =====================
-
-elements.filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    elements.filterButtons.forEach((btn) => {
-      btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    const filter = button.dataset.filter;
-
-    elements.products.forEach((product) => {
-      const category = product.dataset.category;
-
-      product.style.display =
-        filter === "all" || filter === category ? "flex" : "none";
-    });
-
-    updateCategories();
-  });
-});
-
-// =====================
-// BARRA DE PESQUISA
-// =====================
-
-elements.searchInput.addEventListener("input", () => {
-  const searchTerms = elements.searchInput.value
-    .toLowerCase()
-    .trim()
-    .split(" ");
-
-  elements.products.forEach((product) => {
-    const productName = product.querySelector("h4").textContent.toLowerCase();
-
-    const match = searchTerms.every((term) => productName.includes(term));
-
-    product.style.display = match ? "flex" : "none";
-  });
-
-  updateCategories();
-});
 
 // =====================
 // CARRINHO
