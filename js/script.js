@@ -9,102 +9,11 @@ import {
   cartIcon,
   orderIcon,
   closeIcon,
+  userIcon,
+  calendarIcon,
+  moneyIcon,
 } from "./icons.js";
 import "./theme.js";
-
-// =====================
-// SELETORES
-// =====================
-
-// CARRINHO
-
-// Botões de filtro
-const filterButtons = document.querySelectorAll(".filter-button");
-
-// Cards de produtos
-const products = document.querySelectorAll(".product-card");
-
-// Categorias do menu
-const categories = document.querySelectorAll(".category");
-
-// Barra de pesquisa
-const searchInput = document.querySelector(".search-box input");
-
-// Botões de adicionar produto
-const addButtons = document.querySelectorAll(".add-button");
-
-// Contador do carrinho
-const cartCount = document.querySelector(".cart-count");
-
-// Barra lateral do carrinho
-const cartSidebar = document.querySelector(".cart-sidebar");
-
-// Botão de abrir o carrinho
-const cartButton = document.querySelector(".cart-button");
-
-// Botão de fechar o carrinho
-const closeCartButton = document.querySelector(".close-cart");
-
-// Lista de itens do carrinho
-const cartItemsContainer = document.querySelector(".cart-items");
-
-// Total do carrinho
-const totalPrice = document.querySelector(".total-price");
-
-// Botão de finalizar pedido
-const checkoutButton = document.querySelector(".checkout-button");
-
-// =====================
-// PEDIDO
-// =====================
-
-// Nome do cliente
-const customerNameInput = document.querySelector(".customer-name");
-
-// Observações do pedido
-const orderNoteInput = document.querySelector(".order-note");
-
-// Botão de imprimir comanda
-const printButton = document.querySelector(".print-button");
-
-// =====================
-// HISTÓRICO
-// =====================
-
-// Botão de abrir o histórico
-const historyButton = document.querySelector(".history-button");
-
-// Barra lateral do histórico
-const historySidebar = document.querySelector(".history-sidebar");
-
-// Botão de fechar o histórico
-const closeHistoryButton = document.querySelector(".close-history");
-
-// Lista de pedidos
-const historyItemsContainer = document.querySelector(".history-items");
-
-// =====================
-// MODAL
-// =====================
-
-// Modal de detalhes do pedido
-const orderModal = document.querySelector(".order-modal");
-
-// Container dos detalhes
-const orderDetails = document.querySelector(".order-details");
-
-// Botão de fechar o modal
-const closeOrderModalButton = document.querySelector(".close-order-modal");
-
-// =====================
-// HEADER
-// =====================
-
-// Botão de usuários
-const usersButton = document.querySelector(".users-button");
-
-// Botão do menu
-const menuButton = document.querySelector(".menu-button");
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -122,7 +31,7 @@ let orders = JSON.parse(loadStorage("padaroca-orders")) || [];
 
 // Atualiza a visibilidade das categorias
 function updateCategories() {
-  categories.forEach((category) => {
+  elements.categories.forEach((category) => {
     const visibleProducts = category.querySelectorAll(
       '.product-card:not([style*="display: none"])',
     );
@@ -134,21 +43,21 @@ function updateCategories() {
 // Atualiza os itens e o total do carrinho
 function updateCart() {
   // Limpa o conteúdo atual do carrinho
-  cartItemsContainer.innerHTML = "";
+  elements.cartItemsContainer.innerHTML = "";
 
   let total = 0;
   let totalItems = 0;
 
   // Exibe mensagem se o carrinho estiver vazio
   if (cart.length === 0) {
-    cartItemsContainer.innerHTML = `
+    elements.cartItemsContainer.innerHTML = `
             <div class="empty-cart">
                 Seu carrinho está vazio.
             </div>
         `;
 
-    cartCount.textContent = "0";
-    totalPrice.textContent = "R$ 0,00";
+    elements.cartCount.textContent = "0";
+    elements.totalPrice.textContent = "R$ 0,00";
 
     return;
   }
@@ -191,7 +100,7 @@ function updateCart() {
     </div>
 `;
 
-    cartItemsContainer.appendChild(cartItem);
+    elements.cartItemsContainer.appendChild(cartItem);
 
     // Seleciona os botões + e -
     const increaseButton = cartItem.querySelector(".increase-btn");
@@ -227,9 +136,9 @@ function updateCart() {
 
   // Atualiza contador e total
 
-  cartCount.textContent = totalItems;
+  elements.cartCount.textContent = totalItems;
 
-  totalPrice.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
+  elements.totalPrice.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
 }
 
 // ===========
@@ -244,10 +153,10 @@ function saveOrders() {
 }
 
 function renderOrders() {
-  historyItemsContainer.innerHTML = "";
+  elements.historyItemsContainer.innerHTML = "";
 
   if (orders.length === 0) {
-    historyItemsContainer.innerHTML = `
+    elements.historyItemsContainer.innerHTML = `
       <div class="empty-history">
         Nenhum pedido encontrado.
       </div>
@@ -296,7 +205,7 @@ function renderOrders() {
       `;
     });
 
-  historyItemsContainer.innerHTML = historyHTML;
+  elements.historyItemsContainer.innerHTML = historyHTML;
 
   document.querySelectorAll(".view-order-button").forEach((button) => {
     button.addEventListener("click", () => {
@@ -320,7 +229,7 @@ function showOrderDetails(orderNumber) {
     `;
   });
 
-  orderDetails.innerHTML = `
+  elements.orderDetails.innerHTML = `
 
     <div class="order-details-header">
 
@@ -380,7 +289,7 @@ function showOrderDetails(orderNumber) {
 
 `;
 
-  orderModal.classList.add("open");
+  elements.orderModal.classList.add("open");
 
   const deleteButton = document.querySelector(".delete-order-button");
 
@@ -402,16 +311,16 @@ function deleteOrder(orderNumber) {
 
   renderOrders();
 
-  orderModal.classList.remove("open");
+  elements.orderModal.classList.remove("open");
 }
 
 // =====================
 // FILTROS
 // =====================
 
-filterButtons.forEach((button) => {
+elements.filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    filterButtons.forEach((btn) => {
+    elements.filterButtons.forEach((btn) => {
       btn.classList.remove("active");
     });
 
@@ -419,7 +328,7 @@ filterButtons.forEach((button) => {
 
     const filter = button.dataset.filter;
 
-    products.forEach((product) => {
+    elements.products.forEach((product) => {
       const category = product.dataset.category;
 
       product.style.display =
@@ -434,10 +343,13 @@ filterButtons.forEach((button) => {
 // BARRA DE PESQUISA
 // =====================
 
-searchInput.addEventListener("input", () => {
-  const searchTerms = searchInput.value.toLowerCase().trim().split(" ");
+elements.searchInput.addEventListener("input", () => {
+  const searchTerms = elements.searchInput.value
+    .toLowerCase()
+    .trim()
+    .split(" ");
 
-  products.forEach((product) => {
+  elements.products.forEach((product) => {
     const productName = product.querySelector("h4").textContent.toLowerCase();
 
     const match = searchTerms.every((term) => productName.includes(term));
@@ -452,7 +364,7 @@ searchInput.addEventListener("input", () => {
 // CARRINHO
 // =====================
 
-addButtons.forEach((button) => {
+elements.addButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const product = button.closest(".product-card");
 
@@ -480,24 +392,24 @@ addButtons.forEach((button) => {
 // =====================
 // HISTORICO DE PEDIDOS
 // =====================
-historyButton.addEventListener("click", () => {
-  cartSidebar.classList.remove("open");
+elements.historyButton.addEventListener("click", () => {
+  elements.cartSidebar.classList.remove("open");
 
-  historySidebar.classList.add("open");
+  elements.historySidebar.classList.add("open");
 });
 
-closeHistoryButton.addEventListener("click", () => {
-  historySidebar.classList.remove("open");
+elements.closeHistoryButton.addEventListener("click", () => {
+  elements.historySidebar.classList.remove("open");
 });
 
-closeOrderModalButton.addEventListener("click", () => {
-  orderModal.classList.remove("open");
+elements.closeOrderModalButton.addEventListener("click", () => {
+  elements.orderModal.classList.remove("open");
 });
 
 // Fecha o modal de histórico de pedidos clicando fora do modal
-orderModal.addEventListener("click", (event) => {
-  if (event.target === orderModal) {
-    orderModal.classList.remove("open");
+elements.orderModal.addEventListener("click", (event) => {
+  if (event.target === elements.orderModal) {
+    elements.orderModal.classList.remove("open");
   }
 });
 
@@ -529,9 +441,10 @@ function printOrder() {
     return;
   }
 
-  const customerName = customerNameInput.value.trim() || "Não informado";
+  const customerName =
+    elements.customerNameInput.value.trim() || "Não informado";
 
-  const orderNote = orderNoteInput.value.trim();
+  const orderNote = elements.orderNoteInput.value.trim();
 
   const orderNumber = getNextOrderNumber();
 
@@ -645,7 +558,7 @@ function printOrder() {
 
                 <p class="total">
 
-                    Total: ${totalPrice.textContent}
+                    Total: ${elements.totalPrice.textContent}
 
                 </p>
 
@@ -667,18 +580,18 @@ function printOrder() {
   };
 }
 
-printButton.addEventListener("click", printOrder);
+elements.printButton.addEventListener("click", printOrder);
 
-checkoutButton.addEventListener("click", () => {
+elements.checkoutButton.addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Seu carrinho está vazio!");
 
     return;
   }
 
-  const customerName = customerNameInput.value.trim();
+  const customerName = elements.customerNameInput.value.trim();
 
-  const orderNote = orderNoteInput.value.trim();
+  const orderNote = elements.orderNoteInput.value.trim();
 
   if (!customerName) {
     alert("Informe o nome do cliente.");
@@ -702,7 +615,7 @@ checkoutButton.addEventListener("click", () => {
 
     note: orderNote,
 
-    total: totalPrice.textContent,
+    total: elements.totalPrice.textContent,
 
     items: [...cart],
   };
@@ -727,7 +640,7 @@ checkoutButton.addEventListener("click", () => {
     message += `\n📝 *Observação:* ${orderNote}\n`;
   }
 
-  message += `\n *Total: ${totalPrice.textContent}*`;
+  message += `\n *Total: ${elements.totalPrice.textContent}*`;
 
   orders.push(order);
 
@@ -747,9 +660,9 @@ checkoutButton.addEventListener("click", () => {
 
   // Limpa os campos
 
-  customerNameInput.value = "";
+  elements.customerNameInput.value = "";
 
-  orderNoteInput.value = "";
+  elements.orderNoteInput.value = "";
 
   // Remove os dados salvos no navegador
 
@@ -764,20 +677,20 @@ checkoutButton.addEventListener("click", () => {
 // =====================
 
 // Insere os ícones
-usersButton.innerHTML = usersIcon;
+elements.usersButton.innerHTML = usersIcon;
 
-menuButton.innerHTML = menuIcon;
+elements.menuButton.innerHTML = menuIcon;
 
-cartButton.insertAdjacentHTML("afterbegin", cartIcon);
+elements.cartButton.insertAdjacentHTML("afterbegin", cartIcon);
 
-historyButton.insertAdjacentHTML("afterbegin", orderIcon);
+elements.historyButton.insertAdjacentHTML("afterbegin", orderIcon);
 
 // Botões de fechar
-closeCartButton.innerHTML = closeIcon;
+elements.closeCartButton.innerHTML = closeIcon;
 
-closeHistoryButton.innerHTML = closeIcon;
+elements.closeHistoryButton.innerHTML = closeIcon;
 
-closeOrderModalButton.innerHTML = closeIcon;
+elements.closeOrderModalButton.innerHTML = closeIcon;
 
 // =====================
 // INICIALIZAÇÃO
@@ -797,11 +710,11 @@ renderOrders();
 // =====================
 
 elements.cartButton.addEventListener("click", () => {
-  historySidebar.classList.remove("open");
+  elements.historySidebar.classList.remove("open");
 
-  cartSidebar.classList.add("open");
+  elements.cartSidebar.classList.add("open");
 });
 
-closeCartButton.addEventListener("click", () => {
-  cartSidebar.classList.remove("open");
+elements.closeCartButton.addEventListener("click", () => {
+  elements.cartSidebar.classList.remove("open");
 });
