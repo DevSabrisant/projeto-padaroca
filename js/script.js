@@ -1,10 +1,22 @@
 // =====================
+// IMPORTS
+// =====================
+import { loadStorage, saveStorage, removeStorage } from "./storage.js";
+import { elements } from "./selectors.js";
+import {
+  usersIcon,
+  menuIcon,
+  cartIcon,
+  orderIcon,
+  closeIcon,
+} from "./icons.js";
+import "./theme.js";
+
+// =====================
 // SELETORES
 // =====================
 
-// =====================
 // CARRINHO
-// =====================
 
 // Botões de filtro
 const filterButtons = document.querySelectorAll(".filter-button");
@@ -784,7 +796,7 @@ renderOrders();
 // ABRIR E FECHAR CARRINHO
 // =====================
 
-cartButton.addEventListener("click", () => {
+elements.cartButton.addEventListener("click", () => {
   historySidebar.classList.remove("open");
 
   cartSidebar.classList.add("open");

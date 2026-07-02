@@ -2,7 +2,7 @@
 // ÍCONES DO HISTÓRICO
 // =====================
 
-const orderIcon = `
+export const orderIcon = `
     <svg
         class="history-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@ const orderIcon = `
     </svg>
 `;
 
-const userIcon = `
+export const userIcon = `
     <svg
         class="history-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const userIcon = `
     </svg>
 `;
 
-const calendarIcon = `
+export const calendarIcon = `
     <svg
         class="history-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const calendarIcon = `
     </svg>
 `;
 
-const moneyIcon = `
+export const moneyIcon = `
     <svg
         class="history-icon money-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ const moneyIcon = `
 // ÍCONES DO HEADER
 // =====================
 
-const usersIcon = `
+export const usersIcon = `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -132,7 +132,7 @@ const usersIcon = `
     </svg>
 `;
 
-const cartIcon = `
+export const cartIcon = `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -160,7 +160,7 @@ const cartIcon = `
     </svg>
 `;
 
-const menuIcon = `
+export const menuIcon = `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -184,7 +184,7 @@ const menuIcon = `
 // ÍCONES DO TEMA
 // =====================
 
-const sunIcon = `
+export const sunIcon = `
     <svg
         class="theme-icon sun-icon lucide lucide-sun"
         xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@ const sunIcon = `
     </svg>
 `;
 
-const moonIcon = `
+export const moonIcon = `
     <svg
         class="theme-icon moon-icon lucide lucide-moon"
         xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +236,7 @@ const moonIcon = `
 // ÍCONES DE AÇÕES
 // =====================
 
-const closeIcon = `
+export const closeIcon = `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -254,7 +254,7 @@ const closeIcon = `
     </svg>
 `;
 
-const plusIcon = `
+export const plusIcon = `
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"

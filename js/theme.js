@@ -2,6 +2,8 @@
 // TEMA DA APLICAÇÃO
 // =====================
 
+import { sunIcon, moonIcon } from "./icons.js";
+
 // Elementos
 const themeButton = document.querySelector(".theme-button");
 
@@ -21,7 +23,7 @@ function initializeTheme() {
         ${moonIcon}
     `;
 
-  // Evento
+  // Evento de clique no botão de tema
   themeButton.addEventListener("click", () => {
     const isDarkMode = document.body.classList.contains("dark-mode");
 
