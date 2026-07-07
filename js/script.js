@@ -14,12 +14,14 @@ import {
   moneyIcon,
 } from "./icons.js";
 import "./theme.js";
-import { parsePrice, formatPrice } from "./utils.js";
 import { initializeFilters } from "./filters.js";
 import { initializeCart } from "./cart.js";
+import { printOrder } from "./print.js";
+import { initializeOrders } from "./orders.js";
 
 initializeCart();
 initializeFilters();
+initializeOrders();
 
 // =====================
 // DECLARAÇÃO DE VARIÁVEIS
@@ -35,9 +37,6 @@ let orders = JSON.parse(loadStorage("padaroca-orders")) || [];
 // ===========
 // PERSISTENCIA
 // ===========
-function saveCart() {
-  saveStorage("padaroca-cart", JSON.stringify(cart));
-}
 
 function saveOrders() {
   saveStorage("padaroca-orders", JSON.stringify(orders));
@@ -58,44 +57,6 @@ function renderOrders() {
 
   let historyHTML = "";
 
-  orders
-    .slice()
-    .reverse()
-    .forEach((order) => {
-      historyHTML += `
-        <div class="history-item">
-
-          <h4 class="history-info">
-            ${orderIcon}
-            Pedido #${order.number}
-          </h4>
-
-          <p class="history-info">
-            ${userIcon}
-            ${order.customer}
-          </p>
-
-          <p class="history-info">
-            ${calendarIcon}
-            ${order.date}
-          </p>
-
-          <p class="history-info">
-            ${moneyIcon}
-            ${order.total}
-          </p>
-
-          <button
-            class="view-order-button"
-            data-order="${order.number}"
-          >
-            Ver detalhes
-          </button>
-
-        </div>
-      `;
-    });
-
   elements.historyItemsContainer.innerHTML = historyHTML;
 
   document.querySelectorAll(".view-order-button").forEach((button) => {
@@ -109,76 +70,6 @@ function showOrderDetails(orderNumber) {
   const order = orders.find((order) => order.number === orderNumber);
 
   if (!order) return;
-
-  let itemsHtml = "";
-
-  order.items.forEach((item) => {
-    itemsHtml += `
-      <li>
-        ${item.quantity}x ${item.name}
-      </li>
-    `;
-  });
-
-  elements.orderDetails.innerHTML = `
-
-    <div class="order-details-header">
-
-        <h2>Pedido #${order.number}</h2>
-
-    </div>
-
-    <div class="order-details-section">
-
-        <span class="label">Cliente</span>
-
-        <p>${order.customer}</p>
-
-    </div>
-
-    <div class="order-details-section">
-
-        <span class="label">Data</span>
-
-        <p>${order.date}</p>
-
-    </div>
-
-    <div class="order-details-section">
-
-        <span class="label">Itens</span>
-
-        <ul class="order-items-list">
-
-            ${itemsHtml}
-
-        </ul>
-
-    </div>
-
-    <div class="order-details-section">
-
-        <span class="label">Observação</span>
-
-        <p>${order.note || "Nenhuma"}</p>
-
-    </div>
-
-    <div class="order-total">
-
-        Total: ${order.total}
-
-    </div>
-
-    <button
-        class="delete-order-button"
-        data-order="${order.number}">
-
-        Excluir pedido
-
-    </button>
-
-`;
 
   elements.orderModal.classList.add("open");
 
@@ -248,155 +139,7 @@ function getNextOrderNumber() {
   return String(nextOrder).padStart(3, "0");
 }
 
-// Função p/ imprimir comanda
-
-function printOrder() {
-  if (cart.length === 0) {
-    alert("Seu carrinho está vazio!");
-
-    return;
-  }
-
-  const customerName =
-    elements.customerNameInput.value.trim() || "Não informado";
-
-  const orderNote = elements.orderNoteInput.value.trim();
-
-  const orderNumber = getNextOrderNumber();
-
-  const orderDate = new Date().toLocaleString("pt-BR", {
-    dateStyle: "short",
-    timeStyle: "short",
-  });
-
-  let items = "";
-
-  cart.forEach((item) => {
-    const price = Number(item.price.replace("R$", "").replace(",", ".").trim());
-
-    const subtotal = price * item.quantity;
-
-    items += `
-            <tr>
-                <td>${item.quantity}x</td>
-                <td>${item.name}</td>
-                <td>R$ ${subtotal.toFixed(2).replace(".", ",")}</td>
-            </tr>
-        `;
-  });
-
-  // COMANDA
-
-  const printWindow = window.open("", "_blank");
-
-  if (!printWindow) {
-    alert("Permita pop-ups para imprimir a comanda.");
-
-    return;
-  }
-
-  printWindow.document.write(`
-        <!DOCTYPE html>
-
-        <html lang="pt-BR">
-
-            <head>
-
-                <meta charset="UTF-8">
-
-                <title>Comanda Padaroca</title>
-
-                <style>
-
-                    body {
-                        font-family: Arial, sans-serif;
-                        padding: 24px;
-                        color: #333;
-                    }
-
-                    h1 {
-                        text-align: center;
-                        color: #8B4513;
-                        margin-bottom: 24px;
-                    }
-
-                    p {
-                        margin-bottom: 8px;
-                    }
-
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
-                        margin: 20px 0;
-                    }
-
-                    td {
-                        padding: 10px 0;
-                        border-bottom: 1px dashed #ccc;
-                    }
-
-                    td:last-child {
-                        text-align: right;
-                    }
-
-                    .total {
-                        margin-top: 20px;
-                        font-size: 1.2rem;
-                        font-weight: 700;
-                        text-align: right;
-                    }
-
-                </style>
-
-            </head>
-
-            <body>
-
-                <h1>☕ Padaroca</h1>
-
-                <p><strong>Pedido:</strong> #${orderNumber}</p>
-
-                <p><strong>Data:</strong> ${orderDate}</p>
-
-                <p><strong>Cliente:</strong> ${customerName}</p>
-
-                <table>
-
-                    ${items}
-
-                </table>
-
-                ${
-                  orderNote
-                    ? `<p><strong>Observação:</strong> ${orderNote}</p>`
-                    : ""
-                }
-
-                <p class="total">
-
-                    Total: ${elements.totalPrice.textContent}
-
-                </p>
-
-            </body>
-
-        </html>
-    `);
-
-  printWindow.document.close();
-
-  printWindow.onload = () => {
-    printWindow.focus();
-
-    printWindow.print();
-  };
-
-  printWindow.onafterprint = () => {
-    printWindow.close();
-  };
-}
-
-elements.printButton.addEventListener("click", printOrder);
+// elements.printButton.addEventListener("click", printOrder);
 
 elements.checkoutButton.addEventListener("click", () => {
   if (cart.length === 0) {
@@ -491,7 +234,9 @@ elements.checkoutButton.addEventListener("click", () => {
 // =====================
 // ÍCONES
 // =====================
-
+console.log("Entrou na seção de ícones");
+console.log(elements.usersButton);
+console.log(usersIcon);
 // Insere os ícones
 elements.usersButton.innerHTML = usersIcon;
 
