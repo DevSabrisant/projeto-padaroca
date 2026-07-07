@@ -53,14 +53,19 @@ export function initializeCart() {
     button.addEventListener("click", () => {
       const productCard = button.closest(".product-card");
 
-      const product = {
-        name: productCard.querySelector("h4").textContent,
-        price: productCard.querySelector(".price").textContent,
-      };
+      const product = createProduct(productCard);
 
       addToCart(product);
     });
   });
+}
+
+// Cria um objeto produto a partir do card
+function createProduct(productCard) {
+  return {
+    name: productCard.querySelector("h4").textContent,
+    price: productCard.querySelector(".price").textContent,
+  };
 }
 
 // Carrega o carrinho salvo
