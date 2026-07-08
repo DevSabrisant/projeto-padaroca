@@ -120,25 +120,6 @@ elements.orderModal.addEventListener("click", (event) => {
   }
 });
 
-// =====================
-// TEMA DA PÁGINA
-// =====================
-
-// =====================
-// FINALIZAR PEDIDO
-// =====================
-
-// Gerar o numero do pedido
-function getNextOrderNumber() {
-  const lastOrder = Number(loadStorage("padaroca-order-number") || 0);
-
-  const nextOrder = lastOrder + 1;
-
-  saveStorage("padaroca-order-number", nextOrder);
-
-  return String(nextOrder).padStart(3, "0");
-}
-
 // elements.printButton.addEventListener("click", printOrder);
 
 elements.checkoutButton.addEventListener("click", () => {
