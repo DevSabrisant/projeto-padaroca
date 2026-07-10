@@ -32,5 +32,9 @@ export const elements = {
 
   // Header
   usersButton: document.querySelector(".users-button"),
-  menuButton: document.querySelector(".menu-button"),
+
+  // Usuários Modal
+  usersModal: document.querySelector(".users-modal"),
+
+  closeUsersButton: document.querySelector(".close-users"),
 };

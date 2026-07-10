@@ -6,17 +6,13 @@ import "./theme.js";
 import { initializeFilters } from "./filters.js";
 import { initializeCart } from "./cart.js";
 import { initializeOrders } from "./orders.js";
-import {
-  usersIcon,
-  menuIcon,
-  cartIcon,
-  orderIcon,
-  closeIcon,
-} from "./icons.js";
+import { usersIcon, cartIcon, orderIcon, closeIcon } from "./icons.js";
+import { initializeUsers } from "./users.js";
 
 initializeCart();
 initializeFilters();
 initializeOrders();
+initializeUsers();
 
 // =====================
 // HISTORICO DE PEDIDOS
@@ -45,8 +41,6 @@ elements.orderModal.addEventListener("click", (event) => {
 // Insere os ícones
 elements.usersButton.innerHTML = usersIcon;
 
-elements.menuButton.innerHTML = menuIcon;
-
 elements.cartButton.insertAdjacentHTML("afterbegin", cartIcon);
 
 elements.historyButton.insertAdjacentHTML("afterbegin", orderIcon);
@@ -57,6 +51,8 @@ elements.closeCartButton.innerHTML = closeIcon;
 elements.closeHistoryButton.innerHTML = closeIcon;
 
 elements.closeOrderModalButton.innerHTML = closeIcon;
+
+elements.closeUsersButton.innerHTML = closeIcon;
 
 // =====================
 // ABRIR E FECHAR CARRINHO
