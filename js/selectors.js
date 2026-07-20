@@ -35,6 +35,26 @@ export const elements = {
 
   // Usuários Modal
   usersModal: document.querySelector(".users-modal"),
-
   closeUsersButton: document.querySelector(".close-users"),
+
+  newUserButton: document.querySelector(".new-user-button"),
+
+  usersList: document.querySelector(".users-list"),
+
+  // Cadastro de Usuário Modal
+  createUserModal: document.querySelector(".create-user-modal"),
+
+  closeCreateUserButton: document.querySelector(".close-create-user"),
+
+  cancelUserButton: document.querySelector(".cancel-user-button"),
+
+  saveUserButton: document.querySelector(".save-user-button"),
+
+  userNameInput: document.querySelector(".user-name-input"),
+
+  userUsernameInput: document.querySelector(".user-username-input"),
+
+  userPasswordInput: document.querySelector(".user-password-input"),
+
+  userRoleInput: document.querySelector(".user-role-input"),
 };

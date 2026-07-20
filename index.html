@@ -1460,10 +1460,52 @@
 
                 <h2>Usuários</h2>
 
-                <p>Módulo em desenvolvimento.</p>
+                <button class="new-user-button">
+                    + Novo Usuário
+                </button>
+
+                <div class="users-list">
+
+                </div>
 
             </div>
 
+        </div>
+
+        <div class="create-user-modal">
+
+            <div class="create-user-modal-content">
+
+                <button class="close-create-user"></button>
+
+                <h2>Novo Usuário</h2>
+
+                <label>Nome</label>
+                <input type="text" class="user-name-input">
+
+                <label>Usuário</label>
+                <input type="text" class="user-username-input">
+
+                <label>Senha</label>
+                <input type="password" class="user-password-input">
+
+                <label>Cargo</label>
+
+                <select class="user-role-input">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Caixa">Caixa</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button class="cancel-user-button">
+                        Cancelar
+                    </button>
+
+                    <button class="save-user-button">
+                        Salvar
+                    </button>
+                </div>
+            </div>
         </div>
 
         <script type="module" src="js/script.js"></script>
