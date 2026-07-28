@@ -13,6 +13,8 @@ let currentUser = {
   role: "Administrador",
 };
 
+let editingUserId = null;
+
 initializeDefaultUser();
 
 export function initializeUsers() {
@@ -67,6 +69,8 @@ function initializeDefaultUser() {
 }
 
 function openUsersModal() {
+  renderUsers();
+
   elements.usersModal.classList.add("open");
 }
 
@@ -78,8 +82,7 @@ function renderUsers() {
   elements.usersList.innerHTML = "";
 
   users.forEach((user) => {
-    const card = createUserCard(user);
-    elements.usersList.appendChild(card);
+    elements.usersList.appendChild(createUserCard(user));
   });
 }
 
@@ -89,36 +92,48 @@ function createUserCard(user) {
   card.className = "user-card";
 
   card.innerHTML = `
-    <div class="user-card-header">
-      <h3>${user.name}</h3>
+      <div class="user-card-header">
 
-      <span class="user-status ${user.active ? "active" : "inactive"}">
-        ${user.active ? "Ativo" : "Inativo"}
-      </span>
-    </div>
+          <h3>${user.name}</h3>
 
-    <p><strong>Usuário:</strong> ${user.username}</p>
+          <span class="user-status ${user.active ? "active" : "inactive"}">
+              ${user.active ? "Ativo" : "Inativo"}
+          </span>
 
-    <p><strong>Cargo:</strong> ${user.role}</p>
+      </div>
 
-    <div class="user-actions">
+      <p><strong>Usuário:</strong> ${user.username}</p>
 
-      <button class="edit-user-button">
-        Editar
-      </button>
+      <p><strong>Cargo:</strong> ${user.role}</p>
 
-      <button class="toggle-user-button">
-        ${user.active ? "Desativar" : "Ativar"}
-      </button>
+      <div class="user-actions">
 
-      <button class="delete-user-button">
-        Excluir
-      </button>
+          <button class="edit-user-button">
+              Editar
+          </button>
 
-    </div>
+          <button class="toggle-user-button">
+              ${user.active ? "Desativar" : "Ativar"}
+          </button>
+
+          <button class="delete-user-button">
+              Excluir
+          </button>
+
+      </div>
   `;
 
+  const editButton = card.querySelector(".edit-user-button");
+  const toggleButton = card.querySelector(".toggle-user-button");
   const deleteButton = card.querySelector(".delete-user-button");
+
+  editButton.addEventListener("click", () => {
+    editUser(user.id);
+  });
+
+  toggleButton.addEventListener("click", () => {
+    toggleUser(user.id);
+  });
 
   deleteButton.addEventListener("click", () => {
     deleteUser(user.id);
@@ -127,21 +142,51 @@ function createUserCard(user) {
   return card;
 }
 
+function editUser(id) {
+  const user = users.find((user) => user.id === id);
+
+  if (!user) return;
+
+  editingUserId = id;
+
+  elements.userNameInput.value = user.name;
+  elements.userUsernameInput.value = user.username;
+  elements.userPasswordInput.value = user.password;
+  elements.userRoleInput.value = user.role;
+
+  elements.saveUserButton.textContent = "Atualizar";
+
+  elements.createUserModal.classList.add("open");
+}
+
+function toggleUser(id) {
+  const user = users.find((user) => user.id === id);
+
+  if (!user) return;
+
+  if (user.role === "Administrador") {
+    alert("O administrador principal não pode ser desativado.");
+    return;
+  }
+
+  user.active = !user.active;
+
+  refreshUsers();
+}
+
 function deleteUser(id) {
   const user = users.find((user) => user.id === id);
 
-  if (!user) {
-    return;
-  }
+  if (!user) return;
 
   if (user.role === "Administrador") {
     alert("O administrador principal não pode ser excluído.");
     return;
   }
 
-  if (!confirm("Deseja realmente excluir este usuário?")) {
-    return;
-  }
+  const confirmDelete = confirm(`Deseja excluir o usuário "${user.name}"?`);
+
+  if (!confirmDelete) return;
 
   users = users.filter((user) => user.id !== id);
 
@@ -168,14 +213,20 @@ function openCreateUserModal() {
 }
 
 function closeCreateUserModal() {
+  clearCreateUserForm();
+
   elements.createUserModal.classList.remove("open");
 }
 
 function clearCreateUserForm() {
+  editingUserId = null;
+
   elements.userNameInput.value = "";
   elements.userUsernameInput.value = "";
   elements.userPasswordInput.value = "";
   elements.userRoleInput.value = "Caixa";
+
+  elements.saveUserButton.textContent = "Salvar";
 }
 
 function createUser() {
@@ -189,14 +240,40 @@ function createUser() {
     return;
   }
 
-  const userExists = users.some((user) => user.username === username);
+  if (editingUserId) {
+    const user = users.find((user) => user.id === editingUserId);
 
-  if (userExists) {
+    if (!user) return;
+
+    const usernameExists = users.some(
+      (u) => u.username === username && u.id !== editingUserId,
+    );
+
+    if (usernameExists) {
+      alert("Este usuário já existe.");
+      return;
+    }
+
+    user.name = name;
+    user.username = username;
+    user.password = password;
+    user.role = role;
+
+    refreshUsers();
+
+    closeCreateUserModal();
+
+    return;
+  }
+
+  const usernameExists = users.some((user) => user.username === username);
+
+  if (usernameExists) {
     alert("Este usuário já existe.");
     return;
   }
 
-  const newUser = {
+  users.push({
     id: Date.now(),
     name,
     username,
@@ -204,13 +281,9 @@ function createUser() {
     role,
     active: true,
     createdAt: new Date().toISOString(),
-  };
-
-  users.push(newUser);
+  });
 
   refreshUsers();
-
-  clearCreateUserForm();
 
   closeCreateUserModal();
 }
