@@ -1,6 +1,8 @@
 // =====================
 // IMPORTS
 // =====================
+
+import { isAuthenticated } from "./auth.js";
 import { elements } from "./selectors.js";
 import "./theme.js";
 import { initializeFilters } from "./filters.js";
@@ -8,6 +10,20 @@ import { initializeCart } from "./cart.js";
 import { initializeOrders } from "./orders.js";
 import { usersIcon, cartIcon, orderIcon, closeIcon } from "./icons.js";
 import { initializeUsers } from "./users.js";
+
+// =====================
+// AUTENTICAÇÃO
+// =====================
+console.log("Script carregou");
+console.log("Autenticado:", isAuthenticated());
+
+if (!isAuthenticated()) {
+  window.location.href = "login.html";
+}
+
+// =====================
+// INICIALIZAÇÕES
+// =====================
 
 initializeCart();
 initializeFilters();

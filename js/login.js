@@ -29,10 +29,17 @@ function handleLogin() {
 
     return;
   }
-  console.log({
-    username,
-    password,
-  });
+  const result = login(username, password);
+
+  if (!result.success) {
+    passwordInput.value = "";
+    showError(result.message);
+    passwordInput.focus();
+
+    return;
+  }
+
+  window.location.href = "index.html";
 }
 
 function showError(message) {
