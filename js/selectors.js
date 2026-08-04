@@ -57,4 +57,15 @@ export const elements = {
   userPasswordInput: document.querySelector(".user-password-input"),
 
   userRoleInput: document.querySelector(".user-role-input"),
+
+  // Login
+  loginModal: document.querySelector(".login-modal"),
+
+  loginButton: document.querySelector(".login-button"),
+
+  loginUsernameInput: document.querySelector(".login-username-input"),
+
+  loginPasswordInput: document.querySelector(".login-password-input"),
+
+  loginError: document.querySelector(".login-error"),
 };

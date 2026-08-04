@@ -1,0 +1,225 @@
+/* =====================
+   LOGIN
+===================== */
+
+body {
+  margin: 0;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #f8f4ef 0%, #f2e7db 100%);
+
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-container {
+  width: 100%;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+
+  animation: modalFade 0.3s ease;
+
+  transition: transform 0.25s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-4px);
+}
+
+.login-card h1 {
+  margin: 0;
+
+  text-align: center;
+
+  color: #8b4513;
+
+  font-size: 2rem;
+}
+
+.login-subtitle {
+  margin: -8px 0 10px;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 0.95rem;
+}
+
+.login-card label {
+  font-weight: 600;
+
+  color: #5c3317;
+}
+
+.login-card input {
+  padding: 14px;
+
+  border: 1px solid rgba(139, 69, 19, 0.15);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  font-size: 0.95rem;
+
+  transition: 0.25s;
+}
+
+.login-card input:focus {
+  border-color: #8b4513;
+
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.15);
+}
+
+.login-button {
+  margin-top: 10px;
+
+  height: 50px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #8b4513;
+
+  color: white;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+
+  box-shadow: 0 10px 20px rgba(139, 69, 19, 0.2);
+}
+
+.login-button:hover {
+  background: #6d3410;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 14px 26px rgba(139, 69, 19, 0.3);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-error {
+  min-height: 20px;
+
+  text-align: center;
+
+  color: #dc2626;
+
+  font-size: 0.9rem;
+}
+
+/* =====================
+   DARK MODE
+===================== */
+
+body.dark-mode {
+  background: linear-gradient(135deg, #181614 0%, #2a221d 100%);
+}
+
+body.dark-mode .login-card {
+  background: #241f1b;
+
+  color: #ffffff;
+}
+
+body.dark-mode .login-card h1,
+body.dark-mode .login-card label {
+  color: #ffffff;
+}
+
+body.dark-mode .login-subtitle {
+  color: #bdbdbd;
+}
+
+body.dark-mode .login-card input {
+  background: #342c26;
+
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .login-card input:focus {
+  border-color: #c68c5a;
+
+  box-shadow: 0 0 0 3px rgba(198, 140, 90, 0.15);
+}
+
+/* =====================
+   ANIMAÇÃO
+===================== */
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =====================
+   FOOTER
+===================== */
+
+.login-footer {
+  margin-top: 29px;
+
+  padding-top: 19px;
+
+  text-align: center;
+
+  font-size: 0.85rem;
+
+  color: #9a9a9a;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+  padding-top: 18px;
+}
+
+body.dark-mode .login-footer {
+  color: #8f8f8f;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}

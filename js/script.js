@@ -54,6 +54,8 @@ elements.closeOrderModalButton.innerHTML = closeIcon;
 
 elements.closeUsersButton.innerHTML = closeIcon;
 
+elements.closeCreateUserButton.innerHTML = closeIcon;
+
 // =====================
 // ABRIR E FECHAR CARRINHO
 // =====================
