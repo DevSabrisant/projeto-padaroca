@@ -32,6 +32,7 @@ export const elements = {
 
   // Header
   usersButton: document.querySelector(".users-button"),
+  themeToggle: document.querySelector(".theme-toggle"),
 
   // Usuários Modal
   usersModal: document.querySelector(".users-modal"),
@@ -57,6 +58,24 @@ export const elements = {
   userPasswordInput: document.querySelector(".user-password-input"),
 
   userRoleInput: document.querySelector(".user-role-input"),
+
+  currentUserName: document.querySelector(".current-user-name"),
+
+  currentUserRole: document.querySelector(".current-user-role"),
+
+  userAvatar: document.querySelector(".user-avatar"),
+
+  userMenu: document.querySelector(".user-menu"),
+
+  userDropdown: document.querySelector(".user-dropdown"),
+
+  dropdownUserName: document.querySelector(".dropdown-user-name"),
+
+  dropdownUserRole: document.querySelector(".dropdown-user-role"),
+
+  logoutButton: document.querySelector(".logout-button"),
+
+  profileButton: document.querySelector(".profile-button"),
 
   // Login
   loginModal: document.querySelector(".login-modal"),

@@ -9,7 +9,7 @@ const CURRENT_USER_KEY = "padaroca-current-user";
 
 /**
  * Realiza o login.
- * Retorna um objeto contendo:
+ * Retorna um objeto contando:
  * {
  *   success: boolean,
  *   message: string,

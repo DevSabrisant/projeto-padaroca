@@ -3,11 +3,12 @@
 // =====================
 
 import { sunIcon, moonIcon } from "./icons.js";
+import { elements } from "./selectors.js";
 
-// Elementos
-const themeButton = document.querySelector(".theme-button");
+// =====================
+// FUNÇÕES
+// =====================
 
-// Funções
 function applyTheme(theme) {
   if (theme === "dark") {
     document.body.classList.add("dark-mode");
@@ -16,22 +17,35 @@ function applyTheme(theme) {
   }
 }
 
-function initializeTheme() {
-  // Insere os ícones do botão
-  themeButton.innerHTML = `
-        ${sunIcon}
-        ${moonIcon}
-    `;
+// =====================
+// INICIALIZAÇÃO
+// =====================
 
-  // Evento de clique no botão de tema
+function initializeTheme() {
+  const themeButton = elements.themeToggle;
+
+  if (!themeButton) {
+    console.error("Botão de tema não encontrado.");
+    return;
+  }
+
+  // Insere os ícones
+  themeButton.innerHTML = `
+    ${sunIcon}
+    ${moonIcon}
+  `;
+
+  // Evento de clique
   themeButton.addEventListener("click", () => {
     const isDarkMode = document.body.classList.contains("dark-mode");
 
     if (isDarkMode) {
       applyTheme("light");
+
       localStorage.setItem("padaroca-theme", "light");
     } else {
       applyTheme("dark");
+
       localStorage.setItem("padaroca-theme", "dark");
     }
   });
@@ -44,5 +58,8 @@ function initializeTheme() {
   }
 }
 
-// Inicialização
+// =====================
+// EXECUÇÃO
+// =====================
+
 initializeTheme();

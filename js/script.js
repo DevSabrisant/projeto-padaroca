@@ -1,8 +1,7 @@
 // =====================
 // IMPORTS
 // =====================
-
-import { isAuthenticated } from "./auth.js";
+import { isAuthenticated, getCurrentUser, logout } from "./auth.js";
 import { elements } from "./selectors.js";
 import "./theme.js";
 import { initializeFilters } from "./filters.js";
@@ -29,6 +28,7 @@ initializeCart();
 initializeFilters();
 initializeOrders();
 initializeUsers();
+initializeCurrentUser();
 
 // =====================
 // HISTORICO DE PEDIDOS
@@ -84,4 +84,43 @@ elements.cartButton.addEventListener("click", () => {
 
 elements.closeCartButton.addEventListener("click", () => {
   elements.cartSidebar.classList.remove("open");
+});
+
+// Usuários
+function initializeCurrentUser() {
+  const user = getCurrentUser();
+
+  if (!user) {
+    return;
+  }
+
+  elements.currentUserName.textContent = user.name;
+  elements.currentUserRole.textContent = user.role;
+
+  elements.dropdownUserName.textContent = user.name;
+  elements.dropdownUserRole.textContent = user.role;
+
+  elements.userAvatar.textContent = user.name.charAt(0).toUpperCase();
+}
+
+// =====================
+// MENU DO USUÁRIO
+// =====================
+
+elements.userAvatar.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  elements.userDropdown.classList.toggle("open");
+});
+
+document.addEventListener("click", (event) => {
+  if (!elements.userMenu.contains(event.target)) {
+    elements.userDropdown.classList.remove("open");
+  }
+});
+// Logout
+elements.logoutButton.addEventListener("click", () => {
+  logout();
+
+  window.location.href = "login.html";
 });
