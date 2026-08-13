@@ -13,8 +13,6 @@ import { initializeUsers } from "./users.js";
 // =====================
 // AUTENTICAÇÃO
 // =====================
-console.log("Script carregou");
-console.log("Autenticado:", isAuthenticated());
 
 if (!isAuthenticated()) {
   window.location.href = "login.html";
@@ -127,4 +125,14 @@ elements.logoutButton.addEventListener("click", () => {
   logout();
 
   window.location.href = "login.html";
+});
+
+// =====================
+// MEU PERFIL
+// =====================
+
+elements.profileButton.addEventListener("click", () => {
+  elements.userDropdown.classList.remove("open");
+
+  window.location.href = "profile.html";
 });

@@ -76,15 +76,4 @@ export const elements = {
   logoutButton: document.querySelector(".logout-button"),
 
   profileButton: document.querySelector(".profile-button"),
-
-  // Login
-  loginModal: document.querySelector(".login-modal"),
-
-  loginButton: document.querySelector(".login-button"),
-
-  loginUsernameInput: document.querySelector(".login-username-input"),
-
-  loginPasswordInput: document.querySelector(".login-password-input"),
-
-  loginError: document.querySelector(".login-error"),
 };

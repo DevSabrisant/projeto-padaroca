@@ -50,6 +50,7 @@ export function login(username, password) {
     name: user.name,
     username: user.username,
     role: user.role,
+    email: user.email || "",
   });
 
   return {
