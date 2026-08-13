@@ -118,7 +118,11 @@ document.addEventListener("click", (event) => {
     elements.userDropdown.classList.remove("open");
   }
 });
-// Logout
+
+// =====================
+// LOGOUT
+// =====================
+
 elements.logoutButton.addEventListener("click", () => {
   logout();
 
