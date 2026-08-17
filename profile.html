@@ -26,21 +26,27 @@
 
             <header class="profile-header">
 
-                <button class="back-profile-button">
+                <button
+                    class="back-profile-button"
+                    type="button">
+
                     ← Voltar
+
                 </button>
 
                 <h1>Meu Perfil</h1>
 
-                <div></div>
+                <div class="profile-header-spacer"></div>
 
             </header>
 
             <!-- =====================
-                 PERFIL
+                 CARD DO PERFIL
             ===================== -->
 
             <section class="profile-card">
+
+                <!-- IDENTIDADE -->
 
                 <div class="profile-identity">
 
@@ -55,7 +61,7 @@
                         </h2>
 
                         <p class="profile-username">
-                            @administrador
+                            @admin
                         </p>
 
                         <span class="profile-role">
@@ -69,40 +75,179 @@
                 <div class="profile-divider"></div>
 
                 <!-- =====================
-                     DADOS DO USUÁRIO
+                     DADOS PESSOAIS
                 ===================== -->
 
                 <section class="profile-section">
 
-                    <h3>Dados do usuário</h3>
+                    <h3>Dados pessoais</h3>
 
-                    <div class="profile-data">
+                    <div class="profile-form-grid">
 
-                        <div class="profile-data-item">
+                        <div class="profile-field profile-field-full">
 
-                            <span class="profile-data-label">
-                                Nome
-                            </span>
+                            <label for="profile-name-input">
+                                Nome completo
+                            </label>
 
-                            <strong class="profile-data-name">
-                                Administrador
-                            </strong>
+                            <input
+                                type="text"
+                                id="profile-name-input"
+                                class="profile-name-input"
+                                autocomplete="name"
+                                placeholder="Digite seu nome completo">
 
                         </div>
 
-                        <div class="profile-data-item">
+                        <div class="profile-field">
+
+                            <label for="profile-email-input">
+                                E-mail
+                            </label>
+
+                            <input
+                                type="email"
+                                id="profile-email-input"
+                                class="profile-email-input"
+                                autocomplete="email"
+                                placeholder="seu@email.com">
+
+                        </div>
+
+                        <div class="profile-field">
+
+                            <label for="profile-phone-input">
+                                Telefone
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="profile-phone-input"
+                                class="profile-phone-input"
+                                autocomplete="tel"
+                                placeholder="(00) 00000-0000">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <div class="profile-divider"></div>
+
+                <!-- =====================
+                     ENDEREÇO
+                ===================== -->
+
+                <section class="profile-section">
+
+                    <h3>Endereço</h3>
+
+                    <div class="profile-form-grid">
+
+                        <div class="profile-field profile-field-full">
+
+                            <label for="profile-address-input">
+                                Rua
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profile-address-input"
+                                class="profile-address-input"
+                                autocomplete="street-address"
+                                placeholder="Digite sua rua">
+
+                        </div>
+
+                        <div class="profile-field">
+
+                            <label for="profile-number-input">
+                                Número
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profile-number-input"
+                                class="profile-number-input"
+                                placeholder="Número">
+
+                        </div>
+
+                        <div class="profile-field">
+
+                            <label for="profile-zip-input">
+                                CEP
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profile-zip-input"
+                                class="profile-zip-input"
+                                autocomplete="postal-code"
+                                placeholder="00000-000">
+
+                        </div>
+
+                        <div class="profile-field">
+
+                            <label for="profile-neighborhood-input">
+                                Bairro
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profile-neighborhood-input"
+                                class="profile-neighborhood-input"
+                                autocomplete="address-level3"
+                                placeholder="Digite seu bairro">
+
+                        </div>
+
+                        <div class="profile-field">
+
+                            <label for="profile-city-input">
+                                Cidade
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profile-city-input"
+                                class="profile-city-input"
+                                autocomplete="address-level2"
+                                placeholder="Digite sua cidade">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <div class="profile-divider"></div>
+
+                <!-- =====================
+                     DADOS DA CONTA
+                ===================== -->
+
+                <section class="profile-section">
+
+                    <h3>Dados da conta</h3>
+
+                    <div class="profile-account-data">
+
+                        <div class="profile-account-item">
 
                             <span class="profile-data-label">
                                 Login
                             </span>
 
                             <strong class="profile-data-username">
-                                administrador
+                                admin
                             </strong>
 
                         </div>
 
-                        <div class="profile-data-item">
+                        <div class="profile-account-item">
 
                             <span class="profile-data-label">
                                 Cargo
@@ -114,87 +259,45 @@
 
                         </div>
 
-                        <div class="profile-data-item">
-
-                            <span class="profile-data-label">
-                                E-mail
-                            </span>
-
-                            <strong class="profile-data-email">
-                                Não cadastrado
-                            </strong>
-
-                        </div>
-
                     </div>
 
                 </section>
 
-                <div class="profile-divider"></div>
+                <p class="profile-error"></p>
+
+                <p class="profile-success"></p>
 
                 <!-- =====================
-                     DESEMPENHO
+                     AÇÕES
                 ===================== -->
 
-                <section class="profile-section">
+                <div class="profile-actions">
 
-                    <div class="profile-section-header">
+                    <button
+                        type="button"
+                        class="cancel-profile-button">
 
-                        <h3>Desempenho</h3>
+                        Cancelar
 
-                        <span class="profile-section-badge">
-                            Em breve
-                        </span>
+                    </button>
 
-                    </div>
+                    <button
+                        type="button"
+                        class="save-profile-button">
 
-                    <div class="profile-stats">
+                        Salvar alterações
 
-                        <div class="profile-stat-card">
+                    </button>
 
-                            <span class="profile-stat-label">
-                                Vendas hoje
-                            </span>
-
-                            <strong class="profile-stat-value">
-                                R$ 0,00
-                            </strong>
-
-                        </div>
-
-                        <div class="profile-stat-card">
-
-                            <span class="profile-stat-label">
-                                Pedidos
-                            </span>
-
-                            <strong class="profile-stat-value">
-                                0
-                            </strong>
-
-                        </div>
-
-                        <div class="profile-stat-card">
-
-                            <span class="profile-stat-label">
-                                Total vendido
-                            </span>
-
-                            <strong class="profile-stat-value">
-                                R$ 0,00
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </section>
+                </div>
 
             </section>
 
         </main>
 
-        <script type="module" src="js/profile.js"></script>
+        <script
+            type="module"
+            src="js/profile.js"></script>
 
     </body>
 

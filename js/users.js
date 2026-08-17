@@ -55,6 +55,18 @@ function initializeDefaultUser() {
       username: "admin",
       password: "123456",
       role: "Administrador",
+
+      email: "",
+      phone: "",
+
+      address: {
+        street: "",
+        number: "",
+        zip: "",
+        neighborhood: "",
+        city: "",
+      },
+
       active: true,
       createdAt: new Date().toISOString(),
     });
@@ -62,7 +74,6 @@ function initializeDefaultUser() {
     saveUsers();
   }
 }
-
 function openUsersModal() {
   if (!isAdmin()) {
     return;
