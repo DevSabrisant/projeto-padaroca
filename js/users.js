@@ -4,14 +4,9 @@
 
 import { elements } from "./selectors.js";
 import { loadStorage, saveStorage } from "./storage.js";
+import { getCurrentUser } from "./auth.js";
 
 let users = loadStorage("padaroca-users") || [];
-
-let currentUser = {
-  id: 1,
-  name: "Administrador",
-  role: "Administrador",
-};
 
 let editingUserId = null;
 
@@ -48,7 +43,7 @@ export function initializeUsers() {
   renderUsers();
 
   if (!isAdmin()) {
-    elements.newUserButton.style.display = "none";
+    elements.usersButton.style.display = "none";
   }
 }
 
@@ -69,6 +64,10 @@ function initializeDefaultUser() {
 }
 
 function openUsersModal() {
+  if (!isAdmin()) {
+    return;
+  }
+
   renderUsers();
 
   elements.usersModal.classList.add("open");
@@ -143,6 +142,11 @@ function createUserCard(user) {
 }
 
 function editUser(id) {
+  if (!isAdmin()) {
+    alert("Você não possui permissão para editar usuários.");
+    return;
+  }
+
   const user = users.find((user) => user.id === id);
 
   if (!user) return;
@@ -158,14 +162,20 @@ function editUser(id) {
 
   elements.createUserModal.classList.add("open");
 }
-
 function toggleUser(id) {
+  if (!isAdmin()) {
+    alert("Você não possui permissão para alterar usuários.");
+    return;
+  }
+
   const user = users.find((user) => user.id === id);
 
   if (!user) return;
 
-  if (user.role === "Administrador") {
-    alert("O administrador principal não pode ser desativado.");
+  const currentUser = getCurrentUser();
+
+  if (currentUser.id === user.id) {
+    alert("Você não pode desativar seu próprio usuário.");
     return;
   }
 
@@ -175,14 +185,14 @@ function toggleUser(id) {
 }
 
 function deleteUser(id) {
+  if (!isAdmin()) {
+    alert("Você não possui permissão para excluir usuários.");
+    return;
+  }
+
   const user = users.find((user) => user.id === id);
 
   if (!user) return;
-
-  if (user.role === "Administrador") {
-    alert("O administrador principal não pode ser excluído.");
-    return;
-  }
 
   const confirmDelete = confirm(`Deseja excluir o usuário "${user.name}"?`);
 
@@ -203,9 +213,14 @@ function refreshUsers() {
 }
 
 function isAdmin() {
-  return currentUser.role === "Administrador";
-}
+  const user = getCurrentUser();
 
+  if (!user) {
+    return false;
+  }
+
+  return user.role === "Administrador";
+}
 function openCreateUserModal() {
   clearCreateUserForm();
 

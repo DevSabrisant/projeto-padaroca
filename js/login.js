@@ -16,6 +16,12 @@ initializeLogin();
 
 function initializeLogin() {
   loginButton.addEventListener("click", handleLogin);
+
+  passwordInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  });
 }
 
 function handleLogin() {
