@@ -46,7 +46,9 @@
 
             <section class="profile-card">
 
-                <!-- IDENTIDADE -->
+                <!-- =====================
+                     IDENTIDADE
+                ===================== -->
 
                 <div class="profile-identity">
 
@@ -233,6 +235,8 @@
 
                     <h3>Dados da conta</h3>
 
+                    <!-- DADOS SOMENTE INFORMATIVOS -->
+
                     <div class="profile-account-data">
 
                         <div class="profile-account-item">
@@ -261,7 +265,50 @@
 
                     </div>
 
+                    <!-- =====================
+                         CREDENCIAIS
+                         SOMENTE ADMIN
+                    ===================== -->
+
+                    <div class="profile-credentials">
+
+                        <div class="profile-field">
+
+                            <label for="profile-login-input">
+                                Usuário
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profile-login-input"
+                                class="profile-login-input"
+                                autocomplete="username"
+                                placeholder="Digite seu usuário">
+
+                        </div>
+
+                        <div class="profile-field">
+
+                            <label for="profile-password-input">
+                                Nova senha
+                            </label>
+
+                            <input
+                                type="password"
+                                id="profile-password-input"
+                                class="profile-password-input"
+                                autocomplete="new-password"
+                                placeholder="Digite uma nova senha">
+
+                        </div>
+
+                    </div>
+
                 </section>
+
+                <!-- =====================
+                     MENSAGENS
+                ===================== -->
 
                 <p class="profile-error"></p>
 

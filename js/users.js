@@ -162,6 +162,13 @@ function editUser(id) {
 
   if (!user) return;
 
+  const currentUser = getCurrentUser();
+
+  if (currentUser && currentUser.id === user.id) {
+    alert("Para editar seus próprios dados, acesse Meu Perfil.");
+    return;
+  }
+
   editingUserId = id;
 
   elements.userNameInput.value = user.name;
@@ -185,7 +192,7 @@ function toggleUser(id) {
 
   const currentUser = getCurrentUser();
 
-  if (currentUser.id === user.id) {
+  if (currentUser && currentUser.id === user.id) {
     alert("Você não pode desativar seu próprio usuário.");
     return;
   }
@@ -204,6 +211,13 @@ function deleteUser(id) {
   const user = users.find((user) => user.id === id);
 
   if (!user) return;
+
+  const currentUser = getCurrentUser();
+
+  if (currentUser && currentUser.id === user.id) {
+    alert("Você não pode excluir seu próprio usuário.");
+    return;
+  }
 
   const confirmDelete = confirm(`Deseja excluir o usuário "${user.name}"?`);
 
@@ -305,6 +319,18 @@ function createUser() {
     username,
     password,
     role,
+
+    email: "",
+    phone: "",
+
+    address: {
+      street: "",
+      number: "",
+      zip: "",
+      neighborhood: "",
+      city: "",
+    },
+
     active: true,
     createdAt: new Date().toISOString(),
   });

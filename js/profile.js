@@ -36,6 +36,10 @@ const profileEmailInput = document.querySelector(".profile-email-input");
 
 const profilePhoneInput = document.querySelector(".profile-phone-input");
 
+const profileLoginInput = document.querySelector(".profile-login-input");
+
+const profilePasswordInput = document.querySelector(".profile-password-input");
+
 const profileAddressInput = document.querySelector(".profile-address-input");
 
 const profileNumberInput = document.querySelector(".profile-number-input");
@@ -114,6 +118,8 @@ function renderIdentity(user) {
 function renderForm(user) {
   profileNameInput.value = user.name || "";
 
+  profileLoginInput.value = user.username || "";
+
   profileEmailInput.value = user.email || "";
 
   profilePhoneInput.value = user.phone || "";
@@ -145,6 +151,14 @@ function initializeProfile() {
   const storedUser = users.find((user) => user.id === currentUser.id);
 
   const user = storedUser || currentUser;
+
+  if (user.role === "Administrador") {
+    profileLoginInput.closest(".profile-field").style.display = "";
+    profilePasswordInput.closest(".profile-field").style.display = "";
+  } else {
+    profileLoginInput.closest(".profile-field").style.display = "none";
+    profilePasswordInput.closest(".profile-field").style.display = "none";
+  }
 
   renderIdentity(user);
 
