@@ -120,6 +120,8 @@ function renderForm(user) {
 
   profileLoginInput.value = user.username || "";
 
+  profilePasswordInput.value = "";
+
   profileEmailInput.value = user.email || "";
 
   profilePhoneInput.value = user.phone || "";
@@ -174,6 +176,10 @@ function saveProfile() {
 
   const name = profileNameInput.value.trim();
 
+  const username = profileLoginInput.value.trim();
+
+  const password = profilePasswordInput.value;
+
   const email = profileEmailInput.value.trim();
 
   const phone = profilePhoneInput.value.trim();
@@ -206,6 +212,41 @@ function saveProfile() {
 
   const user = users[userIndex];
 
+  if (user.role !== "Administrador" && (username || password)) {
+    profileError.textContent =
+      "Você não possui permissão para alterar suas credenciais.";
+
+    return;
+  }
+
+  if (username && username !== user.username) {
+    const usernameExists = users.some(
+      (existingUser) =>
+        existingUser.username === username && existingUser.id !== user.id,
+    );
+
+    if (usernameExists) {
+      profileError.textContent = "Nome de usuário já está em uso.";
+
+      return;
+    }
+  }
+
+  if (username) {
+    user.username = username;
+  }
+
+  if (password && password.length < 6) {
+    profileError.textContent =
+      "A nova senha deve possuir pelo menos 6 caracteres.";
+
+    return;
+  }
+
+  if (password) {
+    user.password = password;
+  }
+
   user.name = name;
 
   user.email = email;
@@ -225,6 +266,7 @@ function saveProfile() {
   saveStorage("padaroca-current-user", {
     ...currentUser,
     name: user.name,
+    username: user.username,
     email: user.email,
     phone: user.phone,
     address: user.address,
@@ -233,6 +275,7 @@ function saveProfile() {
   currentUser = {
     ...currentUser,
     name: user.name,
+    username: user.username,
     email: user.email,
     phone: user.phone,
     address: user.address,
