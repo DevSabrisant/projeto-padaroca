@@ -247,6 +247,10 @@ function isAdmin() {
   return user.role === "Administrador";
 }
 function openCreateUserModal() {
+  if (!isAdmin()) {
+    return;
+  }
+
   clearCreateUserForm();
 
   elements.createUserModal.classList.add("open");
@@ -270,13 +274,22 @@ function clearCreateUserForm() {
 }
 
 function createUser() {
+  if (!isAdmin()) {
+    alert("Você não possui permissão para gerenciar usuários.");
+    return;
+  }
+
   const name = elements.userNameInput.value.trim();
+
   const username = elements.userUsernameInput.value.trim();
+
   const password = elements.userPasswordInput.value;
+
   const role = elements.userRoleInput.value;
 
   if (!name || !username || !password) {
     alert("Preencha todos os campos.");
+
     return;
   }
 

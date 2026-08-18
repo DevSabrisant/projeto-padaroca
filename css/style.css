@@ -4305,16 +4305,18 @@ input {
 }
 
 /* =====================
-   USUÁRIOS - DARK MODE
+   USUÁRIOS - MODAL
 ===================== */
 
 .users-modal-content {
   position: relative;
 
   width: 90%;
+
   max-width: 500px;
 
   max-height: 85vh;
+
   overflow-y: auto;
 
   background: #fff;
@@ -4327,8 +4329,14 @@ input {
 
   animation: modalFade 0.25s ease;
 }
+
+/* =====================
+   USUÁRIOS - DARK MODE
+===================== */
+
 body.dark-mode .user-card {
   background: #2d2621;
+
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -4339,15 +4347,26 @@ body.dark-mode .create-user-modal-content label {
   color: #f5f5f5;
 }
 
+body.dark-mode .users-modal-content {
+  background: #241f1b;
+}
+
+body.dark-mode .create-user-modal-content {
+  background: #241f1b;
+}
+
 body.dark-mode .create-user-modal-content input,
 body.dark-mode .create-user-modal-content select {
   background: #342c26;
+
   color: #fff;
+
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 body.dark-mode .cancel-user-button {
   background: #444;
+
   color: white;
 }
 
@@ -4365,6 +4384,30 @@ input {
     color 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease;
+}
+
+/* =====================
+   NOVO USUÁRIO MODAL USUÁRIOS
+===================== */
+
+.new-user-button {
+  background: #8b4513;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.new-user-button:hover {
+  background: #6f3510;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(92, 51, 23, 0.18);
 }
 
 /* =====================
@@ -4678,34 +4721,61 @@ input {
   transition: 0.25s;
 }
 
-.edit-user-button {
-  background: #2563eb;
+.edit-user-button,
+.toggle-user-button,
+.delete-user-button {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
 
-  color: white;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* =====================
+   EDITAR
+===================== */
+
+.edit-user-button {
+  background: #8b4513;
+  color: #ffffff;
 }
 
 .edit-user-button:hover {
-  background: #1d4ed8;
+  background: #6f3510;
+  transform: translateY(-1px);
 }
 
-.toggle-user-button {
-  background: #f59e0b;
+/* =====================
+   ATIVAR / DESATIVAR
+===================== */
 
-  color: white;
+.toggle-user-button {
+  background: #eadfd5;
+  color: #5c3317;
 }
 
 .toggle-user-button:hover {
-  background: #d97706;
+  background: #ddcdbf;
+  transform: translateY(-1px);
 }
 
-.delete-user-button {
-  background: #dc2626;
+/* =====================
+   EXCLUIR
+===================== */
 
-  color: white;
+.delete-user-button {
+  background: #ead6d0;
+  color: #8a4535;
 }
 
 .delete-user-button:hover {
-  background: #b91c1c;
+  background: #dfc1b9;
+  transform: translateY(-1px);
 }
 
 /* =====================
