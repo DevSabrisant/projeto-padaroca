@@ -5,7 +5,7 @@
 import { elements } from "./selectors.js";
 import { loadStorage, saveStorage } from "./storage.js";
 import { getCurrentUser } from "./auth.js";
-import { isValidEmail } from "./utils.js";
+import { isValidEmail, searchCep } from "./utils.js";
 
 let users = loadStorage("padaroca-users") || [];
 
@@ -35,6 +35,9 @@ export function initializeUsers() {
 
   elements.saveUserButton.addEventListener("click", createUser);
 
+  // Busca endereço pelo CEP
+  elements.userZipInput.addEventListener("blur", handleCepSearch);
+
   elements.createUserModal.addEventListener("click", (event) => {
     if (event.target === elements.createUserModal) {
       closeCreateUserModal();
@@ -47,6 +50,8 @@ export function initializeUsers() {
   elements.cancelEditUserButton.addEventListener("click", closeEditUserModal);
 
   elements.updateUserButton.addEventListener("click", updateUser);
+
+  elements.editUserZipInput.addEventListener("blur", handleEditCepSearch);
 
   elements.editUserModal.addEventListener("click", (event) => {
     if (event.target === elements.editUserModal) {
@@ -61,24 +66,70 @@ export function initializeUsers() {
   }
 }
 
+// =====================
+// BUSCA CEP
+// =====================
+
+async function handleCepSearch() {
+  const zip = elements.userZipInput.value.trim();
+
+  if (!zip) {
+    return;
+  }
+
+  const address = await searchCep(zip);
+
+  if (!address) {
+    alert("CEP não encontrado.");
+    return;
+  }
+
+  elements.userAddressInput.value = address.street;
+  elements.userNeighborhoodInput.value = address.neighborhood;
+  elements.userCityInput.value = address.city;
+}
+
+// =====================
+// BUSCA CEP - EDIÇÃO
+// =====================
+
+async function handleEditCepSearch() {
+  const zip = elements.editUserZipInput.value.trim();
+
+  if (!zip) {
+    return;
+  }
+
+  const address = await searchCep(zip);
+
+  if (!address) {
+    alert("CEP não encontrado.");
+    return;
+  }
+
+  elements.editUserAddressInput.value = address.street;
+  elements.editUserNeighborhoodInput.value = address.neighborhood;
+  elements.editUserCityInput.value = address.city;
+}
+
 function initializeDefaultUser() {
   if (users.length === 0) {
     users.push({
-      id: 1,
-      name: "Administrador",
-      username: "admin",
-      password: "123456",
-      role: "Administrador",
+      id: Date.now(),
+      name,
+      username,
+      password,
+      role,
 
       email: "",
       phone: "",
 
       address: {
-        street: "",
-        number: "",
-        zip: "",
-        neighborhood: "",
-        city: "",
+        street,
+        number,
+        zip,
+        neighborhood,
+        city,
       },
 
       active: true,
@@ -276,6 +327,11 @@ function updateUser() {
       existingUser.username === username && existingUser.id !== editingUserId,
   );
 
+  if (usernameExists) {
+    alert("Este usuário já existe.");
+    return;
+  }
+
   // =====================
   // ATUALIZA DADOS DA CONTA
   // =====================
@@ -418,6 +474,12 @@ function clearCreateUserForm() {
   elements.userPasswordInput.value = "";
   elements.userRoleInput.value = "Caixa";
 
+  elements.userAddressInput.value = "";
+  elements.userNumberInput.value = "";
+  elements.userZipInput.value = "";
+  elements.userNeighborhoodInput.value = "";
+  elements.userCityInput.value = "";
+
   elements.saveUserButton.textContent = "Salvar";
 }
 
@@ -431,6 +493,12 @@ function createUser() {
   const username = elements.userUsernameInput.value.trim();
   const password = elements.userPasswordInput.value;
   const role = elements.userRoleInput.value;
+
+  const street = elements.userAddressInput.value.trim();
+  const number = elements.userNumberInput.value.trim();
+  const zip = elements.userZipInput.value.trim();
+  const neighborhood = elements.userNeighborhoodInput.value.trim();
+  const city = elements.userCityInput.value.trim();
 
   if (!name || !username) {
     alert("Preencha nome e usuário.");
@@ -460,11 +528,11 @@ function createUser() {
     phone: "",
 
     address: {
-      street: "",
-      number: "",
-      zip: "",
-      neighborhood: "",
-      city: "",
+      street,
+      number,
+      zip,
+      neighborhood,
+      city,
     },
 
     active: true,

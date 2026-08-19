@@ -59,6 +59,16 @@ export const elements = {
 
   userRoleInput: document.querySelector(".user-role-input"),
 
+  userAddressInput: document.querySelector(".user-address-input"),
+
+  userNumberInput: document.querySelector(".user-number-input"),
+
+  userZipInput: document.querySelector(".user-zip-input"),
+
+  userNeighborhoodInput: document.querySelector(".user-neighborhood-input"),
+
+  userCityInput: document.querySelector(".user-city-input"),
+
   currentUserName: document.querySelector(".current-user-name"),
 
   currentUserRole: document.querySelector(".current-user-role"),
