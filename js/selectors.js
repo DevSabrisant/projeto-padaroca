@@ -76,4 +76,37 @@ export const elements = {
   logoutButton: document.querySelector(".logout-button"),
 
   profileButton: document.querySelector(".profile-button"),
+
+  // Edição de Usuário
+  editUserModal: document.querySelector(".edit-user-modal"),
+
+  closeEditUserButton: document.querySelector(".close-edit-user"),
+
+  cancelEditUserButton: document.querySelector(".cancel-edit-user-button"),
+
+  updateUserButton: document.querySelector(".update-user-button"),
+
+  editUserNameInput: document.querySelector(".edit-user-name-input"),
+
+  editUserUsernameInput: document.querySelector(".edit-user-username-input"),
+
+  editUserPasswordInput: document.querySelector(".edit-user-password-input"),
+
+  editUserRoleInput: document.querySelector(".edit-user-role-input"),
+
+  editUserEmailInput: document.querySelector(".edit-user-email-input"),
+
+  editUserPhoneInput: document.querySelector(".edit-user-phone-input"),
+
+  editUserAddressInput: document.querySelector(".edit-user-address-input"),
+
+  editUserNumberInput: document.querySelector(".edit-user-number-input"),
+
+  editUserZipInput: document.querySelector(".edit-user-zip-input"),
+
+  editUserNeighborhoodInput: document.querySelector(
+    ".edit-user-neighborhood-input",
+  ),
+
+  editUserCityInput: document.querySelector(".edit-user-city-input"),
 };

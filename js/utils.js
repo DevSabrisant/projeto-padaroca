@@ -9,3 +9,8 @@ export function parsePrice(price) {
 export function formatPrice(value) {
   return `R$ ${value.toFixed(2).replace(".", ",")}`;
 }
+
+// Valida e-mail do usuário
+export function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}

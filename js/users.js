@@ -5,6 +5,7 @@
 import { elements } from "./selectors.js";
 import { loadStorage, saveStorage } from "./storage.js";
 import { getCurrentUser } from "./auth.js";
+import { isValidEmail } from "./utils.js";
 
 let users = loadStorage("padaroca-users") || [];
 
@@ -37,6 +38,19 @@ export function initializeUsers() {
   elements.createUserModal.addEventListener("click", (event) => {
     if (event.target === elements.createUserModal) {
       closeCreateUserModal();
+    }
+  });
+
+  // Modal de edição
+  elements.closeEditUserButton.addEventListener("click", closeEditUserModal);
+
+  elements.cancelEditUserButton.addEventListener("click", closeEditUserModal);
+
+  elements.updateUserButton.addEventListener("click", updateUser);
+
+  elements.editUserModal.addEventListener("click", (event) => {
+    if (event.target === elements.editUserModal) {
+      closeEditUserModal();
     }
   });
 
@@ -160,7 +174,9 @@ function editUser(id) {
 
   const user = users.find((user) => user.id === id);
 
-  if (!user) return;
+  if (!user) {
+    return;
+  }
 
   const currentUser = getCurrentUser();
 
@@ -169,17 +185,141 @@ function editUser(id) {
     return;
   }
 
+  closeCreateUserModal();
+
   editingUserId = id;
 
-  elements.userNameInput.value = user.name;
-  elements.userUsernameInput.value = user.username;
-  elements.userPasswordInput.value = user.password;
-  elements.userRoleInput.value = user.role;
+  // Dados da conta
+  elements.editUserNameInput.value = user.name || "";
+  elements.editUserUsernameInput.value = user.username || "";
+  elements.editUserPasswordInput.value = "";
+  elements.editUserRoleInput.value = user.role || "Caixa";
 
-  elements.saveUserButton.textContent = "Atualizar";
+  // Dados pessoais
+  elements.editUserEmailInput.value = user.email || "";
+  elements.editUserPhoneInput.value = user.phone || "";
 
-  elements.createUserModal.classList.add("open");
+  // Endereço
+  elements.editUserAddressInput.value = user.address?.street || "";
+
+  elements.editUserNumberInput.value = user.address?.number || "";
+
+  elements.editUserZipInput.value = user.address?.zip || "";
+
+  elements.editUserNeighborhoodInput.value = user.address?.neighborhood || "";
+
+  elements.editUserCityInput.value = user.address?.city || "";
+
+  // Abre o modal de edição
+  elements.editUserModal.classList.add("open");
 }
+
+function updateUser() {
+  if (!isAdmin()) {
+    alert("Você não possui permissão para editar usuários.");
+    return;
+  }
+
+  if (!editingUserId) {
+    return;
+  }
+
+  const user = users.find((user) => user.id === editingUserId);
+
+  if (!user) {
+    alert("Usuário não encontrado.");
+    return;
+  }
+
+  // =====================
+  // DADOS DA CONTA
+  // =====================
+
+  const name = elements.editUserNameInput.value.trim();
+  const username = elements.editUserUsernameInput.value.trim();
+  const password = elements.editUserPasswordInput.value;
+  const role = elements.editUserRoleInput.value;
+
+  // =====================
+  // DADOS PESSOAIS
+  // =====================
+
+  const email = elements.editUserEmailInput.value.trim();
+  const phone = elements.editUserPhoneInput.value.trim();
+
+  // =====================
+  // ENDEREÇO
+  // =====================
+
+  const street = elements.editUserAddressInput.value.trim();
+  const number = elements.editUserNumberInput.value.trim();
+  const zip = elements.editUserZipInput.value.trim();
+  const neighborhood = elements.editUserNeighborhoodInput.value.trim();
+  const city = elements.editUserCityInput.value.trim();
+
+  // =====================
+  // VALIDAÇÕES
+  // =====================
+
+  if (!name || !username) {
+    alert("Preencha nome e usuário.");
+    return;
+  }
+
+  if (email && !isValidEmail(email)) {
+    alert("Informe um e-mail válido.");
+    return;
+  }
+
+  const usernameExists = users.some(
+    (existingUser) =>
+      existingUser.username === username && existingUser.id !== editingUserId,
+  );
+
+  // =====================
+  // ATUALIZA DADOS DA CONTA
+  // =====================
+
+  user.name = name;
+  user.username = username;
+  user.role = role;
+
+  // =====================
+  // ATUALIZA DADOS PESSOAIS
+  // =====================
+
+  user.email = email;
+  user.phone = phone;
+
+  // =====================
+  // ATUALIZA ENDEREÇO
+  // =====================
+
+  user.address = {
+    street,
+    number,
+    zip,
+    neighborhood,
+    city,
+  };
+
+  // =====================
+  // ATUALIZA SENHA
+  // =====================
+
+  if (password) {
+    user.password = password;
+  }
+
+  // =====================
+  // SALVA E ATUALIZA
+  // =====================
+
+  refreshUsers();
+
+  closeEditUserModal();
+}
+
 function toggleUser(id) {
   if (!isAdmin()) {
     alert("Você não possui permissão para alterar usuários.");
@@ -246,11 +386,13 @@ function isAdmin() {
 
   return user.role === "Administrador";
 }
+
 function openCreateUserModal() {
   if (!isAdmin()) {
     return;
   }
 
+  closeEditUserModal();
   clearCreateUserForm();
 
   elements.createUserModal.classList.add("open");
@@ -260,6 +402,12 @@ function closeCreateUserModal() {
   clearCreateUserForm();
 
   elements.createUserModal.classList.remove("open");
+}
+
+function closeEditUserModal() {
+  elements.editUserModal.classList.remove("open");
+
+  editingUserId = null;
 }
 
 function clearCreateUserForm() {
@@ -280,42 +428,17 @@ function createUser() {
   }
 
   const name = elements.userNameInput.value.trim();
-
   const username = elements.userUsernameInput.value.trim();
-
   const password = elements.userPasswordInput.value;
-
   const role = elements.userRoleInput.value;
 
-  if (!name || !username || !password) {
-    alert("Preencha todos os campos.");
-
+  if (!name || !username) {
+    alert("Preencha nome e usuário.");
     return;
   }
 
-  if (editingUserId) {
-    const user = users.find((user) => user.id === editingUserId);
-
-    if (!user) return;
-
-    const usernameExists = users.some(
-      (u) => u.username === username && u.id !== editingUserId,
-    );
-
-    if (usernameExists) {
-      alert("Este usuário já existe.");
-      return;
-    }
-
-    user.name = name;
-    user.username = username;
-    user.password = password;
-    user.role = role;
-
-    refreshUsers();
-
-    closeCreateUserModal();
-
+  if (!password) {
+    alert("Informe uma senha para o novo usuário.");
     return;
   }
 

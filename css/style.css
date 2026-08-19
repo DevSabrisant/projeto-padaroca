@@ -4824,3 +4824,128 @@ body.dark-mode .cancel-user-button {
   background: #444;
   color: white;
 }
+
+/* =====================
+   MODAL DE EDIÇÃO DE USUÁRIO
+===================== */
+
+.edit-user-modal {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  z-index: 10001;
+}
+
+.edit-user-modal.open {
+  display: flex;
+}
+
+.edit-user-modal-content {
+  position: relative;
+
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+
+  overflow-y: auto;
+
+  padding: 32px;
+
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+  animation: modalFade 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.edit-user-modal-content h2,
+.edit-user-modal-content h3 {
+  color: #5c3317;
+}
+
+.edit-user-modal-content label {
+  font-weight: 600;
+  color: #5c3317;
+}
+
+.edit-user-modal-content input,
+.edit-user-modal-content select {
+  padding: 12px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(139, 69, 19, 0.15);
+
+  outline: none;
+
+  font-family: inherit;
+}
+
+.close-edit-user {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  background: rgba(139, 69, 19, 0.08);
+
+  color: #8b4513;
+
+  font-size: 1.2rem;
+
+  transition: all 0.2s ease;
+}
+
+.close-edit-user:hover {
+  background: rgba(139, 69, 19, 0.15);
+
+  transform: scale(1.05);
+}
+
+body.dark-mode .edit-user-modal-content {
+  background: #241f1b;
+
+  color: #f5f5f5;
+}
+
+body.dark-mode .edit-user-modal-content h2,
+body.dark-mode .edit-user-modal-content h3,
+body.dark-mode .edit-user-modal-content label {
+  color: #f5f5f5;
+}
+
+body.dark-mode .edit-user-modal-content input,
+body.dark-mode .edit-user-modal-content select {
+  background: #342c26;
+
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .close-edit-user {
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #f5f5f5;
+}

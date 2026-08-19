@@ -137,6 +137,23 @@ function renderForm(user) {
   profileCityInput.value = user.address?.city || "";
 }
 
+function setProfileReadOnly(isReadOnly) {
+  const fields = [
+    profileNameInput,
+    profileEmailInput,
+    profilePhoneInput,
+    profileAddressInput,
+    profileNumberInput,
+    profileZipInput,
+    profileNeighborhoodInput,
+    profileCityInput,
+  ];
+
+  fields.forEach((field) => {
+    field.readOnly = isReadOnly;
+  });
+}
+
 // =====================
 // CARREGAR PERFIL
 // =====================
@@ -157,9 +174,13 @@ function initializeProfile() {
   if (user.role === "Administrador") {
     profileLoginInput.closest(".profile-field").style.display = "";
     profilePasswordInput.closest(".profile-field").style.display = "";
+
+    setProfileReadOnly(false);
   } else {
     profileLoginInput.closest(".profile-field").style.display = "none";
     profilePasswordInput.closest(".profile-field").style.display = "none";
+
+    setProfileReadOnly(true);
   }
 
   renderIdentity(user);
@@ -212,9 +233,9 @@ function saveProfile() {
 
   const user = users[userIndex];
 
-  if (user.role !== "Administrador" && (username || password)) {
+  if (user.role !== "Administrador") {
     profileError.textContent =
-      "Você não possui permissão para alterar suas credenciais.";
+      "Você não possui permissão para alterar seu perfil.";
 
     return;
   }

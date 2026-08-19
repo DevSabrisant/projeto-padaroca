@@ -70,6 +70,8 @@ elements.closeUsersButton.innerHTML = closeIcon;
 
 elements.closeCreateUserButton.innerHTML = closeIcon;
 
+elements.closeEditUserButton.innerHTML = closeIcon;
+
 // =====================
 // ABRIR E FECHAR CARRINHO
 // =====================
