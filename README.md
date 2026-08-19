@@ -38,8 +38,8 @@ organização da arquitetura.
 -   [x] Validação básica de senha
 -   [x] Dark Mode
 -   [x] Modularização do JavaScript
--   [ ] Refinamento completo de usuários e permissões
--   [ ] Finalização do gerenciamento de produtos
+-   [x] Refinamento completo de usuários e permissões
+-   [ ] Gerenciamento de produtos
 -   [ ] Finalização do fluxo de pedidos
 -   [ ] Dashboard
 -   [ ] Testes e polimento geral
@@ -84,7 +84,8 @@ histórico das operações realizadas.
 
 ### Perfil
 
-O usuário pode visualizar e editar seus dados pessoais e endereço.
+O usuário pode visualizar e editar seus dados pessoais e endereço,
+mantidos de forma persistida na aplicação.
 
 O administrador possui recursos adicionais para gerenciamento das
 próprias credenciais:
@@ -106,6 +107,7 @@ O administrador possui uma área específica para:
 -   Alterar cargo
 -   Alterar nome de usuário
 -   Alterar senha
+-   Alterar dados pessoais e endereço
 -   Ativar usuários
 -   Desativar usuários
 -   Excluir usuários
@@ -118,6 +120,9 @@ Regras implementadas:
 -   O administrador não pode desativar a própria conta.
 -   O administrador não pode excluir a própria conta.
 -   Nomes de usuário duplicados são bloqueados.
+-   E-mails são validados no cadastro e na edição.
+-   A busca automática de CEP via ViaCEP está disponível no cadastro e
+    na edição, preenchendo os dados de endereço.
 -   Usuários comuns não podem alterar suas próprias credenciais.
 
 A própria conta do administrador é gerenciada pela área **Meu Perfil**.
@@ -376,13 +381,16 @@ refactor(storage): centraliza persistência local
 -   [x] Gerenciamento de usuários
 -   [x] Permissões
 -   [x] Credenciais do administrador
--   [ ] Refinamento final da área de usuários
+-   [x] Dados pessoais e endereço persistido
+-   [x] Validação de e-mail
+-   [x] Busca automática de CEP via ViaCEP no cadastro e na edição
+-   [x] Refinamento final da área de usuários
 
 ### Fase 3 --- Operação da padaria
 
 -   [ ] Gerenciamento de produtos
 -   [ ] Fluxo completo de pedidos
--   [ ] Histórico
+-   [x] Histórico
 -   [ ] Comandas
 -   [ ] Impressão
 
