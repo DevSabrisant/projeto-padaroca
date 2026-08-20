@@ -1151,6 +1151,58 @@ body.dark-mode .sun-icon {
   margin-bottom: 12px;
 }
 
+.cuscuz-com-manteiga {
+  background-image: url("../img/cuscuz-com-manteiga.png");
+}
+
+.cuscuz-com-queijo {
+  background-image: url("../img/cuscuz-com-queijo.png");
+}
+
+.cuscuz-com-queijo-e-presunto {
+  background-image: url("../img/cuscuz-com-queijo-e-presunto.png");
+}
+
+.cuscuz-com-ovo {
+  background-image: url("../img/cuscuz-com-ovo.png");
+}
+
+.cuscuz-com-ovo-e-queijo {
+  background-image: url("../img/cuscuz-com-ovo-e-queijo.png");
+}
+
+.cuscuz-com-ovo-queijo-e-presunto {
+  background-image: url("../img/cuscuz-com-ovo-queijo-e-presunto.png");
+}
+
+.cuscuz-com-frango {
+  background-image: url("../img/cuscuz-com-frango.png");
+}
+
+.cuscuz-com-frango-e-queijo {
+  background-image: url("../img/cuscuz-com-frango-e-queijo.png");
+}
+
+.cuscuz-com-frango-queijo-e-presunto {
+  background-image: url("../img/cuscuz-com-frango-queijo-e-presunto.png");
+}
+
+.cuscuz-com-carne {
+  background-image: url("../img/cuscuz-com-carne.png");
+}
+
+.cuscuz-com-carne-e-queijo {
+  background-image: url("../img/cuscuz-com-carne-e-queijo.png");
+}
+
+.cuscuz-com-carne-queijo-e-presunto {
+  background-image: url("../img/cuscuz-com-carne-queijo-e-presunto.png");
+}
+
+.cuscuz-com-leite-de-coco {
+  background-image: url("../img/cuscuz-com-leite-de-coco.png");
+}
+
 /* DESCRIÇÃO DOS PRODUTOS */
 .product-card p {
   margin-bottom: 10px;
