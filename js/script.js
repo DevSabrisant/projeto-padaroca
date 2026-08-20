@@ -2,13 +2,14 @@
 // IMPORTS
 // =====================
 import { isAuthenticated, getCurrentUser, logout } from "./auth.js";
-import { elements } from "./selectors.js";
+import { elements, refreshProductElements } from "./selectors.js";
 import "./theme.js";
 import { initializeFilters } from "./filters.js";
 import { initializeCart } from "./cart.js";
 import { initializeOrders } from "./orders.js";
 import { usersIcon, cartIcon, orderIcon, closeIcon } from "./icons.js";
 import { initializeUsers } from "./users.js";
+import { renderProducts } from "./products.js";
 
 // =====================
 // AUTENTICAÇÃO
@@ -22,12 +23,14 @@ if (!isAuthenticated()) {
 // INICIALIZAÇÕES
 // =====================
 
+renderProducts();
+refreshProductElements();
+
 initializeCart();
 initializeFilters();
 initializeOrders();
 initializeUsers();
 initializeCurrentUser();
-
 // =====================
 // HISTORICO DE PEDIDOS
 // =====================

@@ -1,10 +1,10 @@
 export const elements = {
   // Carrinho
   filterButtons: document.querySelectorAll(".filter-button"),
-  products: document.querySelectorAll(".product-card"),
+  products: [],
   categories: document.querySelectorAll(".category"),
   searchInput: document.querySelector(".search-box input"),
-  addButtons: document.querySelectorAll(".add-button"),
+  addButtons: [],
 
   cartCount: document.querySelector(".cart-count"),
   cartSidebar: document.querySelector(".cart-sidebar"),
@@ -120,3 +120,8 @@ export const elements = {
 
   editUserCityInput: document.querySelector(".edit-user-city-input"),
 };
+
+export function refreshProductElements() {
+  elements.products = document.querySelectorAll(".product-card");
+  elements.addButtons = document.querySelectorAll(".add-button");
+}
