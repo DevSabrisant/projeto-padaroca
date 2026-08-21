@@ -11,12 +11,13 @@ const cart = [];
 
 // Adiciona um produto ao carrinho
 export function addToCart(product) {
-  const existingItem = cart.find((item) => item.name === product.name);
+  const existingItem = cart.find((item) => item.id === product.id);
 
   if (existingItem) {
     existingItem.quantity++;
   } else {
     cart.push({
+      id: product.id,
       name: product.name,
       price: product.price,
       quantity: 1,
@@ -63,6 +64,7 @@ export function initializeCart() {
 // Cria um objeto produto a partir do card
 function createProduct(productCard) {
   return {
+    id: Number(productCard.dataset.productId),
     name: productCard.querySelector("h4").textContent,
     price: productCard.querySelector(".price").textContent,
   };
@@ -155,9 +157,7 @@ function updateCart() {
       item.quantity--;
 
       if (item.quantity === 0) {
-        const itemIndex = cart.findIndex(
-          (cartItem) => cartItem.name === item.name,
-        );
+        const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
 
         cart.splice(itemIndex, 1);
       }
