@@ -4,7 +4,8 @@
 
 import { loadStorage, saveStorage } from "./storage.js";
 import { elements } from "./selectors.js";
-import { parsePrice, formatPrice } from "./utils.js";
+import { products } from "./products.js";
+import { formatPrice } from "./utils.js";
 
 // Carrinho em memória
 const cart = [];
@@ -63,11 +64,9 @@ export function initializeCart() {
 
 // Cria um objeto produto a partir do card
 function createProduct(productCard) {
-  return {
-    id: Number(productCard.dataset.productId),
-    name: productCard.querySelector("h4").textContent,
-    price: productCard.querySelector(".price").textContent,
-  };
+  const productId = Number(productCard.dataset.productId);
+
+  return products.find((product) => product.id === productId);
 }
 
 // Carrega o carrinho salvo
@@ -111,7 +110,7 @@ function updateCart() {
 
     cartItem.classList.add("cart-item");
 
-    const price = parsePrice(item.price);
+    const price = item.price;
     const subtotal = price * item.quantity;
 
     cartItem.innerHTML = `
@@ -137,7 +136,7 @@ function updateCart() {
 
         </div>
 
-        <small>${item.price} cada</small>
+        <small>${formatPrice(item.price)} cada</small>
 
       </div>
     `;

@@ -116,20 +116,20 @@ function initializeDefaultUser() {
   if (users.length === 0) {
     users.push({
       id: Date.now(),
-      name,
-      username,
-      password,
-      role,
+      name: "Administrador",
+      username: "admin",
+      password: "123456",
+      role: "Administrador",
 
       email: "",
       phone: "",
 
       address: {
-        street,
-        number,
-        zip,
-        neighborhood,
-        city,
+        street: "",
+        number: "",
+        zip: "",
+        neighborhood: "",
+        city: "",
       },
 
       active: true,
@@ -139,6 +139,7 @@ function initializeDefaultUser() {
     saveUsers();
   }
 }
+
 function openUsersModal() {
   if (!isAdmin()) {
     return;
