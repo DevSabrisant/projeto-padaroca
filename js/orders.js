@@ -32,7 +32,7 @@ function renderOrderDetails(order) {
   let itemsHTML = "";
 
   order.items.forEach((item) => {
-    const price = parsePrice(item.price);
+    const price = item.price;
 
     const subtotal = price * item.quantity;
 
@@ -330,7 +330,7 @@ ${order.date}
 `;
 
   order.items.forEach((item) => {
-    const price = parsePrice(item.price);
+    const price = item.price;
 
     const subtotal = price * item.quantity;
 
