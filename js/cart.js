@@ -74,7 +74,7 @@ function loadCart() {
   const savedCart = loadStorage("padaroca-cart");
 
   if (savedCart) {
-    cart.push(...JSON.parse(savedCart));
+    cart.push(...savedCart);
   }
 
   updateCart();
@@ -82,7 +82,7 @@ function loadCart() {
 
 // Salva o carrinho
 function saveCart() {
-  saveStorage("padaroca-cart", JSON.stringify(cart));
+  saveStorage("padaroca-cart", cart);
 }
 
 // Atualiza os itens e o total do carrinho

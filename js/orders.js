@@ -3,17 +3,13 @@
 // =====================
 
 import { loadStorage, saveStorage } from "./storage.js";
-
 import { elements } from "./selectors.js";
-
 import { getCart, clearCart, isCartEmpty } from "./cart.js";
-
 import { printOrder } from "./print.js";
-
-import { parsePrice, formatPrice } from "./utils.js";
+import { formatPrice } from "./utils.js";
 
 // Histórico em memória
-let orders = JSON.parse(loadStorage("padaroca-orders")) || [];
+let orders = loadStorage("padaroca-orders") || [];
 
 // =====================
 // INICIALIZAÇÃO
@@ -253,7 +249,7 @@ function saveOrder(order) {
 
 // Persiste os pedidos
 function saveOrders() {
-  saveStorage("padaroca-orders", JSON.stringify(orders));
+  saveStorage("padaroca-orders", orders);
 }
 
 // Renderiza o histórico de pedidos
