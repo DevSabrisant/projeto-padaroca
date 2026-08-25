@@ -4,7 +4,7 @@
 
 import { loadStorage, saveStorage } from "./storage.js";
 import { elements } from "./selectors.js";
-import { products } from "./products.js";
+import { getProductById } from "./productService.js";
 import { formatPrice } from "./utils.js";
 
 // Carrinho em memória
@@ -66,7 +66,7 @@ export function initializeCart() {
 function createProduct(productCard) {
   const productId = Number(productCard.dataset.productId);
 
-  return products.find((product) => product.id === productId);
+  return getProductById(productId);
 }
 
 // Carrega o carrinho salvo

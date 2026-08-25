@@ -303,127 +303,167 @@
 
             <div class="create-user-modal-content">
 
-                <button class="close-create-user"></button>
+                <form class="create-user-form">
 
-                <h2>Novo Usuário</h2>
+                    <button type="button" class="close-create-user"></button>
 
-                <label>Nome</label>
-                <input type="text" class="user-name-input">
+                    <h2>Novo Usuário</h2>
 
-                <label>Usuário</label>
-                <input type="text" class="user-username-input">
+                    <label>Nome</label>
+                    <input type="text" class="user-name-input">
 
-                <label>Senha</label>
-                <input type="password" class="user-password-input">
+                    <label>Usuário</label>
+                    <input type="text" class="user-username-input"
+                        autocomplete="username">
 
-                <label>Cargo</label>
+                    <label>Senha</label>
+                    <input
+                        type="password"
+                        class="user-password-input"
+                        autocomplete="new-password">
 
-                <select class="user-role-input">
-                    <option value="Administrador">Administrador</option>
-                    <option value="Caixa">Caixa</option>
-                </select>
+                    <label>Cargo</label>
 
-                <!-- ENDEREÇO -->
+                    <select class="user-role-input">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Caixa">Caixa</option>
+                    </select>
 
-                <h3>Endereço</h3>
+                    <!-- ENDEREÇO -->
 
-                <label>Rua</label>
-                <input type="text" class="user-address-input">
+                    <h3>Endereço</h3>
 
-                <label>Número</label>
-                <input type="text" class="user-number-input">
+                    <label>Rua</label>
+                    <input type="text" class="user-address-input">
 
-                <label>CEP</label>
-                <input type="text" class="user-zip-input">
+                    <label>Número</label>
+                    <input type="text" class="user-number-input">
 
-                <label>Bairro</label>
-                <input type="text" class="user-neighborhood-input">
+                    <label>CEP</label>
+                    <input type="text" class="user-zip-input">
 
-                <label>Cidade</label>
-                <input type="text" class="user-city-input">
+                    <label>Bairro</label>
+                    <input type="text" class="user-neighborhood-input">
 
-                <div class="modal-actions">
-                    <button class="cancel-user-button">
-                        Cancelar
-                    </button>
+                    <label>Cidade</label>
+                    <input type="text" class="user-city-input">
 
-                    <button class="save-user-button">
-                        Salvar
-                    </button>
-                </div>
+                    <div class="modal-actions">
+
+                        <button type="button" class="cancel-user-button">
+                            Cancelar
+                        </button>
+
+                        <button type="button" class="save-user-button">
+                            Salvar
+                        </button>
+
+                    </div>
+
+                </form>
+
             </div>
+
         </div>
 
         <div class="edit-user-modal">
 
             <div class="edit-user-modal-content">
+                <form class="edit-user-form">
+                    <button type="button" class="close-edit-user"></button>
 
-                <button class="close-edit-user"></button>
+                    <h2>Editar Usuário</h2>
 
-                <h2>Editar Usuário</h2>
+                    <!-- DADOS DA CONTA -->
 
-                <!-- DADOS DA CONTA -->
+                    <h3>Dados da Conta</h3>
 
-                <h3>Dados da Conta</h3>
+                    <label>Nome</label>
+                    <input
+                        type="text"
+                        class="edit-user-name-input">
 
-                <label>Nome</label>
-                <input type="text" class="edit-user-name-input">
+                    <label>Usuário</label>
+                    <input
+                        type="text"
+                        class="edit-user-username-input"
+                        autocomplete="username">
 
-                <label>Usuário</label>
-                <input type="text" class="edit-user-username-input">
+                    <label>Nova Senha</label>
+                    <input
+                        type="password"
+                        class="edit-user-password-input"
+                        autocomplete="new-password">
 
-                <label>Nova Senha</label>
-                <input type="password" class="edit-user-password-input">
+                    <label>Cargo</label>
 
-                <label>Cargo</label>
-                <select class="edit-user-role-input">
-                    <option value="Administrador">Administrador</option>
-                    <option value="Caixa">Caixa</option>
-                </select>
+                    <select class="edit-user-role-input">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Caixa">Caixa</option>
+                    </select>
 
-                <!-- DADOS PESSOAIS -->
+                    <!-- DADOS PESSOAIS -->
 
-                <h3>Dados Pessoais</h3>
+                    <h3>Dados Pessoais</h3>
 
-                <label>E-mail</label>
-                <input type="email" class="edit-user-email-input">
+                    <label>E-mail</label>
+                    <input
+                        type="email"
+                        class="edit-user-email-input">
 
-                <label>Telefone</label>
-                <input type="tel" class="edit-user-phone-input">
+                    <label>Telefone</label>
+                    <input
+                        type="tel"
+                        class="edit-user-phone-input">
 
-                <!-- ENDEREÇO -->
+                    <!-- ENDEREÇO -->
 
-                <h3>Endereço</h3>
+                    <h3>Endereço</h3>
 
-                <label>Rua</label>
-                <input type="text" class="edit-user-address-input">
+                    <label>Rua</label>
+                    <input
+                        type="text"
+                        class="edit-user-address-input">
 
-                <label>Número</label>
-                <input type="text" class="edit-user-number-input">
+                    <label>Número</label>
+                    <input
+                        type="text"
+                        class="edit-user-number-input">
 
-                <label>CEP</label>
-                <input type="text" class="edit-user-zip-input">
+                    <label>CEP</label>
+                    <input
+                        type="text"
+                        class="edit-user-zip-input">
 
-                <label>Bairro</label>
-                <input type="text" class="edit-user-neighborhood-input">
+                    <label>Bairro</label>
+                    <input
+                        type="text"
+                        class="edit-user-neighborhood-input">
 
-                <label>Cidade</label>
-                <input type="text" class="edit-user-city-input">
+                    <label>Cidade</label>
+                    <input
+                        type="text"
+                        class="edit-user-city-input">
 
-                <div class="modal-actions">
+                    <div class="modal-actions">
 
-                    <button class="cancel-edit-user-button">
-                        Cancelar
-                    </button>
+                        <button
+                            type="button"
+                            class="cancel-edit-user-button">
+                            Cancelar
+                        </button>
 
-                    <button class="update-user-button">
-                        Atualizar
-                    </button>
+                        <button
+                            type="button"
+                            class="update-user-button">
+                            Atualizar
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
-
-        </div>
+        </form>
 
         <script type="module" src="js/script.js"></script>
