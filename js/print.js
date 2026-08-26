@@ -2,7 +2,7 @@
 // IMPRESSÃO
 // =====================
 
-import { parsePrice, formatPrice } from "./utils.js";
+import { formatPrice } from "./utils.js";
 
 export function printOrder(order) {
   const { items, customer, note, number, date, total } = order;
@@ -22,7 +22,7 @@ export function printOrder(order) {
   let itemsHTML = "";
 
   items.forEach((item) => {
-    const price = parsePrice(item.price);
+    const price = item.price;
 
     const subtotal = price * item.quantity;
 

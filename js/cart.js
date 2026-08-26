@@ -57,6 +57,10 @@ export function initializeCart() {
 
       const product = createProduct(productCard);
 
+      if (!product) {
+        return;
+      }
+
       addToCart(product);
     });
   });
