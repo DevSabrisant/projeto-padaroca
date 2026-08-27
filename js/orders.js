@@ -24,6 +24,10 @@ export function initializeOrders() {
   renderOrders();
 }
 
+// =====================
+// DETALHES DO PEDIDO
+// =====================
+
 function renderOrderDetails(order) {
   let itemsHTML = "";
 
@@ -33,88 +37,100 @@ function renderOrderDetails(order) {
     const subtotal = price * item.quantity;
 
     itemsHTML += `
-      <li>
-        <strong>${item.quantity}x</strong>
-        ${item.name}
-        <span style="float:right">
-          ${formatPrice(subtotal)}
-        </span>
-      </li>
-    `;
+            <li>
+                <strong>${item.quantity}x</strong>
+                ${item.name}
+
+                <span style="float:right">
+                    ${formatPrice(subtotal)}
+                </span>
+            </li>
+        `;
   });
 
   elements.orderDetails.innerHTML = `
-    <div class="order-details-header">
+        <div class="order-details-header">
 
-      <h2>Pedido #${order.number}</h2>
-
-    </div>
-
-    <div class="order-details-section">
-
-      <span class="label">
-        Cliente
-      </span>
-
-      <p>${order.customer}</p>
-
-    </div>
-
-    <div class="order-details-section">
-
-      <span class="label">
-        Data
-      </span>
-
-      <p>${order.date}</p>
-
-    </div>
-
-    ${
-      order.note
-        ? `
-        <div class="order-details-section">
-
-          <span class="label">
-            Observação
-          </span>
-
-          <p>${order.note}</p>
+            <h2>
+                Pedido #${order.number}
+            </h2>
 
         </div>
-      `
-        : ""
-    }
 
-    <div class="order-details-section">
+        <div class="order-details-section">
 
-      <span class="label">
-        Itens
-      </span>
+            <span class="label">
+                Cliente
+            </span>
 
-      <ul class="order-items-list">
+            <p>
+                ${order.customer}
+            </p>
 
-        ${itemsHTML}
+        </div>
 
-      </ul>
+        <div class="order-details-section">
 
-    </div>
+            <span class="label">
+                Data
+            </span>
 
-    <div class="order-total">
+            <p>
+                ${order.date}
+            </p>
 
-      Total: ${order.total}
+        </div>
 
-    </div>
+        ${
+          order.note
+            ? `
+                    <div class="order-details-section">
 
-    <button class="delete-order-button">
+                        <span class="label">
+                            Observação
+                        </span>
 
-      Excluir Pedido
+                        <p>
+                            ${order.note}
+                        </p>
 
-    </button>
-  `;
+                    </div>
+                `
+            : ""
+        }
+
+        <div class="order-details-section">
+
+            <span class="label">
+                Itens
+            </span>
+
+            <ul class="order-items-list">
+
+                ${itemsHTML}
+
+            </ul>
+
+        </div>
+
+        <div class="order-total">
+
+            Total: ${order.total}
+
+        </div>
+
+        <button class="delete-order-button">
+
+            Excluir Pedido
+
+        </button>
+    `;
 }
 
-// Exibe os detalhes de um pedido
+// =====================
+// EXIBIR DETALHES
+// =====================
+
 function showOrderDetails(orderNumber) {
   const order = orders.find((order) => order.number === orderNumber);
 
@@ -134,7 +150,11 @@ function showOrderDetails(orderNumber) {
     };
   }
 }
-// Exclui um pedido
+
+// =====================
+// EXCLUIR PEDIDO
+// =====================
+
 function deleteOrder(orderNumber) {
   const confirmed = confirm(
     `Deseja realmente excluir o pedido #${orderNumber}?`,
@@ -179,6 +199,10 @@ function checkoutOrder() {
   resetCheckout();
 }
 
+// =====================
+// IMPRESSÃO
+// =====================
+
 // Imprime a comanda atual
 function printCurrentOrder() {
   if (isCartEmpty()) {
@@ -194,6 +218,10 @@ function printCurrentOrder() {
 
   printOrder(order);
 }
+
+// =====================
+// CRIAÇÃO DO PEDIDO
+// =====================
 
 // Cria um pedido
 function createOrder() {
@@ -222,6 +250,10 @@ function createOrder() {
     items: getCart(),
   };
 }
+
+// =====================
+// NÚMERO DO PEDIDO
+// =====================
 
 // Gera o próximo número do pedido
 function getNextOrderNumber() {
@@ -252,16 +284,22 @@ function saveOrders() {
   saveStorage("padaroca-orders", orders);
 }
 
+// =====================
+// HISTÓRICO
+// =====================
+
 // Renderiza o histórico de pedidos
 function renderOrders() {
   elements.historyItemsContainer.innerHTML = "";
 
   if (orders.length === 0) {
     elements.historyItemsContainer.innerHTML = `
-      <div class="empty-history">
-        Nenhum pedido encontrado.
-      </div>
-    `;
+            <div class="empty-history">
+
+                Nenhum pedido encontrado.
+
+            </div>
+        `;
 
     return;
   }
@@ -273,33 +311,33 @@ function renderOrders() {
     .reverse()
     .forEach((order) => {
       historyHTML += `
-        <div class="history-item">
+                <div class="history-item">
 
-          <h4 class="history-info">
-            Pedido #${order.number}
-          </h4>
+                    <h4 class="history-info">
+                        Pedido #${order.number}
+                    </h4>
 
-          <p class="history-info">
-            ${order.customer}
-          </p>
+                    <p class="history-info">
+                        ${order.customer}
+                    </p>
 
-          <p class="history-info">
-            ${order.date}
-          </p>
+                    <p class="history-info">
+                        ${order.date}
+                    </p>
 
-          <p class="history-info">
-            ${order.total}
-          </p>
+                    <p class="history-info">
+                        ${order.total}
+                    </p>
 
-          <button
-            class="view-order-button"
-            data-order="${order.number}"
-          >
-            Ver detalhes
-          </button>
+                    <button
+                        class="view-order-button"
+                        data-order="${order.number}"
+                    >
+                        Ver detalhes
+                    </button>
 
-        </div>
-      `;
+                </div>
+            `;
     });
 
   elements.historyItemsContainer.innerHTML = historyHTML;
@@ -348,7 +386,9 @@ function sendToWhatsApp(message) {
 
   const encodedMessage = encodeURIComponent(message);
 
-  window.open(`https://wa.me/${phone}?text=${encodedMessage}`, "_blank");
+  const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, "_blank");
 }
 
 // =====================

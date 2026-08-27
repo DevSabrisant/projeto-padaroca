@@ -5,128 +5,392 @@
 import { formatPrice } from "./utils.js";
 
 export function printOrder(order) {
+  // =====================
+  // DADOS DO PEDIDO
+  // =====================
+
   const { items, customer, note, number, date, total } = order;
 
-  if (items.length === 0) {
+  // =====================
+  // VALIDAÇÃO
+  // =====================
+
+  if (!items || items.length === 0) {
     alert("Seu carrinho está vazio!");
     return;
   }
 
-  const printWindow = window.open("", "_blank");
+  // =====================
+  // ABRIR JANELA
+  // =====================
+
+  const printWindow = window.open("", "_blank", "width=800,height=900");
 
   if (!printWindow) {
-    alert("Permita pop-ups para imprimir a comanda.");
+    alert(
+      "A janela de impressão foi bloqueada pelo navegador. Permita pop-ups para o Padaroca.",
+    );
+
     return;
   }
+
+  // =====================
+  // ITENS
+  // =====================
 
   let itemsHTML = "";
 
   items.forEach((item) => {
-    const price = item.price;
+    const price = Number(item.price);
 
-    const subtotal = price * item.quantity;
+    const quantity = Number(item.quantity);
+
+    const subtotal = price * quantity;
 
     itemsHTML += `
-      <tr>
-        <td>${item.quantity}x</td>
-        <td>${item.name}</td>
-        <td>${formatPrice(subtotal)}</td>
-      </tr>
-    `;
+            <tr>
+
+                <td class="quantity">
+                    ${quantity}x
+                </td>
+
+                <td class="product">
+                    ${item.name}
+                </td>
+
+                <td class="subtotal">
+                    ${formatPrice(subtotal)}
+                </td>
+
+            </tr>
+        `;
   });
 
-  printWindow.document.write(`
-    <!DOCTYPE html>
+  // =====================
+  // HTML DA COMANDA
+  // =====================
 
-    <html lang="pt-BR">
+  const receiptHTML = `
+        <!DOCTYPE html>
 
-      <head>
+        <html lang="pt-BR">
 
-        <meta charset="UTF-8">
+        <head>
 
-        <title>Comanda Padaroca</title>
+            <meta charset="UTF-8">
 
-        <style>
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            >
 
-          body {
-            font-family: Arial, sans-serif;
-            padding: 24px;
-            color: #333;
-          }
+            <title>
+                Comanda #${number} - Padaroca
+            </title>
 
-          h1 {
-            text-align: center;
-            color: #8B4513;
-            margin-bottom: 24px;
-          }
+            <style>
 
-          p {
-            margin-bottom: 8px;
-          }
+                * {
+                    box-sizing: border-box;
+                }
 
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-          }
+                body {
+                    margin: 0;
 
-          td {
-            padding: 10px 0;
-            border-bottom: 1px dashed #ccc;
-          }
+                    padding: 30px;
 
-          td:last-child {
-            text-align: right;
-          }
+                    font-family: Arial, sans-serif;
 
-          .total {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-align: right;
-          }
+                    color: #333;
 
-        </style>
+                    background: #ffffff;
+                }
 
-      </head>
+                .receipt {
+                    width: 100%;
 
-      <body>
+                    max-width: 500px;
 
-        <h1>☕ Padaroca</h1>
+                    margin: 0 auto;
+                }
 
-        <p><strong>Pedido:</strong> #${number}</p>
+                .logo {
+                    text-align: center;
 
-        <p><strong>Data:</strong> ${date}</p>
+                    margin-bottom: 25px;
+                }
 
-        <p><strong>Cliente:</strong> ${customer}</p>
+                .logo h1 {
+                    margin: 0;
 
-        <table>
+                    color: #8b4513;
 
-          ${itemsHTML}
+                    font-size: 32px;
+                }
 
-        </table>
+                .logo p {
+                    margin: 5px 0 0;
 
-        ${note ? `<p><strong>Observação:</strong> ${note}</p>` : ""}
+                    color: #9c8168;
 
-        <p class="total">
+                    font-size: 12px;
 
-          Total: ${total}
+                    letter-spacing: 2px;
 
-        </p>
+                    text-transform: uppercase;
+                }
 
-      </body>
+                .order-info {
+                    padding: 15px 0;
 
-    </html>
-  `);
+                    border-top: 1px dashed #ccc;
+
+                    border-bottom: 1px dashed #ccc;
+                }
+
+                .order-info p {
+                    margin: 7px 0;
+
+                    font-size: 14px;
+                }
+
+                table {
+                    width: 100%;
+
+                    margin-top: 20px;
+
+                    border-collapse: collapse;
+                }
+
+                th {
+                    padding: 8px 0;
+
+                    text-align: left;
+
+                    color: #777;
+
+                    font-size: 12px;
+
+                    border-bottom: 1px solid #ccc;
+                }
+
+                td {
+                    padding: 12px 0;
+
+                    font-size: 14px;
+
+                    border-bottom: 1px dashed #ddd;
+                }
+
+                .quantity {
+                    width: 55px;
+
+                    font-weight: 700;
+                }
+
+                .product {
+                    padding-right: 10px;
+                }
+
+                .subtotal {
+                    text-align: right;
+
+                    white-space: nowrap;
+
+                    font-weight: 600;
+                }
+
+                .observation {
+                    margin-top: 20px;
+
+                    padding: 12px;
+
+                    border-radius: 10px;
+
+                    background: #f8f3ef;
+
+                    font-size: 13px;
+
+                    line-height: 1.5;
+                }
+
+                .observation strong {
+                    color: #5c3317;
+                }
+
+                .total {
+                    margin-top: 25px;
+
+                    padding-top: 15px;
+
+                    border-top: 2px solid #8b4513;
+
+                    text-align: right;
+
+                    color: #5c3317;
+
+                    font-size: 20px;
+
+                    font-weight: 700;
+                }
+
+                .footer {
+                    margin-top: 35px;
+
+                    padding-top: 15px;
+
+                    border-top: 1px dashed #ccc;
+
+                    text-align: center;
+
+                    color: #888;
+
+                    font-size: 11px;
+                }
+
+                @media print {
+
+                    body {
+                        padding: 0;
+                    }
+
+                    .receipt {
+                        max-width: none;
+                    }
+
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <div class="receipt">
+
+                <div class="logo">
+
+                    <h1>
+                         Padaroca
+                    </h1>
+
+                    <p>
+                        Pães, doces & cafés
+                    </p>
+
+                </div>
+
+                <div class="order-info">
+
+                    <p>
+                        <strong>Pedido:</strong>
+                        #${number}
+                    </p>
+
+                    <p>
+                        <strong>Data:</strong>
+                        ${date}
+                    </p>
+
+                    <p>
+                        <strong>Cliente:</strong>
+                        ${customer}
+                    </p>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Qtd.
+                            </th>
+
+                            <th>
+                                Produto
+                            </th>
+
+                            <th style="text-align: right;">
+                                Subtotal
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${itemsHTML}
+
+                    </tbody>
+
+                </table>
+
+                ${
+                  note
+                    ? `
+                            <div class="observation">
+
+                                <strong>
+                                    Observação:
+                                </strong>
+
+                                ${note}
+
+                            </div>
+                        `
+                    : ""
+                }
+
+                <div class="total">
+
+                    Total: ${total}
+
+                </div>
+
+                <div class="footer">
+
+                    Padaroca — Pães, doces & cafés
+
+                </div>
+
+            </div>
+
+        </body>
+
+        </html>
+    `;
+
+  // =====================
+  // ESCREVER DOCUMENTO
+  // =====================
+
+  printWindow.document.open();
+
+  printWindow.document.write(receiptHTML);
 
   printWindow.document.close();
 
-  printWindow.onload = () => {
+  // =====================
+  // AGUARDAR RENDERIZAÇÃO
+  // =====================
+
+  setTimeout(() => {
     printWindow.focus();
+
     printWindow.print();
-  };
+  }, 500);
+
+  // =====================
+  // FECHAR JANELA
+  // =====================
 
   printWindow.onafterprint = () => {
-    printWindow.close();
+    setTimeout(() => {
+      printWindow.close();
+    }, 300);
   };
 }
