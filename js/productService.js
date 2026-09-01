@@ -27,3 +27,68 @@ export function getProductById(id) {
 
   return products.find((product) => product.id === id);
 }
+
+// Cria um novo produto
+export function createProduct(productData) {
+  const products = getProducts();
+
+  const newProduct = {
+    id: Date.now(),
+    ...productData,
+    createdAt: new Date().toISOString(),
+  };
+
+  products.push(newProduct);
+
+  saveStorage(PRODUCTS_KEY, products);
+
+  return newProduct;
+}
+
+// Atualiza um produto existente
+export function updateProduct(id, productData) {
+  const products = getProducts();
+
+  const index = products.findIndex((product) => product.id === id);
+
+  if (index === -1) {
+    return null;
+  }
+
+  products[index] = {
+    ...products[index],
+    ...productData,
+  };
+
+  saveStorage(PRODUCTS_KEY, products);
+
+  return products[index];
+}
+
+// Exclui um produto
+export function deleteProduct(id) {
+  const products = getProducts();
+
+  const filteredProducts = products.filter((product) => product.id !== id);
+
+  saveStorage(PRODUCTS_KEY, filteredProducts);
+
+  return true;
+}
+
+// Ativa ou desativa um produto
+export function toggleProduct(id) {
+  const products = getProducts();
+
+  const product = products.find((product) => product.id === id);
+
+  if (!product) {
+    return null;
+  }
+
+  product.active = !product.active;
+
+  saveStorage(PRODUCTS_KEY, products);
+
+  return product;
+}

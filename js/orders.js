@@ -17,9 +17,13 @@ let orders = loadStorage("padaroca-orders") || [];
 
 // Inicializa o módulo
 export function initializeOrders() {
-  elements.checkoutButton.addEventListener("click", checkoutOrder);
+  if (elements.checkoutButton) {
+    elements.checkoutButton.addEventListener("click", checkoutOrder);
+  }
 
-  elements.printButton.addEventListener("click", printCurrentOrder);
+  if (elements.printButton) {
+    elements.printButton.addEventListener("click", printCurrentOrder);
+  }
 
   renderOrders();
 }
@@ -37,94 +41,94 @@ function renderOrderDetails(order) {
     const subtotal = price * item.quantity;
 
     itemsHTML += `
-            <li>
-                <strong>${item.quantity}x</strong>
-                ${item.name}
+      <li>
+        <strong>${item.quantity}x</strong>
+        ${item.name}
 
-                <span style="float:right">
-                    ${formatPrice(subtotal)}
-                </span>
-            </li>
-        `;
+        <span style="float:right">
+          ${formatPrice(subtotal)}
+        </span>
+      </li>
+    `;
   });
 
   elements.orderDetails.innerHTML = `
-        <div class="order-details-header">
+    <div class="order-details-header">
 
-            <h2>
-                Pedido #${order.number}
-            </h2>
+      <h2>
+        Pedido #${order.number}
+      </h2>
 
-        </div>
+    </div>
 
-        <div class="order-details-section">
+    <div class="order-details-section">
+
+      <span class="label">
+        Cliente
+      </span>
+
+      <p>
+        ${order.customer}
+      </p>
+
+    </div>
+
+    <div class="order-details-section">
+
+      <span class="label">
+        Data
+      </span>
+
+      <p>
+        ${order.date}
+      </p>
+
+    </div>
+
+    ${
+      order.note
+        ? `
+          <div class="order-details-section">
 
             <span class="label">
-                Cliente
+              Observação
             </span>
 
             <p>
-                ${order.customer}
+              ${order.note}
             </p>
 
-        </div>
+          </div>
+        `
+        : ""
+    }
 
-        <div class="order-details-section">
+    <div class="order-details-section">
 
-            <span class="label">
-                Data
-            </span>
+      <span class="label">
+        Itens
+      </span>
 
-            <p>
-                ${order.date}
-            </p>
+      <ul class="order-items-list">
 
-        </div>
+        ${itemsHTML}
 
-        ${
-          order.note
-            ? `
-                    <div class="order-details-section">
+      </ul>
 
-                        <span class="label">
-                            Observação
-                        </span>
+    </div>
 
-                        <p>
-                            ${order.note}
-                        </p>
+    <div class="order-total">
 
-                    </div>
-                `
-            : ""
-        }
+      Total: ${order.total}
 
-        <div class="order-details-section">
+    </div>
 
-            <span class="label">
-                Itens
-            </span>
+    <button class="delete-order-button">
 
-            <ul class="order-items-list">
+      Excluir Pedido
 
-                ${itemsHTML}
-
-            </ul>
-
-        </div>
-
-        <div class="order-total">
-
-            Total: ${order.total}
-
-        </div>
-
-        <button class="delete-order-button">
-
-            Excluir Pedido
-
-        </button>
-    `;
+    </button>
+  `;
 }
 
 // =====================
@@ -140,7 +144,9 @@ function showOrderDetails(orderNumber) {
 
   renderOrderDetails(order);
 
-  elements.orderModal.classList.add("open");
+  if (elements.orderModal) {
+    elements.orderModal.classList.add("open");
+  }
 
   const deleteButton = document.querySelector(".delete-order-button");
 
@@ -170,7 +176,9 @@ function deleteOrder(orderNumber) {
 
   renderOrders();
 
-  elements.orderModal.classList.remove("open");
+  if (elements.orderModal) {
+    elements.orderModal.classList.remove("open");
+  }
 }
 
 // =====================
@@ -210,7 +218,9 @@ function printCurrentOrder() {
     return;
   }
 
-  const order = createOrder();
+  const order = createOrder({
+    consumeNumber: false,
+  });
 
   if (!order) {
     return;
@@ -224,7 +234,9 @@ function printCurrentOrder() {
 // =====================
 
 // Cria um pedido
-function createOrder() {
+function createOrder(options = {}) {
+  const { consumeNumber = true } = options;
+
   const customerName = elements.customerNameInput.value.trim();
 
   const orderNote = elements.orderNoteInput.value.trim();
@@ -234,7 +246,9 @@ function createOrder() {
     return null;
   }
 
-  const orderNumber = getNextOrderNumber();
+  const orderNumber = consumeNumber
+    ? getNextOrderNumber()
+    : getCurrentOrderNumber();
 
   const orderDate = new Date().toLocaleString("pt-BR", {
     dateStyle: "short",
@@ -254,6 +268,13 @@ function createOrder() {
 // =====================
 // NÚMERO DO PEDIDO
 // =====================
+
+// Retorna o próximo número sem salvá-lo
+function getCurrentOrderNumber() {
+  const lastOrder = Number(loadStorage("padaroca-order-number") || 0);
+
+  return String(lastOrder + 1).padStart(3, "0");
+}
 
 // Gera o próximo número do pedido
 function getNextOrderNumber() {
@@ -294,12 +315,12 @@ function renderOrders() {
 
   if (orders.length === 0) {
     elements.historyItemsContainer.innerHTML = `
-            <div class="empty-history">
+      <div class="empty-history">
 
-                Nenhum pedido encontrado.
+        Nenhum pedido encontrado.
 
-            </div>
-        `;
+      </div>
+    `;
 
     return;
   }
@@ -311,33 +332,33 @@ function renderOrders() {
     .reverse()
     .forEach((order) => {
       historyHTML += `
-                <div class="history-item">
+        <div class="history-item">
 
-                    <h4 class="history-info">
-                        Pedido #${order.number}
-                    </h4>
+          <h4 class="history-info">
+            Pedido #${order.number}
+          </h4>
 
-                    <p class="history-info">
-                        ${order.customer}
-                    </p>
+          <p class="history-info">
+            ${order.customer}
+          </p>
 
-                    <p class="history-info">
-                        ${order.date}
-                    </p>
+          <p class="history-info">
+            ${order.date}
+          </p>
 
-                    <p class="history-info">
-                        ${order.total}
-                    </p>
+          <p class="history-info">
+            ${order.total}
+          </p>
 
-                    <button
-                        class="view-order-button"
-                        data-order="${order.number}"
-                    >
-                        Ver detalhes
-                    </button>
+          <button
+            class="view-order-button"
+            data-order="${order.number}"
+          >
+            Ver detalhes
+          </button>
 
-                </div>
-            `;
+        </div>
+      `;
     });
 
   elements.historyItemsContainer.innerHTML = historyHTML;
@@ -379,6 +400,10 @@ ${order.date}
 
   return message;
 }
+
+// =====================
+// ENVIO PARA WHATSAPP
+// =====================
 
 // Envia o pedido para o WhatsApp
 function sendToWhatsApp(message) {

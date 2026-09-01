@@ -10,6 +10,7 @@ import { initializeOrders } from "./orders.js";
 import { usersIcon, cartIcon, orderIcon, closeIcon } from "./icons.js";
 import { initializeUsers } from "./users.js";
 import { renderProducts } from "./products.js";
+import { initializeProductsManagement } from "./productsManagement.js";
 
 // =====================
 // AUTENTICAÇÃO
@@ -30,6 +31,7 @@ initializeCart();
 initializeFilters();
 initializeOrders();
 initializeUsers();
+initializeProductsManagement();
 initializeCurrentUser();
 // =====================
 // HISTORICO DE PEDIDOS

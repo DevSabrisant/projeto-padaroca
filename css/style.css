@@ -2902,6 +2902,175 @@ body.dark-mode .cancel-edit-user-button:hover {
 }
 
 /* =========================================================
+   MODAL DE GERENCIAMENTO DE PRODUTOS
+   ========================================================= */
+
+body.dark-mode .products-modal {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+body.dark-mode .products-modal-content {
+  background: #241f1b;
+
+  color: #f5f5f5;
+
+  border-color: rgba(255, 255, 255, 0.06);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Título */
+
+body.dark-mode .products-modal-content h2 {
+  color: #f5efe8;
+}
+
+/* Botão Novo Produto */
+
+body.dark-mode .new-product-button {
+  background: #8b4513;
+
+  color: #ffffff;
+
+  border-color: transparent;
+}
+
+body.dark-mode .new-product-button:hover {
+  background: #a05216;
+}
+
+/* Lista de produtos */
+
+body.dark-mode .products-list {
+  color: #f5f5f5;
+}
+
+/* Cada produto */
+
+body.dark-mode .product-management-item {
+  background: #2d2621;
+
+  border-color: rgba(255, 255, 255, 0.08);
+
+  color: #f5f5f5;
+}
+
+body.dark-mode .product-management-item:hover {
+  background: #342c26;
+
+  border-color: rgba(139, 69, 19, 0.5);
+}
+
+/* Nome e informações */
+
+body.dark-mode .product-management-info strong {
+  color: #f5efe8;
+}
+
+body.dark-mode .product-management-info span {
+  color: #d89a59;
+}
+
+/* Botão fechar */
+
+body.dark-mode .close-products {
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #f5f5f5;
+}
+
+body.dark-mode .close-products:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================================
+   GERENCIAMENTO DE PRODUTOS
+========================================================= */
+
+.products-modal {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  z-index: 1000;
+}
+
+.products-modal.open {
+  display: flex;
+}
+
+.products-modal-content {
+  position: relative;
+
+  width: min(700px, 90%);
+  max-height: 80vh;
+
+  padding: 30px;
+
+  overflow-y: auto;
+
+  background: #fff;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.products-modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.close-products {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  width: 35px;
+  height: 35px;
+
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.new-product-button {
+  margin-bottom: 20px;
+
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-management-item {
+  padding: 15px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.product-management-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* =========================================================
    ÍCONES DO TEMA
    ========================================================= */
 

@@ -119,6 +119,12 @@ export const elements = {
   ),
 
   editUserCityInput: document.querySelector(".edit-user-city-input"),
+
+  productsModal: document.querySelector(".products-modal"),
+  closeProductsButton: document.querySelector(".close-products"),
+  newProductButton: document.querySelector(".new-product-button"),
+  productsList: document.querySelector(".products-list"),
+  productsButton: document.querySelector(".products-button"),
 };
 
 export function refreshProductElements() {
