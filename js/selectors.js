@@ -132,6 +132,12 @@ export const elements = {
   closeProductFormButton: document.querySelector(".close-product-form"),
   cancelProductButton: document.querySelector(".cancel-product-button"),
   productForm: document.querySelector(".product-form"),
+  productNameInput: document.querySelector(".product-name-input"),
+  productDescriptionInput: document.querySelector(".product-description-input"),
+  productCategoryInput: document.querySelector(".product-category-input"),
+  productImageInput: document.querySelector(".product-image-input"),
+  productImagePreview: document.querySelector(".product-image-preview"),
+  productPriceInput: document.querySelector(".product-price-input"),
 };
 
 export function refreshProductElements() {
