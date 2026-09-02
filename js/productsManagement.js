@@ -23,15 +23,26 @@ export function initializeProductsManagement() {
     }
   });
 
-  elements.newProductButton.addEventListener("click", () => {
-    alert("Cadastro de produto em breve.");
+  elements.newProductButton.addEventListener("click", openNewProductModal);
+
+  elements.closeProductFormButton.addEventListener(
+    "click",
+    closeProductFormModal,
+  );
+
+  elements.cancelProductButton.addEventListener("click", closeProductFormModal);
+
+  elements.productFormModal.addEventListener("click", (event) => {
+    if (event.target === elements.productFormModal) {
+      closeProductFormModal();
+    }
   });
 
   renderProductsList();
 }
 
 // =====================
-// MODAL
+// MODAL DE PRODUTOS
 // =====================
 
 function openProductsModal() {
@@ -42,6 +53,20 @@ function openProductsModal() {
 
 function closeProductsModal() {
   elements.productsModal.classList.remove("open");
+}
+
+// =====================
+// NOVO PRODUTO
+// =====================
+
+function openNewProductModal() {
+  elements.productForm.reset();
+
+  elements.productFormModal.classList.add("open");
+}
+
+function closeProductFormModal() {
+  elements.productFormModal.classList.remove("open");
 }
 
 // =====================

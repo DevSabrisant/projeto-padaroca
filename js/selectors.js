@@ -120,11 +120,18 @@ export const elements = {
 
   editUserCityInput: document.querySelector(".edit-user-city-input"),
 
+  // Gerenciamento de Produtos
   productsModal: document.querySelector(".products-modal"),
   closeProductsButton: document.querySelector(".close-products"),
   newProductButton: document.querySelector(".new-product-button"),
   productsList: document.querySelector(".products-list"),
   productsButton: document.querySelector(".products-button"),
+
+  // Cadastro de Produto
+  productFormModal: document.querySelector(".product-form-modal"),
+  closeProductFormButton: document.querySelector(".close-product-form"),
+  cancelProductButton: document.querySelector(".cancel-product-button"),
+  productForm: document.querySelector(".product-form"),
 };
 
 export function refreshProductElements() {
