@@ -8,6 +8,7 @@ import {
   getProductById,
   updateProduct,
   deleteProduct,
+  toggleProduct,
 } from "./productService.js";
 import { closeIcon } from "./icons.js";
 import { handleCreateProduct } from "./productManager.js";
@@ -57,7 +58,9 @@ export function initializeProductsManagement() {
   );
 
   elements.productPriceInput.type = "text";
+
   elements.productPriceInput.addEventListener("keydown", handlePriceKeydown);
+
   elements.productPriceInput.addEventListener("blur", handlePriceBlur);
 
   renderProductsList();
@@ -87,6 +90,7 @@ function openNewProductModal() {
   elements.productForm.reset();
 
   elements.productImagePreview.style.backgroundImage = "";
+
   currentProductImageBase64 = "";
 
   elements.productPriceInput.value = "";
@@ -94,6 +98,10 @@ function openNewProductModal() {
 
   elements.productFormModal.classList.add("open");
 }
+
+// =====================
+// EDITAR PRODUTO
+// =====================
 
 function openEditProductModal(productId) {
   const product = getProductById(productId);
@@ -105,7 +113,9 @@ function openEditProductModal(productId) {
   editingProductId = product.id;
 
   elements.productNameInput.value = product.name;
+
   elements.productDescriptionInput.value = product.description;
+
   elements.productCategoryInput.value = product.category;
 
   elements.productPriceInput.value = product.price.toFixed(2).replace(".", ",");
@@ -123,6 +133,10 @@ function openEditProductModal(productId) {
   elements.productFormModal.classList.add("open");
 }
 
+// =====================
+// FECHAR FORMULÁRIO
+// =====================
+
 function closeProductFormModal() {
   elements.productFormModal.classList.remove("open");
 }
@@ -134,12 +148,15 @@ function closeProductFormModal() {
 function handleProductImageChange(event) {
   const file = event.target.files[0];
 
-  if (!file) return;
+  if (!file) {
+    return;
+  }
 
   const reader = new FileReader();
 
   reader.onload = () => {
     currentProductImageBase64 = reader.result;
+
     elements.productImagePreview.style.backgroundImage = `url(${reader.result})`;
   };
 
@@ -147,7 +164,7 @@ function handleProductImageChange(event) {
 }
 
 // =====================
-// PREÇO (digitação fluida)
+// PREÇO
 // =====================
 
 function handlePriceKeydown(event) {
@@ -161,9 +178,12 @@ function handlePriceKeydown(event) {
     "End",
   ];
 
-  if (allowedKeys.includes(event.key)) return;
+  if (allowedKeys.includes(event.key)) {
+    return;
+  }
 
   const isDigit = /^[0-9]$/.test(event.key);
+
   const isComma = event.key === "," && !event.target.value.includes(",");
 
   if (!isDigit && !isComma) {
@@ -176,7 +196,9 @@ function handlePriceBlur(event) {
 
   let numericValue = parseFloat(value);
 
-  if (isNaN(numericValue)) numericValue = 0;
+  if (isNaN(numericValue)) {
+    numericValue = 0;
+  }
 
   event.target.value = numericValue.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
@@ -223,9 +245,27 @@ function handleProductFormSubmit(event) {
 }
 
 // =====================
-// LISTAGEM
+// ATIVAR / DESATIVAR PRODUTO
 // =====================
-// deletar produto
+
+function handleToggleProduct(productId) {
+  const product = getProductById(productId);
+
+  if (!product) {
+    return;
+  }
+
+  toggleProduct(productId);
+
+  renderProducts();
+  refreshProductElements();
+  renderProductsList();
+}
+
+// =====================
+// DELETAR PRODUTO
+// =====================
+
 function handleDeleteProduct(productId) {
   const product = getProductById(productId);
 
@@ -247,6 +287,10 @@ function handleDeleteProduct(productId) {
   refreshProductElements();
   renderProductsList();
 }
+
+// =====================
+// LISTAGEM DE PRODUTOS
+// =====================
 
 function renderProductsList() {
   const products = getProducts();
@@ -275,6 +319,12 @@ function renderProductsList() {
         </button>
 
         <button
+          class="toggle-product-button"
+          data-product-id="${product.id}">
+          ${product.active ? "Desativar" : "Ativar"}
+        </button>
+
+        <button
           class="delete-product-button"
           data-product-id="${product.id}">
           Excluir
@@ -286,6 +336,12 @@ function renderProductsList() {
 
     editButton.addEventListener("click", () => {
       openEditProductModal(product.id);
+    });
+
+    const toggleButton = productItem.querySelector(".toggle-product-button");
+
+    toggleButton.addEventListener("click", () => {
+      handleToggleProduct(product.id);
     });
 
     const deleteButton = productItem.querySelector(".delete-product-button");

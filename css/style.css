@@ -3191,6 +3191,7 @@ body.dark-mode .close-products:hover {
 }
 
 .edit-product-button,
+.toggle-product-button,
 .delete-product-button {
   border: none;
   border-radius: 6px;
@@ -3201,6 +3202,10 @@ body.dark-mode .close-products:hover {
   transition: 0.2s ease;
 }
 
+/* =====================
+   EDITAR
+   ===================== */
+
 .edit-product-button {
   background-color: #e8f0fe;
   color: #2563eb;
@@ -3209,6 +3214,23 @@ body.dark-mode .close-products:hover {
 .edit-product-button:hover {
   background-color: #dbe7fd;
 }
+
+/* =====================
+   ATIVAR / DESATIVAR
+   ===================== */
+
+.toggle-product-button {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.toggle-product-button:hover {
+  background-color: #fde68a;
+}
+
+/* =====================
+   EXCLUIR
+   ===================== */
 
 .delete-product-button {
   background-color: #fee2e2;
@@ -3219,7 +3241,12 @@ body.dark-mode .close-products:hover {
   background-color: #fecaca;
 }
 
+/* =====================
+   EFEITO AO CLICAR
+   ===================== */
+
 .edit-product-button:active,
+.toggle-product-button:active,
 .delete-product-button:active {
   transform: scale(0.96);
 }
@@ -3235,6 +3262,15 @@ body.dark-mode .close-products:hover {
 
 .dark-mode .edit-product-button:hover {
   background-color: #274a73;
+}
+
+.dark-mode .toggle-product-button {
+  background-color: #5f4b1f;
+  color: #fcd34d;
+}
+
+.dark-mode .toggle-product-button:hover {
+  background-color: #745d27;
 }
 
 .dark-mode .delete-product-button {
