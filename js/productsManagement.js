@@ -2,12 +2,19 @@
 // GERENCIAMENTO DE PRODUTOS
 // =====================
 
-import { elements } from "./selectors.js";
-import { getProducts } from "./productService.js";
+import { elements, refreshProductElements } from "./selectors.js";
+import {
+  getProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+} from "./productService.js";
 import { closeIcon } from "./icons.js";
 import { handleCreateProduct } from "./productManager.js";
+import { renderProducts } from "./products.js";
 
 let currentProductImageBase64 = "";
+let editingProductId = null;
 
 // =====================
 // INICIALIZAÇÃO
@@ -19,6 +26,7 @@ export function initializeProductsManagement() {
   elements.closeProductsButton.addEventListener("click", closeProductsModal);
 
   elements.closeProductsButton.innerHTML = closeIcon;
+  elements.closeProductFormButton.innerHTML = closeIcon;
 
   elements.productForm.addEventListener("submit", handleProductFormSubmit);
 
@@ -74,6 +82,8 @@ function closeProductsModal() {
 // =====================
 
 function openNewProductModal() {
+  editingProductId = null;
+
   elements.productForm.reset();
 
   elements.productImagePreview.style.backgroundImage = "";
@@ -81,6 +91,34 @@ function openNewProductModal() {
 
   elements.productPriceInput.value = "";
   elements.productPriceInput.dataset.rawValue = "";
+
+  elements.productFormModal.classList.add("open");
+}
+
+function openEditProductModal(productId) {
+  const product = getProductById(productId);
+
+  if (!product) {
+    return;
+  }
+
+  editingProductId = product.id;
+
+  elements.productNameInput.value = product.name;
+  elements.productDescriptionInput.value = product.description;
+  elements.productCategoryInput.value = product.category;
+
+  elements.productPriceInput.value = product.price.toFixed(2).replace(".", ",");
+
+  elements.productPriceInput.dataset.rawValue = product.price;
+
+  currentProductImageBase64 = product.image || "";
+
+  if (product.image) {
+    elements.productImagePreview.style.backgroundImage = `url(${product.image})`;
+  } else {
+    elements.productImagePreview.style.backgroundImage = "";
+  }
 
   elements.productFormModal.classList.add("open");
 }
@@ -168,15 +206,47 @@ function handleProductFormSubmit(event) {
     active: true,
   };
 
-  handleCreateProduct(productData);
+  if (editingProductId === null) {
+    handleCreateProduct(productData);
+  } else {
+    updateProduct(editingProductId, productData);
+  }
 
   closeProductFormModal();
+
+  renderProducts();
+  refreshProductElements();
+
   renderProductsList();
+
+  editingProductId = null;
 }
 
 // =====================
 // LISTAGEM
 // =====================
+// deletar produto
+function handleDeleteProduct(productId) {
+  const product = getProductById(productId);
+
+  if (!product) {
+    return;
+  }
+
+  const confirmed = confirm(
+    `Tem certeza que deseja excluir o produto "${product.name}"?`,
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  deleteProduct(productId);
+
+  renderProducts();
+  refreshProductElements();
+  renderProductsList();
+}
 
 function renderProductsList() {
   const products = getProducts();
@@ -189,14 +259,40 @@ function renderProductsList() {
     productItem.className = "product-management-item";
 
     productItem.innerHTML = `
-            <div class="product-management-info">
-                <strong>${product.name}</strong>
+      <div class="product-management-info">
+        <strong>${product.name}</strong>
 
-                <span>
-                    R$ ${product.price.toFixed(2).replace(".", ",")}
-                </span>
-            </div>
-        `;
+        <span>
+          R$ ${product.price.toFixed(2).replace(".", ",")}
+        </span>
+      </div>
+
+      <div class="product-management-actions">
+        <button
+          class="edit-product-button"
+          data-product-id="${product.id}">
+          Editar
+        </button>
+
+        <button
+          class="delete-product-button"
+          data-product-id="${product.id}">
+          Excluir
+        </button>
+      </div>
+    `;
+
+    const editButton = productItem.querySelector(".edit-product-button");
+
+    editButton.addEventListener("click", () => {
+      openEditProductModal(product.id);
+    });
+
+    const deleteButton = productItem.querySelector(".delete-product-button");
+
+    deleteButton.addEventListener("click", () => {
+      handleDeleteProduct(product.id);
+    });
 
     elements.productsList.appendChild(productItem);
   });

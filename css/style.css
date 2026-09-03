@@ -3180,6 +3180,71 @@ body.dark-mode .close-products:hover {
   justify-content: space-between;
 }
 
+/* =====================
+   AÇÕES DO PRODUTO
+   ===================== */
+
+.product-management-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-product-button,
+.delete-product-button {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-product-button {
+  background-color: #e8f0fe;
+  color: #2563eb;
+}
+
+.edit-product-button:hover {
+  background-color: #dbe7fd;
+}
+
+.delete-product-button {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.delete-product-button:hover {
+  background-color: #fecaca;
+}
+
+.edit-product-button:active,
+.delete-product-button:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   DARK MODE - AÇÕES DO PRODUTO
+   ===================== */
+
+.dark-mode .edit-product-button {
+  background-color: #1e3a5f;
+  color: #93c5fd;
+}
+
+.dark-mode .edit-product-button:hover {
+  background-color: #274a73;
+}
+
+.dark-mode .delete-product-button {
+  background-color: #5f2525;
+  color: #fca5a5;
+}
+
+.dark-mode .delete-product-button:hover {
+  background-color: #742f2f;
+}
 /* =========================================================
    ÍCONES DO TEMA
    ========================================================= */
