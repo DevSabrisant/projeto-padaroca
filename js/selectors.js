@@ -138,6 +138,10 @@ export const elements = {
   productImageInput: document.querySelector(".product-image-input"),
   productImagePreview: document.querySelector(".product-image-preview"),
   productPriceInput: document.querySelector(".product-price-input"),
+
+  // Dashboard
+  dashboardButton: document.querySelector(".dashboard-button"),
+  dashboard: document.querySelector(".dashboard"),
 };
 
 export function refreshProductElements() {

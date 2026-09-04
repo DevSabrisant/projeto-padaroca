@@ -11,6 +11,7 @@ import { usersIcon, cartIcon, orderIcon, closeIcon } from "./icons.js";
 import { initializeUsers } from "./users.js";
 import { renderProducts } from "./products.js";
 import { initializeProductsManagement } from "./productsManagement.js";
+import { initializeDashboard } from "./dashboard.js";
 
 // =====================
 // AUTENTICAÇÃO
@@ -32,6 +33,7 @@ initializeFilters();
 initializeOrders();
 initializeUsers();
 initializeProductsManagement();
+initializeDashboard();
 initializeCurrentUser();
 // =====================
 // HISTORICO DE PEDIDOS
@@ -142,4 +144,12 @@ elements.profileButton.addEventListener("click", () => {
   elements.userDropdown.classList.remove("open");
 
   window.location.href = "profile.html";
+});
+
+// =====================
+// DASHBOARD
+// =====================
+
+elements.dashboardButton.addEventListener("click", () => {
+  elements.dashboard.classList.add("open");
 });

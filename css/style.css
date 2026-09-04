@@ -3333,6 +3333,297 @@ textarea,
     box-shadow 0.3s ease;
 }
 
+/* =====================
+   DASHBOARD
+   ===================== */
+
+.dashboard {
+  display: none;
+  padding: 24px;
+}
+
+.dashboard.open {
+  display: block;
+}
+
+/* =====================
+   CABEÇALHO
+   ===================== */
+
+.dashboard-header {
+  margin-bottom: 28px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #5c3317;
+}
+
+.dashboard-header p {
+  margin-top: 6px;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* =====================
+   CARDS DE INDICADORES
+   ===================== */
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.dashboard-card {
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 22px;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  border: 1px solid rgba(139, 69, 19, 0.08);
+  border-radius: 18px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(139, 69, 19, 0.15);
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #8b6b52;
+}
+
+.dashboard-card strong {
+  font-size: 1.7rem;
+  line-height: 1.2;
+  color: #5c3317;
+}
+
+/* =====================
+   SEÇÕES
+   ===================== */
+
+.dashboard-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dashboard-panel {
+  min-width: 0;
+
+  padding: 22px;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  border: 1px solid rgba(139, 69, 19, 0.08);
+  border-radius: 18px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-panel-header {
+  margin-bottom: 10px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid rgba(139, 69, 19, 0.08);
+}
+
+.dashboard-panel-header h3 {
+  margin: 0;
+
+  font-size: 1.05rem;
+  color: #5c3317;
+}
+
+/* =====================
+   PEDIDOS RECENTES
+   ===================== */
+
+.dashboard-order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  gap: 16px;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-order-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard-order-item > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dashboard-order-item strong:first-child {
+  overflow: hidden;
+
+  color: #5c3317;
+  font-size: 0.9rem;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dashboard-order-item span {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.dashboard-order-item strong:last-child {
+  flex-shrink: 0;
+
+  color: #2e8b57;
+  font-size: 0.9rem;
+}
+
+/* =====================
+   PRODUTOS MAIS VENDIDOS
+   ===================== */
+
+.dashboard-product-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  gap: 16px;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-product-item:last-child {
+  border-bottom: none;
+}
+
+.dashboard-product-item span {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: #5c3317;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dashboard-product-item strong {
+  flex-shrink: 0;
+
+  color: #2e8b57;
+  font-size: 0.85rem;
+}
+
+/* =====================
+   ESTADO VAZIO
+   ===================== */
+
+.dashboard-empty {
+  margin: 0;
+
+  padding: 24px 0;
+
+  text-align: center;
+
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* =====================
+   DARK MODE
+   ===================== */
+
+body.dark-mode .dashboard-header h2 {
+  color: #f5efe8;
+}
+
+body.dark-mode .dashboard-header p {
+  color: #b8aaa0;
+}
+
+body.dark-mode .dashboard-card,
+body.dark-mode .dashboard-panel {
+  background: #2d2621;
+
+  border-color: rgba(255, 255, 255, 0.05);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .dashboard-card-label {
+  color: #b8aaa0;
+}
+
+body.dark-mode .dashboard-card strong {
+  color: #f5efe8;
+}
+
+body.dark-mode .dashboard-panel-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .dashboard-panel-header h3 {
+  color: #f5efe8;
+}
+
+body.dark-mode .dashboard-order-item,
+body.dark-mode .dashboard-product-item {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .dashboard-order-item strong:first-child,
+body.dark-mode .dashboard-product-item span {
+  color: #f5efe8;
+}
+
+body.dark-mode .dashboard-order-item span {
+  color: #b8aaa0;
+}
+
+body.dark-mode .dashboard-order-item strong:last-child,
+body.dark-mode .dashboard-product-item strong {
+  color: #7fc99a;
+}
+
+body.dark-mode .dashboard-empty {
+  color: #aaa09a;
+}
+
 /* =========================================================
    TABLET
    ========================================================= */
