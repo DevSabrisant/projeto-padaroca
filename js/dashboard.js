@@ -13,6 +13,10 @@ export function initializeDashboard() {
   renderDashboard();
 }
 
+export function refreshDashboard() {
+  renderDashboard();
+}
+
 // =====================
 // RENDERIZAÇÃO
 // =====================

@@ -142,6 +142,8 @@ export const elements = {
   // Dashboard
   dashboardButton: document.querySelector(".dashboard-button"),
   dashboard: document.querySelector(".dashboard"),
+  dashboardBackButton: document.querySelector(".dashboard-back-button"),
+  menu: document.querySelector(".menu"),
 };
 
 export function refreshProductElements() {

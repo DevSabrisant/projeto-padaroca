@@ -7,6 +7,7 @@ import { elements } from "./selectors.js";
 import { getCart, clearCart, isCartEmpty } from "./cart.js";
 import { printOrder } from "./print.js";
 import { formatPrice } from "./utils.js";
+import { refreshDashboard } from "./dashboard.js";
 
 // Histórico em memória
 let orders = loadStorage("padaroca-orders") || [];
@@ -292,10 +293,13 @@ function getNextOrderNumber() {
 // =====================
 
 // Salva um pedido
+
 function saveOrder(order) {
   orders.push(order);
 
   saveOrders();
+
+  refreshDashboard();
 
   renderOrders();
 }

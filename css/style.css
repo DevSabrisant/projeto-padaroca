@@ -3345,6 +3345,28 @@ textarea,
 .dashboard.open {
   display: block;
 }
+.dashboard-back-button {
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  background: #5c3317;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.dashboard-back-button:hover {
+  opacity: 0.9;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
 
 /* =====================
    CABEÇALHO

@@ -152,4 +152,9 @@ elements.profileButton.addEventListener("click", () => {
 
 elements.dashboardButton.addEventListener("click", () => {
   elements.dashboard.classList.add("open");
+  elements.menu.style.display = "none";
+});
+elements.dashboardBackButton.addEventListener("click", () => {
+  elements.dashboard.classList.remove("open");
+  elements.menu.style.display = "block";
 });
