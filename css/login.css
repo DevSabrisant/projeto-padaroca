@@ -6,6 +6,7 @@ body {
   margin: 0;
 
   min-height: 100vh;
+  min-height: 100dvh;
 
   display: flex;
   justify-content: center;
@@ -20,12 +21,15 @@ body {
   width: 100%;
 
   min-height: 100vh;
+  min-height: 100dvh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   padding: 24px;
+  padding-top: calc(24px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
 }
 
 .login-card {
@@ -89,7 +93,7 @@ body {
 
   outline: none;
 
-  font-size: 0.95rem;
+  font-size: 16px;
 
   transition: 0.25s;
 }
@@ -222,4 +226,25 @@ body.dark-mode .login-footer {
   color: #8f8f8f;
 
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =====================
+   MOBILE
+===================== */
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 16px;
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .login-card {
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+
+  .login-card h1 {
+    font-size: 1.6rem;
+  }
 }

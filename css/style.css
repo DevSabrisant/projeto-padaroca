@@ -9,12 +9,44 @@
 
 html {
   scroll-behavior: smooth;
+
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* =========================================================
+   BASE MOBILE / TOQUE
+   - Evita o zoom automático do Safari em inputs/selects/
+     textareas com fonte menor que 16px.
+   - Deixa os toques mais previsíveis em iOS e Android.
+   ========================================================= */
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+button,
+.filter-button,
+.add-button,
+.header-actions > button,
+.cart-item-controls button,
+.checkout-button,
+.print-button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+img {
+  max-width: 100%;
 }
 
 /* =========================================================
@@ -108,8 +140,11 @@ header {
 
   z-index: 100;
 
-  padding-top: 20px;
+  padding-top: calc(20px + env(safe-area-inset-top, 0px));
   padding-bottom: 0;
+
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 /* =========================================================
@@ -219,7 +254,7 @@ header {
 
   color: #5c3317;
 
-  font-size: 0.95rem;
+  font-size: 16px;
 
   outline: none;
 
@@ -954,6 +989,7 @@ main {
   max-width: 100%;
 
   height: 100vh;
+  height: 100dvh;
 
   display: flex;
 
@@ -1129,8 +1165,8 @@ main {
 }
 
 .cart-item-controls button {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
 
   border: none;
 
@@ -1183,6 +1219,7 @@ main {
   gap: 14px;
 
   padding: 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
 
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 
@@ -1231,7 +1268,7 @@ main {
 
   color: #5c3317;
 
-  font-size: 0.95rem;
+  font-size: 16px;
 
   transition:
     border-color 0.2s ease,
@@ -1403,6 +1440,7 @@ main {
   max-width: 100%;
 
   height: 100vh;
+  height: 100dvh;
 
   display: flex;
 
@@ -3373,19 +3411,25 @@ textarea,
    ===================== */
 
 .dashboard-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
   margin-bottom: 28px;
 }
 
 .dashboard-header h2 {
   margin: 0;
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 1.1rem + 1.3vw, 2rem);
   color: #5c3317;
 }
 
 .dashboard-header p {
   margin-top: 6px;
   color: #777;
-  font-size: 0.95rem;
+  font-size: clamp(0.82rem, 0.75rem + 0.3vw, 0.95rem);
 }
 
 /* =====================
@@ -3394,20 +3438,20 @@ textarea,
 
 .dashboard-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(10px, 1.5vw, 18px);
   margin-bottom: 28px;
 }
 
 .dashboard-card {
-  min-height: 120px;
+  min-height: 100px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
 
-  padding: 22px;
+  padding: clamp(14px, 2vw, 22px);
 
   background: rgba(255, 255, 255, 0.78);
 
@@ -3431,13 +3475,13 @@ textarea,
 }
 
 .dashboard-card-label {
-  font-size: 0.82rem;
+  font-size: clamp(0.72rem, 0.65rem + 0.25vw, 0.82rem);
   font-weight: 600;
   color: #8b6b52;
 }
 
 .dashboard-card strong {
-  font-size: 1.7rem;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.7rem);
   line-height: 1.2;
   color: #5c3317;
 }
@@ -3448,14 +3492,14 @@ textarea,
 
 .dashboard-sections {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(12px, 1.5vw, 20px);
 }
 
 .dashboard-panel {
   min-width: 0;
 
-  padding: 22px;
+  padding: clamp(14px, 2vw, 22px);
 
   background: rgba(255, 255, 255, 0.78);
 
@@ -3818,6 +3862,8 @@ body.dark-mode .dashboard-empty {
 
     scroll-behavior: smooth;
 
+    scroll-snap-type: x proximity;
+
     -webkit-overflow-scrolling: touch;
 
     scrollbar-width: none;
@@ -3832,7 +3878,123 @@ body.dark-mode .dashboard-empty {
 
     white-space: nowrap;
 
+    scroll-snap-align: start;
+
+    min-height: 44px;
+
     padding: 12px 18px;
+
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* =========================================================
+   DASHBOARD — CELULAR
+   Garante 1 coluna mesmo com o auto-fit em telas muito
+   estreitas, e destrava o cabeçalho pra ficar em pé.
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* =========================================================
+   BARRA DE AÇÕES DO HEADER — CELULAR
+   Grade uniforme em vez de flex-wrap centralizado: nunca
+   deixa um botão cortado na borda, e garante toque de
+   pelo menos 44px de altura.
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    width: 100%;
+  }
+
+  .header-actions > button {
+    flex: 1 1 calc(50% - 5px);
+
+    min-height: 44px;
+  }
+
+  /* O "Perfil" entra como mais um item do mesmo flexbox dos
+     ícones, em vez de virar um avatar solto no canto. Como é
+     o 7º item (número ímpar), ele sozinho na última linha
+     estica com flex-grow e preenche o espaço que sobraria
+     vazio ao lado — sem precisar de nenhum item "fantasma". */
+
+  /* O "Perfil" entra como mais um item do mesmo flexbox dos
+     ícones, em vez de virar um avatar solto no canto. Como é
+     o 7º item (número ímpar), ele sozinho na última linha
+     estica com flex-grow e preenche o espaço que sobraria
+     vazio ao lado — sem precisar de nenhum item "fantasma".
+
+     Importante: quem recebe o clique de verdade é o próprio
+     botão .user-avatar (é nele que o JS escuta o clique).
+     Por isso ele — e não o <div> .user-menu — precisa ocupar
+     o pill inteiro, senão clicar no texto "Perfil" não abre
+     o dropdown. */
+
+  .user-menu {
+    position: relative;
+
+    flex: 1 1 calc(50% - 5px);
+
+    margin-left: 0;
+
+    display: flex;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .user-avatar {
+    width: 100%;
+    height: auto;
+
+    min-width: 0;
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border-radius: 13px;
+
+    background: #f8f3ef;
+
+    font-size: 0.72rem;
+  }
+
+  .user-avatar::after {
+    content: "Perfil";
+
+    color: #5c3317;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .user-dropdown {
+    top: calc(100% + 10px);
+
+    right: 0;
+    left: auto;
   }
 }
 
@@ -3860,7 +4022,13 @@ body.dark-mode .dashboard-empty {
   .header-actions > button {
     min-width: 42px;
 
-    padding: 0 12px;
+    font-size: 0.74rem;
+
+    padding: 0 8px;
+  }
+
+  .user-avatar::after {
+    font-size: 0.74rem;
   }
 
   .edit-user-modal {
